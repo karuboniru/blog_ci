@@ -341,8 +341,9 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
     "fab fa-github": https://github.com/karuboniru
     "fab fa-twitter": https://twitter.com/Karuboniru
     # "fab fa-weixin qrcode":  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，因此值需要是二维码图片地址
-    "fab fa-mastodon": https://mastodon.ktachibana.party/web/accounts/8721
-    # "fab fa-mastodon": https://pawoo.net/web/accounts/834589
+    # "fab fa-mastodon": https://mastodon.ktachibana.party/web/accounts/8721
+    "fab fa-mastodon": https://pawoo.net/web/accounts/834589
+    "fab fa-telegram": https://t.me/Karuboniru
     
 
 
@@ -368,4 +369,4 @@ links:
     # Fluid Docs: [https://hexo.fluid-dev.com/docs/, 主题使用指南, /img/favicon.png]
     # Fluid Repo: [https://github.com/fluid-dev/hexo-theme-fluid, 主题 GitHub 仓库, /img/favicon.png]
     # Fluid Changelog: [https://github.com/fluid-dev/hexo-theme-fluid/blob/master/Changelog.md, 主题更新日志, /img/favicon.png]
-    binnig: [https://binnig.cn, Plasma / Cycling / ACG / Kendo / Tennis / PC Repair]
+    binnig: [https://binnig.cn, Plasma / Cycling / ACG / Kendo / Tennis / PC Repair, /img/link/binnig.cn.jpg]
