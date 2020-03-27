@@ -1,6 +1,7 @@
 ---
 title: 在 WSL 2 下运行 Anbox
 date: 2020-03-27 12:53:49
+index_img: /img/anbox-in-wsl/1.png
 tags: 
 - 瞎折腾
 - WSL
