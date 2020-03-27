@@ -10,7 +10,7 @@ tags:
 
 这本来是我之前在 reddit 上面发的一个[帖子](https://www.reddit.com/r/bashonubuntuonwindows/comments/eofn5s/run_anbox_on_wsl_2/). 现在干脆把它重新写成中文, 姑且算是给自己引流.
 
-[Anbox](https://anbox.io/) 实现了给予 lxc 的 Android on Linux 支持, 由于 WSL 2 就是完整的 Linux, 于是稍加折腾就能跑起来了. 
+[Anbox](https://anbox.io/) 实现了基于 lxc 的 Android on Linux 支持, 由于 WSL 2 就是完整的 Linux, 于是稍加折腾就能跑起来了. 
 
 # 安装 anbox
 
