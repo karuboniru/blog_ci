@@ -1,0 +1,11 @@
+language: node_js
+node_js: --lts
+git:
+  submodules: true
+before_script:
+  - git config user.name "Karuboniru"
+  - git config user.email "3437889+karuboniru@users.noreply.github.com"
+  - sed -i'' "s~git@github.com:karuboniru/karuboniru.github.io.git~https://${GITHUB_ACCESS_TOKEN}@github.com/karuboniru/karuboniru.github.io.git~" _config.yml
+script:
+  - hexo g
+  - hexo d
