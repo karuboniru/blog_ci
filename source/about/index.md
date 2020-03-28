@@ -5,7 +5,7 @@ layout: about
 ---
 
 博客持续集成状态:
-[![Build Status](https://travis-ci.org/karuboniru/blog_ci.svg?branch=master)](https://travis-ci.org/karuboniru/blog_ci)
+![Deploy](https://github.com/karuboniru/blog_ci/workflows/Deploy/badge.svg)
 
 另外, 评论区可能需要翻墙: 因为 `api.github.com` 看起来被墙掉了.
 
