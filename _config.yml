@@ -4,12 +4,12 @@
 
 # Site
 title: Karuboniru's Blog
-subtitle: ''
-description: ''
-keywords:
+subtitle: '羰基的博客'
+description: '羰基的博客, 西木野羰基的信息分享途径'
+keywords: 技术, 杂谈, 吐槽
 author: Karuboniru
 # language: en
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
