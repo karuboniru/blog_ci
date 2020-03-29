@@ -3,6 +3,7 @@ title: 规划
 date: 2020-03-27 12:47:48
 tags:
 math: true
+categories: 杂项
 ---
 
 因为万恶的知乎审查逐渐疯狂, 于是机智的我决定注销愚蠢的知乎, 转向使用美妙的 [Hexo](https://hexo.io/). 

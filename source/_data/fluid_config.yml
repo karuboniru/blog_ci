@@ -96,7 +96,7 @@ navbar:
   menu:  # 可自行增减，若想减去某个入口，可以将值留空，显示文本关联 languages
     home: /
     archive: /archives/
-    # category: /categories/
+    category: /categories/
     tag: /tags/
     about: /about/
     links: /links/  # 友链页，把前面#去掉即可展示

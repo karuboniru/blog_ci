@@ -5,6 +5,7 @@ index_img: /img/anbox-in-wsl/1.webp
 tags: 
 - 瞎折腾
 - WSL
+categories: 技术
 ---
 
 ## 介绍
