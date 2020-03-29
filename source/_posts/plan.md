@@ -11,3 +11,5 @@ categories: 杂项
 之后准备闲下来的时候写点关于 [Geant4](http://geant4.org/) 和 [ROOT](https://root.cern/) 的文章, 也算是给后来人开路吧... 闲下来之后.
 
 因为这里看起来支持 $\LaTeX$, 可能会有一些物理的东西?
+
+mathjax 实验: $$\begin{bmatrix}a & b \\ c & d\end{bmatrix}$$，不过评论区貌似有一些奇怪的bug
