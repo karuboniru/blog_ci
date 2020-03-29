@@ -1,7 +1,7 @@
 ---
 title: 在 WSL 2 下运行 Anbox
 date: 2020-03-27 12:53:49
-index_img: /img/anbox-in-wsl/1.png
+index_img: /img/anbox-in-wsl/1.webp
 tags: 
 - 瞎折腾
 - WSL
@@ -88,7 +88,7 @@ Ubuntu 上我也试过, **但是不能正常显示(窗口啥都没有)**, 但是
 
 ## 效果
 
-![](/img/anbox-in-wsl/1.png)
+![](/img/anbox-in-wsl/1.webp)
 
 
 ## 当前问题
