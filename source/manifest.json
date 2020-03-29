@@ -1,8 +1,8 @@
 {
   "name": "Karuboniru's blog",
   "short_name": "羰基的博客",
-  "theme_color": "#055B82",
-  "background_color": "#055B82",
+  "theme_color": "#04425E",
+  "background_color": "#04425E",
   "display": "standalone",
   "Scope": "/",
   "start_url": "/",
