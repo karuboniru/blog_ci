@@ -12,4 +12,4 @@ categories: 杂项
 
 因为这里看起来支持 $\LaTeX$, 可能会有一些物理的东西?
 
-mathjax 实验: $$\begin{bmatrix}a & b \\ c & d\end{bmatrix}$$，不过评论区貌似有一些奇怪的bug
+MathJax 实验: $$\begin{bmatrix}a & b \\ c & d\end{bmatrix}$$, 不过评论区貌似有一些奇怪的 bug, 这是因为 markdown 的转义行为, 发表 $\LaTeX$ 可以先预览一下看看是否踩坑.
