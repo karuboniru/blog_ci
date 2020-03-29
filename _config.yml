@@ -119,3 +119,15 @@ offline:
       handler: cacheFirst
       options:
         origin: cdnjs.cloudflare.com
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: js.fundebug.cn
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: cdn.jsdelivr.net
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: ajax.cloudflare.com
