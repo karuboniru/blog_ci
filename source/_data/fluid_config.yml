@@ -259,7 +259,7 @@ gitalk:
 valine:
   appid: 3Ba5gx25NWO2GvMddRuroM3X-MdYXbMMI # your leancloud application appid
   appkey: 3D7nE7MewcNG0YGY57FMfxpb # your leancloud application appkey
-  notify: false # mail notifier, See: https://github.com/xCss/Valine/wiki
+  notify: true # mail notifier, See: https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: 评论区 # comment box placeholder
   avatar: retro # gravatar style https://valine.js.org/avatar.html
