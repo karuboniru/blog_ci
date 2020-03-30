@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -112,7 +112,7 @@ offline:
   staticFileGlobs:
     - public/**/*.{js,html,css,png,jpg,jpeg,gif,svg,json,xml,webp}
   stripPrefix: public
-  verbose: true
+  verbose: false
   runtimeCaching:
     # CDNs - should be cacheFirst, since they should be used specific versions so should not change
     - urlPattern: /*

@@ -12,8 +12,8 @@
     "version": "4.2.0"
   },
   "dependencies": {
-    "hexo": "^4.0.0",
-    "hexo-asset-image": "^1.0.0",
+    "hexo": "^4.2.0",
+    "hexo-asset-image-fix": "^0.1.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-filter-auto-spacing": "^0.2.1",
     "hexo-generator-archive": "^1.0.0",
