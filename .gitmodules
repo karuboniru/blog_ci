@@ -3,5 +3,5 @@
 	url = https://github.com/fluid-dev/hexo-theme-fluid
 [submodule "source/_posts"]
 	path = source/_posts
-	url = git@github.com:karuboniru/blog_ci.git
+	url = git@github.com:karuboniru/blog_md.git
 	branch = _posts
