@@ -23,9 +23,9 @@
 # Internal static
 #---------------------------
 
-internal_js: /js
-internal_css: /css
-internal_img: /img
+internal_js: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/js
+internal_css: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/css
+internal_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img
 
 
 #---------------------------
@@ -51,7 +51,7 @@ prettify: https://cdn.jsdelivr.net/npm/code-prettify@0.1.0/src/
 
 # 高亮主题的路径，只支持 min.css，文件名需要与 _config.highlight.theme 对应
 # the path of highlight theme, only support `min.css` file，filename need to be the same as _config.highlight.theme
-prettify_theme: /lib/prettify/
+prettify_theme: https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/lib/prettify/
 
 tocbot: https://cdn.jsdelivr.net/npm/tocbot@4.10.1/dist/
 

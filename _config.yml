@@ -119,10 +119,6 @@ offline:
     - urlPattern: /*
       handler: cacheFirst
       options:
-        origin: cdn.jsdelivr.net
-    - urlPattern: /*
-      handler: cacheFirst
-      options:
         origin: js.fundebug.cn
     - urlPattern: /*
       handler: cacheFirst
