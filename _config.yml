@@ -119,7 +119,7 @@ offline:
     - urlPattern: /*
       handler: cacheFirst
       options:
-        origin: cdnjs.cloudflare.com
+        origin: cdn.jsdelivr.net
     - urlPattern: /*
       handler: cacheFirst
       options:
