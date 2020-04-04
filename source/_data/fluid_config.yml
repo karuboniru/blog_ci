@@ -11,9 +11,9 @@
 # 全局
 # Site
 #---------------------------
-favicon: /img/favicon.webp # 网站标签页的 icon
+favicon: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.webp # 网站标签页的 icon
 
-apple_touch_icon: /img/favicon.webp # 用于苹果设备的 icon
+apple_touch_icon: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.webp # 用于苹果设备的 icon
 
 title_join_string: ' - '  # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 
@@ -84,7 +84,7 @@ aplayer:  # 音乐播放器，注意不能与 hexo-tag-aplayer 插件共用
   order: 'random'  # 播放顺序，可选值: 'list', 'random'
   theme: '#b7daff'  # 主题色
   songs:  # 歌曲列表，必须传入下列各参数，其中 url 与 cover 在本地需存于 source 目录，更多参数见文档：https://aplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0
-    - { name: 'name', artist: 'artist', url: '/songs/test.mp3', cover: '/img/cover.jpg' }
+    - { name: 'name', artist: 'artist', url: '/songs/test.mp3', cover: '//cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/cover.jpg' }
     - { name: 'name', artist: 'artist', url: 'https://...url.mp3', cover: 'https://...cover.jpg' }
 
 #---------------------------
@@ -131,7 +131,7 @@ footer:
     icp_text: 京ICP证123456号 # ICP证号
     police_text: 京公网安备12345678号 # 公安备案号，不填则只显示ICP
     police_code: 12345678 # 公安备案的编号，用于URL跳转查询
-    police_icon: /img/police_beian.png # 公安备案的图片. 为空时不显示备案图片
+    police_icon: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/police_beian.png # 公安备案的图片. 为空时不显示备案图片
 
 scroll_top_arrow:  # 向顶部滚动的箭头
   enable: true
@@ -151,7 +151,7 @@ txc:
 # Index Page
 #---------------------------
 index:
-  banner_img: /img/default.webp  # 首页 Banner 头图，以下相同
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp  # 首页 Banner 头图，以下相同
   banner_img_height: 100  # 头图高度，屏幕百分比，available: 0 - 100
   post_default_img: '' # 默认的文章封面图，当没有指定 index_img 时会使用该图片，若都为空则不显示任何图片
   slogan:  # 首页副标题的独立设置
@@ -334,7 +334,7 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
   banner_img: //random.52ecy.cn/randbg.php
   banner_img_height: 80  # available: 0 - 100
   subtitle:  # 打字机内容
-  avatar: /img/avatar.webp # 头像
+  avatar: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/avatar.webp # 头像
   name: Karuboniru
   introduce: 某双非大学生/HEP study # 支持 HTML
   icons: # 更多图标可从 https://fontawesome.com/v5.10.0/icons?d=gallery 查找，并以 "图标名: url" 的格式添加在下方
@@ -366,10 +366,10 @@ links:
   banner_img_height: 80  # available: 0 - 100
   subtitle:  # 打字机内容
   items:  # 键是友链标题、值的列表内容分别是 [链接, 简介, 头像]，头像可以省略
-    # Fluid Docs: [https://hexo.fluid-dev.com/docs/, 主题使用指南, /img/favicon.png]
-    # Fluid Repo: [https://github.com/fluid-dev/hexo-theme-fluid, 主题 GitHub 仓库, /img/favicon.png]
-    # Fluid Changelog: [https://github.com/fluid-dev/hexo-theme-fluid/blob/master/Changelog.md, 主题更新日志, /img/favicon.png]
-    Binning's Blog: [https://binnig.cn, Plasma / Cycling / ACG / Kendo / Tennis / PC Repair, /img/link/binnig.cn.jpg]
-    Hello Bi~biu: [https://www.bibiu.cc, A student, /img/link/biubiu.cc.jpeg]
-    未来遗迹: [https://www.ruin-of-future.online/, 欢迎来到 未来遗迹, /img/link/ruin-of-future.online.png]
-    Oxywen: [https://oxywen.github.io/, 不闻星河须臾，固执遇见你, /img/link/oxywen.github.io.jpg]
+    # Fluid Docs: [https://hexo.fluid-dev.com/docs/, 主题使用指南, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.png]
+    # Fluid Repo: [https://github.com/fluid-dev/hexo-theme-fluid, 主题 GitHub 仓库, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.png]
+    # Fluid Changelog: [https://github.com/fluid-dev/hexo-theme-fluid/blob/master/Changelog.md, 主题更新日志, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.png]
+    Binning's Blog: [https://binnig.cn, Plasma / Cycling / ACG / Kendo / Tennis / PC Repair, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/link/binnig.cn.jpg]
+    Hello Bi~biu: [https://www.bibiu.cc, A student, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/link/biubiu.cc.jpeg]
+    未来遗迹: [https://www.ruin-of-future.online/, 欢迎来到 未来遗迹, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/link/ruin-of-future.online.png]
+    Oxywen: [https://oxywen.github.io/, 不闻星河须臾，固执遇见你, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/link/oxywen.github.io.jpg]
