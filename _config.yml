@@ -111,8 +111,7 @@ sitemap:
 offline:
   maximumFileSizeToCacheInBytes: 10485760
   staticFileGlobs:
-    - public/**/*.{html,xml,webp}
-    - public/images/**/*.png
+    - public/**/*.{html,xml}
   stripPrefix: public
   verbose: false
   runtimeCaching:
