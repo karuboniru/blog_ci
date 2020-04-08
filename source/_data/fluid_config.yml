@@ -94,12 +94,12 @@ aplayer:  # 音乐播放器，注意不能与 hexo-tag-aplayer 插件共用
 navbar:
   blog_title:  # 导航栏左侧的标题，为空则按 hexo config.title 显示
   menu:  # 可自行增减，若想减去某个入口，可以将值留空，显示文本关联 languages
-    home: /
-    archive: /archives/
-    category: /categories/
-    tag: /tags/
-    about: /about/
-    links: /links/  # 友链页，把前面#去掉即可展示
+    - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
+    - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill' }
+    - { key: 'category', link: '/categories/', icon: 'iconfont icon-category-fill' }
+    - { key: 'tag', link: '/tags/', icon: 'iconfont icon-tags-fill' }
+    - { key: 'about', link: '/about/', icon: 'iconfont icon-user-fill' }
+    - { key: 'links', link: '/links/', icon: 'iconfont icon-link-fill' }  # 友链页，把前面#去掉即可展示
 
 search: # 搜索栏
   enable: true
@@ -338,13 +338,11 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
   name: Karuboniru
   introduce: 某双非大学生/HEP study # 支持 HTML
   icons: # 更多图标可从 https://fontawesome.com/v5.10.0/icons?d=gallery 查找，并以 "图标名: url" 的格式添加在下方
-    "fab fa-github": https://github.com/karuboniru
-    "fab fa-twitter": https://twitter.com/Karuboniru
-    # "fab fa-weixin qrcode":  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，因此值需要是二维码图片地址
-    # "fab fa-mastodon": https://mastodon.ktachibana.party/web/accounts/8721
-    "fab fa-mastodon": https://pawoo.net/web/accounts/834589
-    "fab fa-telegram": https://t.me/Karuboniru
-    "fa fa-envelope": mailto:yanqiyu01@gmail.com
+    - { class: 'fab-github', link: ' https://github.com/karuboniru' }
+    - { class: 'fab-twitter', link: ' https://twitter.com/Karuboniru' }
+    - { class: 'fab-mastodon', link: ' https://pawoo.net/web/accounts/834589' }
+    - { class: 'fab-telegram', link: ' https://t.me/Karuboniru' }
+    - { class: 'fa-envelope', link: ' mailto:yanqiyu01@gmail.com' }
 
 
 #---------------------------
@@ -366,11 +364,33 @@ links:
   banner_img_height: 80  # available: 0 - 100
   subtitle:  # 打字机内容
   items:  # 键是友链标题、值的列表内容分别是 [链接, 简介, 头像]，头像可以省略
-    # Fluid Docs: [https://hexo.fluid-dev.com/docs/, 主题使用指南, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.png]
-    # Fluid Repo: [https://github.com/fluid-dev/hexo-theme-fluid, 主题 GitHub 仓库, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.png]
-    # Fluid Changelog: [https://github.com/fluid-dev/hexo-theme-fluid/blob/master/Changelog.md, 主题更新日志, //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.png]
-    Binning's Blog: [https://binnig.cn, Plasma / Cycling / ACG / Kendo / Tennis / PC Repair, //cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155254.png]
-    Hello Bi~biu: [https://www.bibiu.cc, A student, //cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155151.png]
-    未来遗迹: [https://www.ruin-of-future.online/, 欢迎来到 未来遗迹, //cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155121.png]
-    Oxywen: [https://oxywen.github.io/, 不闻星河须臾，固执遇见你, //cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405154710.png]
-    imByteCat: [https://www.imbytecat.com/, ✨ To reach the unreachable star., //cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405154458.png]
+    - {
+      title: "Binning's Blog",
+      intro: 'Plasma / Cycling / ACG / Kendo / Tennis / PC Repair',
+      link: 'https://binnig.cn',
+      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155254.png'
+    }
+    - {
+      title: 'Hello Bi~biu',
+      intro: 'A student',
+      link: 'https://www.bibiu.cc',
+      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155151.png'
+    }
+    - {
+      title: '未来遗迹',
+      intro: '欢迎来到 未来遗迹',
+      link: 'https://www.ruin-of-future.online/',
+      image: 'cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155121.png'
+    }
+    - {
+      title: 'Oxywen',
+      intro: '不闻星河须臾，固执遇见你',
+      link: 'https://www.ruin-of-future.online/',
+      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405154710.png'
+    }
+    - {
+      title: 'imByteCat',
+      intro: '✨ To reach the unreachable star.',
+      link: 'https://www.imbytecat.com/',
+      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405154458.png'
+    }
