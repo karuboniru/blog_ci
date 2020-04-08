@@ -380,7 +380,7 @@ links:
       title: '未来遗迹',
       intro: '欢迎来到 未来遗迹',
       link: 'https://www.ruin-of-future.online/',
-      image: 'cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155121.png'
+      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155121.png'
     }
     - {
       title: 'Oxywen',
