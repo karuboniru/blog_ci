@@ -7,4 +7,4 @@ layout: about
 
 现在不用了, 换用了 [Valine](https://valine.js.org/) 作评论区.
 
-交换友链可以在[这里](https://github.com/karuboniru/karuboniru.github.io/issues)提 issue.
+交换友链可以在[这里](https://github.com/karuboniru/karuboniru.github.io/issues)提 issue. 或者在友链页面直接评论.
