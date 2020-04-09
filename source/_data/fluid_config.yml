@@ -338,11 +338,11 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
   name: Karuboniru
   introduce: 某双非大学生/HEP study # 支持 HTML
   icons: # 更多图标可从 https://fontawesome.com/v5.10.0/icons?d=gallery 查找，并以 "图标名: url" 的格式添加在下方
-    - { class: 'fab-github', link: ' https://github.com/karuboniru' }
-    - { class: 'fab-twitter', link: ' https://twitter.com/Karuboniru' }
-    - { class: 'fab-mastodon', link: ' https://pawoo.net/web/accounts/834589' }
-    - { class: 'fab-telegram', link: ' https://t.me/Karuboniru' }
-    - { class: 'fa-envelope', link: ' mailto:yanqiyu01@gmail.com' }
+    - { class: 'iconfont icon-github-fill',   link: 'https://github.com/karuboniru'}
+    - { class: 'iconfont icon-telegram-fill', link: 'https://t.me/Karuboniru'}
+    - { class: 'iconfont icon-twitter-fill',  link: 'https://twitter.com/Karuboniru'}
+    - { class: 'iconfont icon-google-fill', link: 'mailto:yanqiyu01@gmail.com' }
+    - { class: 'iconfont icon-reddit-fill', link: 'https://www.reddit.com/user/Karuboniru' }
 
 
 #---------------------------
