@@ -128,3 +128,12 @@ offline:
       handler: cacheFirst
       options:
         origin: ajax.cloudflare.com
+
+kramed:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: false
