@@ -34,6 +34,7 @@ jobs:
         user_name: karuboniru
         user_email: 3437889+karuboniru@users.noreply.github.com
     # Use the output from the `deploy` step(use for test action)
-    - name: Get the output
+    - name: Get the output and purge cache
       run: |
         echo "${{ steps.deploy.outputs.notify }}"
+        curl -X DELETE "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_zone }}/purge_cache" -H "Authorization: Bearer ${{ secrets.CF_key }}" -H "Content-Type:application/json" --data '{"purge_everything":true}'
