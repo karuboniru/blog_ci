@@ -23,8 +23,6 @@ highlight: # 代码高亮
   enable: true
   theme: tomorrow-night-eighties # available: github-v2 | tomorrow | tomorrow-night | tomorrow-night-eighties，更多主题可从 https://jmblog.github.io/color-themes-for-google-code-prettify/ 获取，保存为 `*.min.css` 到 `source/lib/prettify/`，在其中 .prettyprint{ background: ***; ...} 的background 值后加上 !important，例如：.prettyprint{background:#fafbfc!important; ...}
   copy_btn: true  # 是否开启复制代码的按钮
-  auto_detect: true
-  line_number: true
 
 fun_features: # 一些好玩的功能
   typing: # 为 subtitle 添加打字机效果
@@ -47,9 +45,18 @@ color:  # 主体颜色配置，可以从这里寻找启发： https://www.webdes
   navbar_bg_color: "#04425E"
   navbar_text_color: "white"
   text_color: "#3c4858"
+  sec_text_color: "#718096"         # 全局次级字体色（摘要、简介等位置）
+  post_text_color: "#2c3e50"        # 文章正文字体色
+  post_heading_color: "#1a202c"     # 文章标题标签字体色（h1 h2 h3...）
   link_color: "#3c4858"
   link_hover_color: "#1abc9c"
+  link_hover_bg_color: "#ebedef"    # 超链接悬浮背景色
   board_color: "#fff"
+
+font:  # 主题字体配置
+  font_size: 16px                   # 全局字号
+  font_family:                      # 全局字体
+  code_font_size: 95%               # 代码的字号
 
 custom_js:   # 指定自定义 js 文件路径，路径是相对 source 目录，如 /js/custom.js
 custom_css:   # 指定自定义 css 文件路径，路径是相对 source 目录，如 /css/custom.css
@@ -70,8 +77,6 @@ lazyload: # 对页面中的图片进行懒加载处理，可见范围外的图�
   enable: true
   onlypost: false  # 仅在文章页使用懒加载
 
-smooth_scroll: # 平滑滚动效果，服务器加载过慢可能会影响滚动，请慎用
-  enable: false
 
 daovoice:  # 在线客服 Daovoice 参考：http://dashboard.daovoice.io
   enable: false # 是否开启在线客服聊天
@@ -137,16 +142,6 @@ scroll_top_arrow:  # 向顶部滚动的箭头
   enable: true
 
 #---------------------------
-# 吐个槽脚本，页面反馈
-# 文档 ：https://txc.qq.com/helper/WXPGuide
-#---------------------------
-txc:
-  enable: false
-  productId:
-
-
-
-#---------------------------
 # 首页
 # Index Page
 #---------------------------
@@ -170,6 +165,7 @@ index:
 page:
   banner_img: //random.52ecy.cn/randbg.php
   banner_img_height: 70  # available: 0 - 100
+  banner_mask_alpha: 0.3  # available: 0 - 1.0
 
 #---------------------------
 # 文章页
@@ -214,6 +210,10 @@ post:
     enable: true
     specific: true  # 开启后，只有在文章 Front-matter 里指定 `math: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
     engine: mathjax  # 公式引擎  available: mathjax | katex
+  mermaid:  # 流程图，基于 mermaid-js，文档：http://mermaid-js.github.io/mermaid/
+    enable: true  # 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `mermaid: true`
+    specific: true  # 开启后，只有在文章 Front-matter 里指定 `mermaid: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
+    options: { theme: 'default' }  # 接口选项，具体可见：http://mermaid-js.github.io/mermaid/#/mermaidAPI
 
 #---------------------------
 # 评论
@@ -236,61 +236,18 @@ utterances:
 disqus:
   shortname: # your shortname
 
-# Gitalk
-# You can get yout ClientID and ClientSecret from https://github.com/settings/applications/new
-# More info available at https://github.com/gitalk/gitalk#options
-gitalk:
-  clientID:                      # GitHub Application Client ID
-  clientSecret:                 # GitHub Application Client Secret
-  repo:                       # The repo to store comments
-  owner:                      # GitHub repository owner. Can be personal user or organization.
-  admin:                       # GitHub repo owner and collaborators, only these guys can initialize github issues, should be like "['admin']" or "['admin1','admin2']"
-  id: location.pathname         # The unique id of the page. Length must less than 50.
-  language: zh-CN               # Localization language key, en, zh-CN and zh-TW are currently available.
-  labels: "['Gitalk']"          # GitHub issue labels.
-  perPage: 15                   # Pagination size, with maximum 100.
-  pagerDirection: last          # Comment sorting direction, available values are last and first.
-  distractionFreeMode: false    # Facebook-like distraction free mode.
-  createIssueManually: false     # By default, Gitalk will create a corresponding github issue for your every single page automatically when the logined user is belong to the admin users. You can create it manually by setting this option to true.
-
-# Valine
-# You can get your appid and appkey from https://leancloud.cn
-# More info available at https://valine.js.org
 valine:
   appid: 3Ba5gx25NWO2GvMddRuroM3X-MdYXbMMI # your leancloud application appid
   appkey: 3D7nE7MewcNG0YGY57FMfxpb # your leancloud application appkey
-  notify: false # mail notifier, See: https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
   placeholder: 评论区 # comment box placeholder
   avatar: retro # gravatar style https://valine.js.org/avatar.html
   pageSize: 10 # pagination size
-
-# Changyan
-# You can get your appid from http://changyan.kuaizhan.com/setting/common/isv-mgr
-# Install: http://changyan.kuaizhan.com/static/help/f-fitself.html
-changyan:
-  appid: ''            # your changyan application appid        # 畅言ID
-  conf: ''             # conf                                   # 畅言设置
-  notify: false        # beian warning message                  # 备案提示
-  libopen: true        # open laboratory                        # 畅言实验室功能开关
-  cyEmoji: true        # comments emoji                         # 评论表情
-  cyWallsplugin: true  # Hot text matching                      # 热文配图
-  cyReping: true       # hot comments                           # 热门评论
-  cyReward: true       # reward                                 # 打赏
-  cyQing: true         # Light comment                          # 轻评论
-  cyHotusers: true     # User evaluation                        # 热评用户
-  cyHotnews: true      # Hot news                               # 热门新闻
-  cyHotnewswall: true  # News wall                              # 新闻墙
-  cyPk: ''             # Topic debate                           # 辩论
-  cyPoll: true         # vote                                   # 投票
-  cyBarrage: true      # Picture barrage                        # 图片弹幕
-  cyTvbarrage: true    # Video barrage                          # 视频弹幕
-
-# Livere 来必力
-# You can get your uid from https://www.livere.com/my_Livere
-livere:
-  uid: ''            # your livere application uid        # 来必力ID
-
+  path: window.location.pathname
+  meta: ['nick', 'mail', 'link']
+  lang: zh-CN
+  highlight: true
+  recordIP: true
+  mathJax: false
 
 #---------------------------
 # 归档页
@@ -333,6 +290,7 @@ tag:
 about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/about.md 中编辑，支持 markdown 和 HTML
   banner_img: //random.52ecy.cn/randbg.php
   banner_img_height: 80  # available: 0 - 100
+  banner_mask_alpha: 0.3
   subtitle:  # 打字机内容
   avatar: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.webp # 头像
   name: Karuboniru
@@ -352,6 +310,7 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
 page404:
   banner_img: //random.52ecy.cn/randbg.php
   banner_img_height: 100  # available: 0 - 100
+  banner_mask_alpha: 0.3
   subtitle: 'Page not found'  # 打字机内容
 
 
@@ -362,6 +321,7 @@ page404:
 links:
   banner_img: //random.52ecy.cn/randbg.php
   banner_img_height: 80  # available: 0 - 100
+  banner_mask_alpha: 0.3
   subtitle:  # 打字机内容
   items:  # 键是友链标题、值的列表内容分别是 [链接, 简介, 头像]，头像可以省略
     - {
