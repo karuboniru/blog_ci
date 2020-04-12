@@ -32,6 +32,7 @@ internal_img: https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master
 # 第三方库
 # Third-party library
 #---------------------------
+iconfont: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/css/font_1736178_ijqayz9ro8k.css
 
 anchor: https://cdn.jsdelivr.net/npm/anchor-js@4.2.2/
 
