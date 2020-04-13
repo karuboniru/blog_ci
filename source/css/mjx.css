@@ -1,0 +1,4 @@
+.MathJax, .MathJax_Display, mjx-container {
+    overflow-y: hidden  !important; 
+    outline: none;
+}
