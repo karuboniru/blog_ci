@@ -111,8 +111,7 @@ sitemap:
 offline:
   maximumFileSizeToCacheInBytes: 10485760
   staticFileGlobs:
-    - public/**/*.{html,xml,json,js}
-    - public/css/main.css
+    - public/**/*.{html,xml,json}
   stripPrefix: public
   verbose: false
   runtimeCaching:
@@ -129,6 +128,10 @@ offline:
       handler: cacheFirst
       options:
         origin: www.google-analytics.com
+    - urlPattern: /cdn-cgi/*
+      handler: cacheFirst
+      options:
+        origin: yanqiyu.info
 
 
 kramed:
