@@ -10,4 +10,4 @@ layout: links
 - 标题: Karuboniru's Blog
 - 链接: `https://yanqiyu.info`
 - 头像: `https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/avatar.webp`
-- 简介: 某双非大学生/HEP study
+- 简介: 某学不懂物理的学生
