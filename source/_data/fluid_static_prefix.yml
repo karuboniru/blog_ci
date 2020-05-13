@@ -62,4 +62,4 @@ valine: https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/
 
 mermaid: https://cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/
 
-highlightjs: https://cdn.staticfile.org/highlight.js/10.0.3/
+highlightjs: https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/
