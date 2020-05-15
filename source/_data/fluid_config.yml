@@ -249,7 +249,7 @@ valine:
   highlight: true
   recordIP: true
   mathJax: false
-  serverURLs: comment.yanqiyu.info
+  serverURLs: 'https://comment.yanqiyu.info'
 #---------------------------
 # 归档页
 # Archive Page
