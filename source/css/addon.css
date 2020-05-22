@@ -2,3 +2,9 @@
     overflow-y: hidden  !important; 
     outline: none;
 }
+
+figure figcaption {
+    margin:auto;
+    color: blue;
+    text-align: center;
+}
