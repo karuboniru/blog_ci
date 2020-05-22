@@ -28,7 +28,7 @@ jobs:
     # Deploy hexo blog website.
     - name: Deploy
       id: deploy
-      uses: karuboniru/hexo-action@0.0.0
+      uses: karuboniru/hexo-action@0.0.1
       with:
         deploy_key: ${{ secrets.DEPLOY_KEY }}
         user_name: karuboniru
