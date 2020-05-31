@@ -23,8 +23,8 @@
 # Internal static
 #---------------------------
 
-internal_js: https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/js
-internal_css: https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/css
+internal_js: /js
+internal_css: /css
 internal_img: https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img
 
 
