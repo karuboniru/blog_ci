@@ -134,11 +134,20 @@ offline:
         origin: yanqiyu.info
 
 
-kramed:
-  gfm: true
-  pedantic: false
-  sanitize: false
-  tables: true
-  breaks: true
-  smartLists: true
-  smartypants: false
+# kramed:
+#   gfm: true
+#   pedantic: false
+#   sanitize: false
+#   tables: true
+#   breaks: true
+#   smartLists: true
+#   smartypants: false
+
+feed:
+    type: atom
+    path: atom.xml
+    limit: 0
+    hub:
+    content: true
+    content_limit:
+    content_limit_delim: ' '
