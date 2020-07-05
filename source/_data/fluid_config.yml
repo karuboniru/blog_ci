@@ -106,7 +106,7 @@ navbar:
     - { key: 'tag', link: '/tags/', icon: 'iconfont icon-tags-fill' }
     - { key: 'about', link: '/about/', icon: 'iconfont icon-user-fill' }
     - { key: 'links', link: '/links/', icon: 'iconfont icon-link-fill' }  # 友链页，把前面#去掉即可展示
-    - { key: RSS, link: '/atom.xml' }
+    # - { key: RSS, link: '/atom.xml' }
 
 search: # 搜索栏
   enable: true
