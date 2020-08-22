@@ -124,10 +124,6 @@ offline:
       handler: cacheFirst
       options:
         origin: ajax.cloudflare.com
-    - urlPattern: /*
-      handler: cacheFirst
-      options:
-        origin: www.google-analytics.com
     - urlPattern: /cdn-cgi/*
       handler: cacheFirst
       options:
