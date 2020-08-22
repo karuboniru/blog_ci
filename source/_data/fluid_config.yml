@@ -301,7 +301,7 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
     - { class: 'iconfont icon-github',   link: 'https://github.com/karuboniru'}
     - { class: 'iconfont icon-telegram', link: 'https://t.me/Karuboniru'}
     - { class: 'iconfont icon-twitter',  link: 'https://twitter.com/Karuboniru'}
-    - { class: 'iconfont icon-gmail', link: 'mailto:yanqiyu01@gmail.com' }
+    - { class: 'iconfont icon-gmail', link: 'mailto:nico@nico.ni' }
     - { class: 'iconfont icon-reddit', link: 'https://www.reddit.com/user/Karuboniru' }
     - { class: 'iconfont icon-FontAwesomemastodon', link: 'https://pawoo.net/web/accounts/834589' }
     # - { class: 'fab fa-github',   link: 'https://github.com/karuboniru'}
