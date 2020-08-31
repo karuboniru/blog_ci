@@ -60,8 +60,8 @@ font:  # 主题字体配置
   code_font_size: 95%               # 代码的字号
 
 custom_js:   # 指定自定义 js 文件路径，路径是相对 source 目录，如 /js/custom.js
-custom_css: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/css/addon.css  # 指定自定义 css 文件路径，路径是相对 source 目录，如 /css/custom.css
-custom_html: <div class="app-refresh" id="app-refresh"><div class="app-refresh-wrap" onclick="location.reload()"><label>已更新最新版本</label><span>点击刷新</span></div></div><script>if ('serviceWorker' in navigator) {if (navigator.serviceWorker.controller) {navigator.serviceWorker.addEventListener('controllerchange', function() {showNotification();});}window.addEventListener('load', function() {navigator.serviceWorker.register('/sw.js');});}function showNotification() {document.querySelector('meta[name=theme-color]').content = '#000';document.getElementById('app-refresh').className += ' app-refresh-show';}</script>
+custom_css: /css/addon.css  # 指定自定义 css 文件路径，路径是相对 source 目录，如 /css/custom.css
+custom_html: <div class="toast ml-auto" id="update" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false"><div class="toast-header"><strong class="mr-auto text-primary">检查到更新</strong><button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="toast-body">检查到页面存在更新, 请刷新以浏览最新版本</div></div><script>if ('serviceWorker' in navigator) {if (navigator.serviceWorker.controller) {navigator.serviceWorker.addEventListener('controllerchange', function() {showNotification();});}window.addEventListener('load', function() {navigator.serviceWorker.register('/sw.js');});}function showNotification() {$('.toast').toast('show');}</script>
 
 web_analytics:  # 网页访问统计
   enable: true
