@@ -3,7 +3,7 @@ const workboxVersion = '5.0.0';
 importScripts(`https://cdn.jsdelivr.net/npm/workbox-sw@${workboxVersion}/build/workbox-sw.min.js`);
 
 workbox.setConfig({
-    modulePathPrefix: `https://cdn.jsdelivr.net/npm/workbox-sw@${workboxVersion}/`
+    modulePathPrefix: `https://cdn.jsdelivr.net/npm/workbox-cdn@${workboxVersion}/workbox/`
 });
 
 workbox.core.setCacheNameDetails({
