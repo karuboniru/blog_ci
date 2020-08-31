@@ -30,7 +30,7 @@ jobs:
           git config --global user.name 'karuboniru'
           git config --global user.email 'karuboniru[bot]@users.noreply.github.com'
           # install dependencies
-          npm i -g hexo-cli
+          npm i -g hexo-cli gulp gulp-uglify
           npm i
           # install pandoc
           curl -s -L https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-linux-amd64.tar.gz | tar xvzf - -C $RUNNER_TOOL_CACHE/
@@ -40,7 +40,7 @@ jobs:
           # add pandoc to PATH
           export PATH="$PATH:$RUNNER_TOOL_CACHE/pandoc-2.9.2.1/bin"
           # publish
-          hexo generate && hexo deploy
+          hexo generate&& gulp build && hexo deploy
       - name: Finish
         run: |
           echo "${{ steps.deploy.outputs.notify }}"

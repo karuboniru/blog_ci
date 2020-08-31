@@ -12,6 +12,8 @@
     "version": "5.0.2"
   },
   "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
     "hexo": "^5.0.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-filter-auto-spacing": "^0.2.1",
@@ -22,10 +24,12 @@
     "hexo-generator-sitemap": "^2.0.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-inject": "^1.0.0",
-    "hexo-offline": "^1.0.0",
     "hexo-renderer-ejs": "^1.0.0",
     "hexo-renderer-pandoc": "^0.3.0",
     "hexo-renderer-stylus": "^1.1.0",
-    "hexo-server": "^1.0.0"
+    "hexo-server": "^1.0.0",
+    "readable-stream": "^3.6.0",
+    "uglify-es": "^3.3.9",
+    "workbox-build": "^5.1.3"
   }
 }

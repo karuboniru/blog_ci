@@ -108,26 +108,26 @@ deploy:
 sitemap:
   path: sitemap.xml
 
-offline:
-  maximumFileSizeToCacheInBytes: 10485760
-  staticFileGlobs:
-    - public/**/*.{html,xml,json,js,css}
-  stripPrefix: public
-  verbose: false
-  runtimeCaching:
-    # CDNs - should be cacheFirst, since they should be used specific versions so should not change
-    - urlPattern: /*
-      handler: cacheFirst
-      options:
-        origin: cdn.jsdelivr.net
-    - urlPattern: /*
-      handler: cacheFirst
-      options:
-        origin: ajax.cloudflare.com
-    - urlPattern: /cdn-cgi/*
-      handler: cacheFirst
-      options:
-        origin: yanqiyu.info
+# offline:
+#   maximumFileSizeToCacheInBytes: 10485760
+#   staticFileGlobs:
+#     - public/**/*.{html,xml,json,js,css}
+#   stripPrefix: public
+#   verbose: false
+#   runtimeCaching:
+#     # CDNs - should be cacheFirst, since they should be used specific versions so should not change
+#     - urlPattern: /*
+#       handler: cacheFirst
+#       options:
+#         origin: cdn.jsdelivr.net
+#     - urlPattern: /*
+#       handler: cacheFirst
+#       options:
+#         origin: ajax.cloudflare.com
+#     - urlPattern: /cdn-cgi/*
+#       handler: cacheFirst
+#       options:
+#         origin: yanqiyu.info
 
 
 # kramed:
