@@ -60,7 +60,7 @@ font:  # 主题字体配置
   code_font_size: 95%               # 代码的字号
 
 custom_js:   # 指定自定义 js 文件路径，路径是相对 source 目录，如 /js/custom.js
-custom_css: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/css/mycss.css  # 指定自定义 css 文件路径，路径是相对 source 目录，如 /css/custom.css
+custom_css: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/css/addon.css  # 指定自定义 css 文件路径，路径是相对 source 目录，如 /css/custom.css
 custom_html: <div class="app-refresh" id="app-refresh"><div class="app-refresh-wrap" onclick="location.reload()"><label>已更新最新版本</label><span>点击刷新</span></div></div><script>if ('serviceWorker' in navigator) {if (navigator.serviceWorker.controller) {navigator.serviceWorker.addEventListener('controllerchange', function() {showNotification();});}window.addEventListener('load', function() {navigator.serviceWorker.register('/sw.js');});}function showNotification() {document.querySelector('meta[name=theme-color]').content = '#000';document.getElementById('app-refresh').className += ' app-refresh-show';}</script>
 
 web_analytics:  # 网页访问统计
