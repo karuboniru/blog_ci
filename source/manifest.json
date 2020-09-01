@@ -20,5 +20,14 @@
       "purpose": "any maskable"
     }
   ],
-  "splash_pages": null
+  "splash_pages": null,
+  "shortcuts": [
+    {
+      "name": "About Me",
+      "short_name": "About Me",
+      "description": "View about Karuboniru",
+      "url": "/about/",
+      "icons": [{ "src": "https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/images/icons/pwa-512x512.png", "sizes": "512x512" }]
+    }
+  ]
 }
