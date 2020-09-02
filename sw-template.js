@@ -86,9 +86,4 @@ workbox.routing.registerRoute(
     })
 );
 
-workbox.routing.registerRoute(
-    /collect$/,
-    new workbox.strategies.NetworkOnly()
-);
-
 workbox.googleAnalytics.initialize();
