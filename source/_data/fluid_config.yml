@@ -335,30 +335,36 @@ links:
     - {
       title: "Binning's Blog",
       intro: 'Plasma / Cycling / ACG / Kendo / Tennis / PC Repair',
-      link: 'https://binnig.cn',
+      link:  'https://binnig.cn',
       image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155254.png'
     }
     - {
       title: 'Hello Bi~biu',
       intro: 'A student',
-      link: 'https://www.bibiu.cc',
+      link:  'https://www.bibiu.cc',
       image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155151.png'
     }
     - {
       title: '未来遗迹',
       intro: '欢迎来到 未来遗迹',
-      link: 'https://www.ruin-of-future.online/',
+      link:  'https://www.ruin-of-future.online/',
       image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155121.png'
     }
     - {
       title: 'Oxywen',
       intro: '不闻星河须臾，固执遇见你',
-      link: 'https://oxywen.github.io/',
+      link:  'https://oxywen.github.io/',
       image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405154710.png'
     }
     - {
       title: 'imByteCat',
       intro: '✨ To reach the unreachable star.',
-      link: 'https://www.imbytecat.com/',
+      link:  'https://www.imbytecat.com/',
       image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405154458.png'
+    }
+    - {
+      title: '倚窗，听雨 - Coelacanthus' blog',
+      intro: '凡人难以承受生活的全部真相，于是他们各执一端。',
+      link:  'https://blog.lhwcrt.top/',
+      image: 'https://cdn.jsdelivr.net/gh/ayalhw/blog@master/static/icon.webp'
     }
