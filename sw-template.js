@@ -1,4 +1,4 @@
-const workboxVersion = '5.0.0';
+const workboxVersion = '5.1.4';
 
 importScripts(`https://cdn.jsdelivr.net/npm/workbox-sw@${workboxVersion}/build/workbox-sw.min.js`);
 
