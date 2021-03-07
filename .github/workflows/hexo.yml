@@ -44,4 +44,4 @@ jobs:
       - name: Finish
         run: |
           echo "${{ steps.deploy.outputs.notify }}"
-          curl -X DELETE "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_zone }}/purge_cache" -H "Authorization: Bearer ${{ secrets.CF_key }}" -H "Content-Type:application/json" --data '{"purge_everything":true}'
+          
