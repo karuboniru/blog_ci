@@ -1,7 +1,6 @@
 ---
 title: 友情链接
 date: 2020-04-08 11:51:54
-layout: links
 ---
 
 交换友链, 你可以直接在下面评论或者是在[这里](https://github.com/karuboniru/karuboniru.github.io/issues)提 issue.
