@@ -22,8 +22,8 @@ force_https: true  # 强制所有链接升级为 HTTPS（适用于图片等资�
 code:  # 代码块相关的配置
   copy_btn: true  # 是否开启复制代码的按钮
   highlight:  # 代码高亮
-    enable: true
-    lib: 'highlightjs'  # 实现高亮的库，可选：highlightjs | prismjs，对应下面的配置项
+    enable: false
+    lib: 'prismjs'  # 实现高亮的库，可选：highlightjs | prismjs，对应下面的配置项
     highlightjs:
       style: 'Solarized Light'  # 高亮样式见：https://highlightjs.org/static/demo/  在页面挑选 style 填入
       bg_color: true  # 是否根据 style 改变代码背景色，**如果 style 是深色背景别忘了开启此项**
