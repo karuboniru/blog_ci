@@ -151,4 +151,4 @@ feed:
 pandoc:
   # other options
   extra:
-    - no-highlight
+    - no-highlight:
