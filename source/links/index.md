@@ -10,5 +10,5 @@ layout: links
 
 - 标题: Karuboniru's Blog
 - 链接: `https://yanqiyu.info`
-- 头像: `https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/avatar.webp`
+- 头像: `https://cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/avatar.webp`
 - 简介: 就是个学物理的，懂个屁的计算机

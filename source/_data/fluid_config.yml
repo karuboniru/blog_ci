@@ -11,9 +11,9 @@
 # 全局
 # Site
 #---------------------------
-favicon: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.webp # 网站标签页的 icon
+favicon: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/favicon.webp # 网站标签页的 icon
 
-apple_touch_icon: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.webp # 用于苹果设备的 icon
+apple_touch_icon: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/favicon.webp # 用于苹果设备的 icon
 
 title_join_string: ' - '  # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 
@@ -94,7 +94,7 @@ aplayer:  # 音乐播放器，注意不能与 hexo-tag-aplayer 插件共用
   order: 'random'  # 播放顺序，可选值: 'list', 'random'
   theme: '#b7daff'  # 主题色
   songs:  # 歌曲列表，必须传入下列各参数，其中 url 与 cover 在本地需存于 source 目录，更多参数见文档：https://aplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0
-    - { name: 'name', artist: 'artist', url: '/songs/test.mp3', cover: '//cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/cover.jpg' }
+    - { name: 'name', artist: 'artist', url: '/songs/test.mp3', cover: '//cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/cover.jpg' }
     - { name: 'name', artist: 'artist', url: 'https://...url.mp3', cover: 'https://...cover.jpg' }
 
 #---------------------------
@@ -142,7 +142,7 @@ footer:
     icp_text: 京ICP证123456号 # ICP证号
     police_text: 京公网安备12345678号 # 公安备案号，不填则只显示ICP
     police_code: 12345678 # 公安备案的编号，用于URL跳转查询
-    police_icon: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/police_beian.png # 公安备案的图片. 为空时不显示备案图片
+    police_icon: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/police_beian.png # 公安备案的图片. 为空时不显示备案图片
 
 scroll_top_arrow:  # 向顶部滚动的箭头
   enable: true
@@ -152,7 +152,7 @@ scroll_top_arrow:  # 向顶部滚动的箭头
 # Index Page
 #---------------------------
 index:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp  # 首页 Banner 头图，以下相同
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp  # 首页 Banner 头图，以下相同
   banner_img_height: 100  # 头图高度，屏幕百分比，available: 0 - 100
   post_default_img: '' # 默认的文章封面图，当没有指定 index_img 时会使用该图片，若都为空则不显示任何图片
   slogan:  # 首页副标题的独立设置
@@ -169,7 +169,7 @@ index:
 # 通过 hexo new page 命令创建的页面
 # Custom Page
 page:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
   banner_img_height: 70  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
 
@@ -178,7 +178,7 @@ page:
 # Post Page
 #---------------------------
 post:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
   banner_img_height: 70  # available: 0 - 100
   meta:  # 文章标题下方的信息
     date:  # 文章日期
@@ -260,7 +260,7 @@ valine:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
   banner_img_height: 80  # available: 0 - 100
   subtitle:  # 打字机内容
 
@@ -269,7 +269,7 @@ archive:
 # Categories Page
 #---------------------------
 category:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
   banner_img_height: 80  # available: 0 - 100
   subtitle:  # 打字机内容
 
@@ -278,7 +278,7 @@ category:
 # Tags Page
 #---------------------------
 tag:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
   banner_img_height: 80  # available: 0 - 100
   subtitle:  # 打字机内容
   tagcloud: # 标签云
@@ -294,11 +294,11 @@ tag:
 # About Page
 #---------------------------
 about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/about.md 中编辑，支持 markdown 和 HTML
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
   banner_img_height: 80  # available: 0 - 100
   banner_mask_alpha: 0.3
   subtitle:  # 打字机内容
-  avatar: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/favicon.webp # 头像
+  avatar: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/favicon.webp # 头像
   name: Karuboniru
   introduce: 某双非大学生/HEP study # 支持 HTML
   icons: # 更多图标可从 https://fontawesome.com/v5.10.0/icons?d=gallery 查找，并以 "图标名: url" 的格式添加在下方
@@ -322,7 +322,7 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
 # 404 Page
 #---------------------------
 page404:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
   banner_img_height: 100  # available: 0 - 100
   banner_mask_alpha: 0.3
   subtitle: 'Page not found'  # 打字机内容
@@ -334,7 +334,7 @@ page404:
 #---------------------------
 links:
   enable: false
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img/default.webp
+  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
   banner_img_height: 80  # available: 0 - 100
   banner_mask_alpha: 0.3
   subtitle:  # 打字机内容
@@ -380,10 +380,10 @@ links:
 static_prefix:
   internal_js: /js
   internal_css: /css
-  internal_img: https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/img
+  internal_img: https://cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img
 
   
-  iconfont: https://cdn.jsdelivr.net/gh/karuboniru/karuboniru.github.io@master/css/font_1749771_l0gzaaun88e.css
+  iconfont: https://cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/css/font_1749771_l0gzaaun88e.css
 
   anchor: https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/
 
