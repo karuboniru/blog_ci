@@ -333,7 +333,7 @@ page404:
 # Links Page
 #---------------------------
 links:
-  enable: false
+  enable: true
   banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
   banner_img_height: 80  # available: 0 - 100
   banner_mask_alpha: 0.3
@@ -375,6 +375,12 @@ links:
       link:  'https://blog.coelacanthus.moe/',
       image: 'https://cdn.jsdelivr.net/gh/ayalhw/blog@master/static/icon.webp'
     }
+  comments:
+    enable: true
+    # 指定的插件，需要同时设置对应插件的必要参数
+    # The specified plugin needs to set the necessary parameters at the same time
+    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
+    type: valine
 
 
 static_prefix:
