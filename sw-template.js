@@ -69,9 +69,9 @@ workbox.routing.registerRoute(
     })
 );
 
-// Cloudflare Ajax
+// Cloudflare Web Analytics
 workbox.routing.registerRoute(
-    /^https:\/\/ajax\.cloudflare\.com/,
+    /^https:\/\/static\.cloudflareinsights\.com/,
     new workbox.strategies.CacheFirst({
         cacheName: "static-libs",
         plugins: [
