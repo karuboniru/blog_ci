@@ -251,7 +251,7 @@ waline:
   pageSize: 10
   lang: zh-CN
   highlight: true
-  avatarCDN: ''
+  avatarCDN: 'https://sdn.geekzu.org/avatar/'
   avatarForce: false
   emoji: [https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji, https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili]
 #---------------------------
