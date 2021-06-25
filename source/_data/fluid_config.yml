@@ -252,6 +252,7 @@ waline:
   lang: zh-CN
   highlight: true
   avatarCDN: 'https://sdn.geekzu.org/avatar/'
+  mathTagSupport: true
   avatarForce: false
   emoji: [https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji, https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili]
 #---------------------------
