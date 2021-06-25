@@ -254,6 +254,7 @@ waline:
   avatarCDN: 'https://sdn.geekzu.org/avatar/'
   avatarForce: false
   emoji: [https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji, https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili]
+  dark: 'html[data-user-color-scheme="dark"]'
 #---------------------------
 # 归档页
 # Archive Page
