@@ -375,6 +375,11 @@ links:
       link:  'https://blog.coelacanthus.moe/',
       image: 'https://cdn.jsdelivr.net/gh/ayalhw/blog@master/static/icon.webp'
     }
+    - {
+      title: "Endle's Blog",
+      intro: 'Fedora / Firefox / Wine User. 统计学萌新',
+      link:  'https://endle.github.io/'
+    }
 
 
 static_prefix:
