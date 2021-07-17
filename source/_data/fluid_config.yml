@@ -380,6 +380,12 @@ links:
       intro: 'Fedora / Firefox / Wine User. 统计学萌新',
       link:  'https://endle.github.io/'
     }
+    - {
+      title: "LeiWang1999's Blog",
+      intro: '卷卷卷卷',
+      link: 'https://leiblog.wang/',
+      image: 'http://leiblog.wang/static/image/2021/5/sjcZ09.jpg'
+    }
 
 
 static_prefix:
