@@ -20,7 +20,7 @@
     "hexo-generator-category": "latest",
     "hexo-generator-feed": "latest",
     "hexo-generator-index": "latest",
-    "hexo-generator-seo-friendly-sitemap": "latest",
+    "hexo-generator-sitemap": "latest",
     "hexo-generator-tag": "latest",
     "hexo-inject": "latest",
     "hexo-renderer-ejs": "latest",
