@@ -300,7 +300,7 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
   subtitle:  # 打字机内容
   avatar: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/favicon.webp # 头像
   name: Karuboniru
-  introduce: 某双非大学生/HEP study # 支持 HTML
+  introduce: 博士在读|粒子物理实验方向|可怜的单身肥宅 # 支持 HTML
   icons: # 更多图标可从 https://fontawesome.com/v5.10.0/icons?d=gallery 查找，并以 "图标名: url" 的格式添加在下方
     - { class: 'iconfont icon-github',   link: 'https://github.com/karuboniru'}
     - { class: 'iconfont icon-telegram', link: 'https://t.me/Karuboniru'}
