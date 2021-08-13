@@ -386,6 +386,11 @@ links:
       link: 'https://leiblog.wang/',
       image: 'http://leiblog.wang/static/image/2021/5/sjcZ09.jpg'
     }
+    - {
+      title: "庄逸的数学和技术屋",
+      intro: '大学生活记',
+      link: 'https://hfdxmy.cn'
+    }
 
 
 static_prefix:
