@@ -394,8 +394,7 @@ links:
     
 open_graph:
   twitter_card: summary_large_image
-  twitter_id: @karuboniru
-  twitter_site: 
+  twitter_id: karuboniru
 
 static_prefix:
   internal_js: /js
