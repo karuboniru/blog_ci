@@ -391,6 +391,12 @@ links:
       intro: '大学生活记',
       link: 'https://hfdxmy.cn'
     }
+    - {
+      title: "zhullyb's Blog",
+      intro: '竹林里有冰的博客',
+      link:  'https://blog.zhullyb.top/',
+      image: 'https://cdn.v2ex.com/gravatar/b6f439d9d5598c3b1d449414a1ff43b2'
+    }
     
 open_graph:
   twitter_card: summary_large_image
