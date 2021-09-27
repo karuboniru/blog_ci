@@ -90,7 +90,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
     /^https:\/\/avatar\.niconi\.org/,
     new workbox.strategies.CacheFirst({
-        cacheName: "static-libs",
+        cacheName: "avatars",
         plugins: [
             new workbox.expiration.ExpirationPlugin({
                 maxEntries: 3000,
