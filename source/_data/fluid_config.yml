@@ -397,6 +397,13 @@ links:
       link:  'https://blog.zhullyb.top/',
       image: 'https://cdn.v2ex.com/gravatar/b6f439d9d5598c3b1d449414a1ff43b2'
     }
+    - {
+      title: "止息的博客",
+      intro: '旗亭下马解秋衣，请贳宜阳一壶酒',
+      link:  'https://zhangjk98.xyz/',
+      image: 'https://zhangjk98.xyz/uploads/jinmao.jpg'
+    }
+    
     
 open_graph:
   twitter_card: summary_large_image
