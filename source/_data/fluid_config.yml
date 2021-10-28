@@ -403,6 +403,12 @@ links:
       link:  'https://zhangjk98.xyz/',
       image: 'https://zhangjk98.xyz/uploads/jinmao.jpg'
     }
+    - {
+      title: "吃白饭的休伯利安号",
+      intro: '非专业搬砖的土木工程师',
+      link:  'https://eatrice.cn',
+      image: 'https://eatrice.cn/img/avatar.jpg'
+    }
     
     
 open_graph:
