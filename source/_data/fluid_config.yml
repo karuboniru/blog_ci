@@ -11,9 +11,9 @@
 # 全局
 # Site
 #---------------------------
-favicon: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/favicon.webp # 网站标签页的 icon
+favicon: /img/favicon.webp # 网站标签页的 icon
 
-apple_touch_icon: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/favicon.webp # 用于苹果设备的 icon
+apple_touch_icon: /img/favicon.webp # 用于苹果设备的 icon
 
 title_join_string: ' - '  # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 
@@ -94,7 +94,7 @@ aplayer:  # 音乐播放器，注意不能与 hexo-tag-aplayer 插件共用
   order: 'random'  # 播放顺序，可选值: 'list', 'random'
   theme: '#b7daff'  # 主题色
   songs:  # 歌曲列表，必须传入下列各参数，其中 url 与 cover 在本地需存于 source 目录，更多参数见文档：https://aplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0
-    - { name: 'name', artist: 'artist', url: '/songs/test.mp3', cover: '//cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/cover.jpg' }
+    - { name: 'name', artist: 'artist', url: '/songs/test.mp3', cover: '/img/cover.jpg' }
     - { name: 'name', artist: 'artist', url: 'https://...url.mp3', cover: 'https://...cover.jpg' }
 
 #---------------------------
@@ -142,7 +142,7 @@ footer:
     icp_text: 京ICP证123456号 # ICP证号
     police_text: 京公网安备12345678号 # 公安备案号，不填则只显示ICP
     police_code: 12345678 # 公安备案的编号，用于URL跳转查询
-    police_icon: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/police_beian.png # 公安备案的图片. 为空时不显示备案图片
+    police_icon: /img/police_beian.png # 公安备案的图片. 为空时不显示备案图片
 
 scroll_top_arrow:  # 向顶部滚动的箭头
   enable: true
@@ -152,7 +152,7 @@ scroll_top_arrow:  # 向顶部滚动的箭头
 # Index Page
 #---------------------------
 index:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp  # 首页 Banner 头图，以下相同
+  banner_img: /img/default.webp  # 首页 Banner 头图，以下相同
   banner_img_height: 100  # 头图高度，屏幕百分比，available: 0 - 100
   post_default_img: '' # 默认的文章封面图，当没有指定 index_img 时会使用该图片，若都为空则不显示任何图片
   slogan:  # 首页副标题的独立设置
@@ -169,7 +169,7 @@ index:
 # 通过 hexo new page 命令创建的页面
 # Custom Page
 page:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
+  banner_img: /img/default.webp
   banner_img_height: 70  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
 
@@ -178,7 +178,7 @@ page:
 # Post Page
 #---------------------------
 post:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
+  banner_img: /img/default.webp
   banner_img_height: 70  # available: 0 - 100
   meta:  # 文章标题下方的信息
     date:  # 文章日期
@@ -260,7 +260,7 @@ waline:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
+  banner_img: /img/default.webp
   banner_img_height: 80  # available: 0 - 100
   subtitle:  # 打字机内容
 
@@ -269,7 +269,7 @@ archive:
 # Categories Page
 #---------------------------
 category:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
+  banner_img: /img/default.webp
   banner_img_height: 80  # available: 0 - 100
   subtitle:  # 打字机内容
 
@@ -278,7 +278,7 @@ category:
 # Tags Page
 #---------------------------
 tag:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
+  banner_img: /img/default.webp
   banner_img_height: 80  # available: 0 - 100
   subtitle:  # 打字机内容
   tagcloud: # 标签云
@@ -294,11 +294,11 @@ tag:
 # About Page
 #---------------------------
 about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/about.md 中编辑，支持 markdown 和 HTML
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
+  banner_img: /img/default.webp
   banner_img_height: 80  # available: 0 - 100
   banner_mask_alpha: 0.3
   subtitle:  # 打字机内容
-  avatar: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/favicon.webp # 头像
+  avatar: /img/favicon.webp # 头像
   name: Karuboniru
   introduce: 博士在读|粒子物理实验方向|可怜的单身肥宅 # 支持 HTML
   icons: # 更多图标可从 https://fontawesome.com/v5.10.0/icons?d=gallery 查找，并以 "图标名: url" 的格式添加在下方
@@ -322,7 +322,7 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
 # 404 Page
 #---------------------------
 page404:
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
+  banner_img: /img/default.webp
   banner_img_height: 100  # available: 0 - 100
   banner_mask_alpha: 0.3
   subtitle: 'Page not found'  # 打字机内容
@@ -334,7 +334,7 @@ page404:
 #---------------------------
 links:
   enable: false
-  banner_img: //cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img/default.webp
+  banner_img: /img/default.webp
   banner_img_height: 80  # available: 0 - 100
   banner_mask_alpha: 0.3
   subtitle:  # 打字机内容
@@ -343,31 +343,31 @@ links:
       title: "Binning's Blog",
       intro: 'Plasma / Cycling / ACG / Kendo / Tennis / PC Repair',
       link:  'https://binnig.cn',
-      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155254.png'
+      image: 'https://cdn.yanqiyu.info/20200405155254.png'
     }
     - {
       title: 'Hello Bi~biu',
       intro: 'A student',
       link:  'https://www.bibiu.cc',
-      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155151.png'
+      image: 'https://cdn.yanqiyu.info/20200405155151.png'
     }
     - {
       title: '未来遗迹',
       intro: '欢迎来到 未来遗迹',
       link:  'https://www.ruin-of-future.online/',
-      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405155121.png'
+      image: 'https://cdn.yanqiyu.info/20200405155121.png'
     }
     - {
       title: 'Oxywen',
       intro: '不闻星河须臾，固执遇见你',
       link:  'https://oxywen.github.io/',
-      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405154710.png'
+      image: 'https://cdn.yanqiyu.info/20200405154710.png'
     }
     - {
       title: 'imByteCat',
       intro: '✨ To reach the unreachable star.',
       link:  'https://www.imbytecat.com/',
-      image: 'https://cdn.jsdelivr.net/gh/karuboniru/blog_imgs@master/20200405154458.png'
+      image: 'https://cdn.yanqiyu.info/20200405154458.png'
     }
     - {
       title: "倚窗，听雨 - Coelacanthus' blog",
@@ -416,42 +416,54 @@ open_graph:
   twitter_id: karuboniru
   twitter_site: karuboniru
 
+
+  iconfont: https://cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/css/font_1749771_l0gzaaun88e.css
+
 static_prefix:
   internal_js: /js
   internal_css: /css
-  internal_img: https://cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/img
+  internal_img: /img
 
-  
-  iconfont: https://cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/css/font_1749771_l0gzaaun88e.css
+  anchor: https://cdn.jsdelivr.net/npm/anchor-js@4/
 
-  anchor: https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/
+  github_markdown: https://cdn.jsdelivr.net/npm/github-markdown-css@4/
 
-  github_markdown: https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/
+  jquery: https://cdn.jsdelivr.net/npm/jquery@3/dist/
 
-  jquery: https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/
+  bootstrap: https://cdn.jsdelivr.net/npm/bootstrap@4/dist/
 
-  bootstrap: https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/
+  highlightjs: https://cdn.jsdelivr.net/npm/highlight.js@10/
 
-  tocbot: https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/
+  prismjs: https://cdn.jsdelivr.net/npm/prismjs@1/
 
-  typed: https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/
+  tocbot: https://cdn.jsdelivr.net/npm/tocbot@4/dist/
 
-  fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/
+  typed: https://cdn.jsdelivr.net/npm/typed.js@2/lib/
+
+  fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/
+
+  nprogress: https://cdn.jsdelivr.net/npm/nprogress@0/
 
   mathjax: https://cdn.jsdelivr.net/npm/mathjax@3/es5/
 
-  katex: https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/
-
-  aplayer: https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/
+  katex: https://cdn.jsdelivr.net/npm/katex@0/dist/
 
   busuanzi: https://busuanzi.ibruce.info/busuanzi/2.3/
 
-  clipboard: https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/
+  clipboard: https://cdn.jsdelivr.net/npm/clipboard@2/dist/
 
-  valine: https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/
+  mermaid: https://cdn.jsdelivr.net/npm/mermaid@8/dist/
 
-  mermaid: https://cdn.jsdelivr.net/npm/mermaid@8.7.0/dist/
+  valine: https://cdn.jsdelivr.net/npm/valine@1/dist/
 
-  highlightjs: https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/
-  
-  waline: https://cdn.jsdelivr.net/npm/@waline/client@latest/dist/
+  waline: https://cdn.jsdelivr.net/npm/@waline/client@1/dist/
+
+  gitalk: https://cdn.jsdelivr.net/npm/gitalk@1/dist/
+
+  disqusjs: https://cdn.jsdelivr.net/npm/disqusjs@1/dist/
+
+  twikoo: https://cdn.jsdelivr.net/npm/twikoo@1/dist/
+
+  hint: https://cdn.jsdelivr.net/npm/hint.css@2/
+
+  iconfont: https://cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/css/font_1749771_l0gzaaun88e.css
