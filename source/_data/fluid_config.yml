@@ -409,6 +409,12 @@ links:
       link:  'https://eatrice.cn',
       image: 'https://eatrice.cn/img/avatar.jpg'
     }
+    - {
+      title: "寒晶雪的文档站",
+      intro: 'openSUSE 新闻译者（En → zh-Hans）',
+      link:  'https://hanjingxue-boling.github.io/Whiteboard/',
+      image: 'https://avatars.githubusercontent.com/u/87272716?v=4'
+    }
     
     
 open_graph:
