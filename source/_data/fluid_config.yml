@@ -415,6 +415,12 @@ links:
       link:  'https://hanjingxue-boling.github.io/Whiteboard/',
       image: 'https://avatars.githubusercontent.com/u/87272716?v=4'
     }
+    - {
+      title: "凌冬的个人博客",
+      intro: '过去不优秀，不代表未来不精彩！',
+      link:  'https://blog.lyr-2000.xyz',
+      image: 'https://blog.lyr-2000.xyz/avatar.png'
+    }
     
     
 open_graph:
