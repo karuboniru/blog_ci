@@ -421,6 +421,9 @@ links:
       link:  'https://blog.lyr-2000.xyz',
       image: 'https://blog.lyr-2000.xyz/avatar.png'
     }
+  comments:
+    enable: true
+    type: waline
     
     
 open_graph:
