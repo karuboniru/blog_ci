@@ -468,7 +468,7 @@ static_prefix:
 
   valine: https://cdn.jsdelivr.net/npm/valine@1/dist/
 
-  waline: https://cdn.jsdelivr.net/npm/@waline/client@1/dist/
+  waline: https://cdn.jsdelivr.net/npm/@waline/client/dist/
 
   gitalk: https://cdn.jsdelivr.net/npm/gitalk@1/dist/
 
