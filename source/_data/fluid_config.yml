@@ -196,13 +196,45 @@ post:
       format: "{} 次"
   updated:
     enable: false
-    content: 本文最后更新于：
+
+    # 格式参照 ISO-8601 日期格式化
+    # ISO-8601 date format
+    # See: http://momentjs.cn/docs/#/parsing/string-format/
+    date_format: "LL a"
+
+    # 是否使用相对时间表示，比如："3 天前"
+    # If true, it will be a relative time, such as: "3 days ago"
+    relative: false
+
+    # 提示标签类型
+    # Note class
+    # Options: default | primary | info | success | warning | danger | light
+    note_class: info
   toc:  # 文章右侧目录
     enable: true
     headingSelector: h1,h2,h3,h4,h5,h6
-  copyright:  # 版权声明
+  copyright:
     enable: true
-    content: '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！'
+
+    # CreativeCommons license
+    # Options: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND
+    license: 'BY-SA'
+
+    # 显示作者
+    author:
+      enable: true
+
+    # 显示发布日期
+    # Show post date
+    post_date:
+      enable: true
+      format: "LL"
+
+    # 显示更新日期
+    # Show update date
+    update_date:
+      enable: true
+      format: "LL"
   prev_next:  # 文章底部上一篇下一篇功能
     enable: true
   custom:  # 文章底部自定义内容
