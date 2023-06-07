@@ -460,6 +460,13 @@ links:
       link:  'https://kkocdko.site',
       image: 'https://cdn.jsdelivr.net/gh/kkocdko/kblog/units/avatar.svg'
     }
+    - {
+      title: "大黑的博客",
+      intro: '写点有意义的东西',
+      link:  'https://www.wanglewei.com',
+      image: 'https://img.sdut1.com/blog_2334s.jpg'
+    }
+    
   comments:
     enable: true
     type: waline
