@@ -24,7 +24,7 @@
     "hexo-generator-tag": "latest",
     "hexo-inject": "latest",
     "hexo-renderer-ejs": "latest",
-    "hexo-renderer-pandoc": "latest",
+    "hexo-renderer-pandoc": "0.3.0",
     "hexo-renderer-stylus": "latest",
     "hexo-html-minifier": "latest",
     "hexo-clean-css": "latest",
