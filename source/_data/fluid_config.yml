@@ -472,6 +472,12 @@ links:
       image: 'https://npm.elemecdn.com/wzheo-absolute@1.0.3/image/avatar/avatar.png',
       link: 'https://blog.sondy.top'
     }
+    - {
+      title: "Shilin’s Blog",
+      intro: "分享和搜集有趣前沿的游戏和技术美术内容",
+      image: 'https://blog.zhushilin.top/img/headpic.png',
+      link: 'https://blog.zhushilin.top/'
+    }
     
   comments:
     enable: true
