@@ -69,6 +69,22 @@ workbox.routing.registerRoute(
     })
 );
 
+workbox.routing.registerRoute(
+    /^https:\/\/lib\.baomitu\.com/,
+    new workbox.strategies.CacheFirst({
+        cacheName: "static-libs",
+        plugins: [
+            new workbox.expiration.ExpirationPlugin({
+                maxEntries: 3000,
+                maxAgeSeconds: 60 * 60 * 24 * 30
+            }),
+            new workbox.cacheableResponse.CacheableResponsePlugin({
+                statuses: [0, 200]
+            })
+        ]
+    })
+);
+
 // Cloudflare Web Analytics
 workbox.routing.registerRoute(
     /^https:\/\/static\.cloudflareinsights\.com/,
