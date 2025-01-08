@@ -478,7 +478,13 @@ links:
       image: 'https://blog.zhushilin.top/img/headpic.png',
       link: 'https://blog.zhushilin.top/'
     }
-    
+    - {
+      title: "伞菌の博客",
+      intro: "闲鱼的生活记录",
+      image: 'https://umb.ink/static/img/ch.ico',
+      link: 'https://umb.ink'
+    }
+
   comments:
     enable: true
     type: waline
