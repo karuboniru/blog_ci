@@ -484,6 +484,11 @@ links:
       image: 'https://umb.ink/static/img/ch.ico',
       link: 'https://umb.ink'
     }
+    - {
+      title: "Bluempty 的博客",
+      intro: "Bluempty 的博客",
+      link: 'https://blog.bluempty.com'
+    }  
 
   comments:
     enable: true
