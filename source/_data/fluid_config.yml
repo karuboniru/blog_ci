@@ -6,7 +6,6 @@
 # Docs：https://hexo.fluid-dev.com/docs/guide/
 #---------------------------
 
-
 #---------------------------
 # 全局
 # Site
@@ -15,21 +14,21 @@ favicon: /img/favicon.webp # 网站标签页的 icon
 
 apple_touch_icon: /img/favicon.webp # 用于苹果设备的 icon
 
-title_join_string: ' - '  # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
+title_join_string: " - " # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 
-force_https: true  # 强制所有链接升级为 HTTPS（适用于图片等资源出现 HTTP 混入报错）
+force_https: true # 强制所有链接升级为 HTTPS（适用于图片等资源出现 HTTP 混入报错）
 
-code:  # 代码块相关的配置
-  copy_btn: true  # 是否开启复制代码的按钮
-  highlight:  # 代码高亮
+code: # 代码块相关的配置
+  copy_btn: true # 是否开启复制代码的按钮
+  highlight: # 代码高亮
     enable: true
-    lib: 'highlightjs'  # 实现高亮的库，可选：highlightjs | prismjs，对应下面的配置项
+    lib: "highlightjs" # 实现高亮的库，可选：highlightjs | prismjs，对应下面的配置项
     highlightjs:
-      style: 'Base16/Solarized Light'  # 高亮样式见：https://highlightjs.org/static/demo/  在页面挑选 style 填入
-      bg_color: true  # 是否根据 style 改变代码背景色，**如果 style 是深色背景别忘了开启此项**
+      style: "Base16/Solarized Light" # 高亮样式见：https://highlightjs.org/static/demo/  在页面挑选 style 填入
+      bg_color: true # 是否根据 style 改变代码背景色，**如果 style 是深色背景别忘了开启此项**
     prismjs:
-      style: 'default'  # 高亮样式见：https://prismjs.com/  在页面右侧的圆形按钮挑选 style 填入，也可以直接填入 css 链接
-      preprocess: true  # 设为 true 高亮将本地静态生成（并只支持部分 prismjs 插件），设为 false 高亮将在浏览器通过 js 生成
+      style: "default" # 高亮样式见：https://prismjs.com/  在页面右侧的圆形按钮挑选 style 填入，也可以直接填入 css 链接
+      preprocess: true # 设为 true 高亮将本地静态生成（并只支持部分 prismjs 插件），设为 false 高亮将在浏览器通过 js 生成
 
 fun_features: # 一些好玩的功能
   typing: # 为 subtitle 添加打字机效果
@@ -43,74 +42,87 @@ fun_features: # 一些好玩的功能
     placement: right # icon放置的位置： left | right
     visible: hover # 默认悬浮显示，可选：hover（鼠标在元素上悬浮时显示） | always（一直显示） | touch（移动端触摸显示）
     icon: "" # 可选：§ | # | ❡ 等，留空则为默认效果
-  mouse_click:  # 鼠标点击动效
+  mouse_click: # 鼠标点击动效
     enable: false
     style: values # 目前设置两个值：values（价值观词汇） | love（爱心）
 
-color:  # 主体颜色配置，可以从这里寻找启发： https://www.webdesignrankings.com/resources/lolcolors/
+color: # 主体颜色配置，可以从这里寻找启发： https://www.webdesignrankings.com/resources/lolcolors/
   body_bg_color: "#eee"
   navbar_bg_color: "#04425E"
   navbar_text_color: "white"
   text_color: "#3c4858"
-  sec_text_color: "#718096"         # 全局次级字体色（摘要、简介等位置）
-  post_text_color: "#2c3e50"        # 文章正文字体色
-  post_heading_color: "#1a202c"     # 文章标题标签字体色（h1 h2 h3...）
+  sec_text_color: "#718096" # 全局次级字体色（摘要、简介等位置）
+  post_text_color: "#2c3e50" # 文章正文字体色
+  post_heading_color: "#1a202c" # 文章标题标签字体色（h1 h2 h3...）
   link_color: "#3c4858"
   link_hover_color: "#1abc9c"
-  link_hover_bg_color: "#ebedef"    # 超链接悬浮背景色
+  link_hover_bg_color: "#ebedef" # 超链接悬浮背景色
   board_color: "#fff"
 
-font:  # 主题字体配置
-  font_size: 16px                   # 全局字号
-  font_family:                      # 全局字体
-  code_font_size: 95%               # 代码的字号
+font: # 主题字体配置
+  font_size: 16px # 全局字号
+  font_family: # 全局字体
+  code_font_size: 95% # 代码的字号
 
-custom_js:   # 指定自定义 js 文件路径，路径是相对 source 目录，如 /js/custom.js
-custom_css: /css/addon.css  # 指定自定义 css 文件路径，路径是相对 source 目录，如 /css/custom.css
+custom_js: # 指定自定义 js 文件路径，路径是相对 source 目录，如 /js/custom.js
+custom_css: /css/addon.css # 指定自定义 css 文件路径，路径是相对 source 目录，如 /css/custom.css
 custom_html: <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalLongTitle">检查到页面更新</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body">检查到页面有更新, 是否刷新以查看最新版本?</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">忽略</button><button type="button" class="btn btn-primary" onClick="window.location.reload();">刷新</button></div></div></div></div><script>if ('serviceWorker' in navigator) {if (navigator.serviceWorker.controller) {navigator.serviceWorker.addEventListener('controllerchange', function() {showNotification();});}window.addEventListener('load', function() {navigator.serviceWorker.register('/sw.js');});}function showNotification() {$('#update').modal('show');}</script>
 custom_head: <link rel="manifest" href="/manifest.json">
 
-web_analytics:  # 网页访问统计
+web_analytics: # 网页访问统计
   enable: true
-  baidu:  # 百度统计的Key，参见 https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376 代码获取中 hm.js? 后边的字符串
-  google:  # Google统计的Tracking ID，参见 https://analytics.google.com/analytics/web/
+  baidu: # 百度统计的Key，参见 https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376 代码获取中 hm.js? 后边的字符串
+  google: # Google统计的Tracking ID，参见 https://analytics.google.com/analytics/web/
     measurement_id: G-W78D6FSM21
-  tajs:   # 腾讯统计早期版站点统计sID，参见 https://ta.qq.com/#/site/list
-  woyaola:  # 51.la站点统计ID，参见 https://www.51.la/user/site/index
-  cnzz:  # 友盟/cnzz站点统计web_id，参见 https://web.umeng.com/main.php?c=site&a=show
+  tajs: # 腾讯统计早期版站点统计sID，参见 https://ta.qq.com/#/site/list
+  woyaola: # 51.la站点统计ID，参见 https://www.51.la/user/site/index
+  cnzz: # 友盟/cnzz站点统计web_id，参见 https://web.umeng.com/main.php?c=site&a=show
 
 lazyload: # 对页面中的图片进行懒加载处理，可见范围外的图片不会加载
   enable: true
-  onlypost: false  # 仅在文章页使用懒加载
+  onlypost: false # 仅在文章页使用懒加载
 
-
-daovoice:  # 在线客服 Daovoice 参考：http://dashboard.daovoice.io
+daovoice: # 在线客服 Daovoice 参考：http://dashboard.daovoice.io
   enable: false # 是否开启在线客服聊天
-  appid: ''  # 应用ID设置
+  appid: "" # 应用ID设置
 
-aplayer:  # 音乐播放器，注意不能与 hexo-tag-aplayer 插件共用
+aplayer: # 音乐播放器，注意不能与 hexo-tag-aplayer 插件共用
   enable: false
-  autoplay: false  # 音频自动播放
-  loop: 'all'  # 音频循环播放, 可选值: 'all', 'one', 'none'
-  order: 'random'  # 播放顺序，可选值: 'list', 'random'
-  theme: '#b7daff'  # 主题色
-  songs:  # 歌曲列表，必须传入下列各参数，其中 url 与 cover 在本地需存于 source 目录，更多参数见文档：https://aplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0
-    - { name: 'name', artist: 'artist', url: '/songs/test.mp3', cover: '/img/cover.jpg' }
-    - { name: 'name', artist: 'artist', url: 'https://...url.mp3', cover: 'https://...cover.jpg' }
+  autoplay: false # 音频自动播放
+  loop: "all" # 音频循环播放, 可选值: 'all', 'one', 'none'
+  order: "random" # 播放顺序，可选值: 'list', 'random'
+  theme: "#b7daff" # 主题色
+  songs: # 歌曲列表，必须传入下列各参数，其中 url 与 cover 在本地需存于 source 目录，更多参数见文档：https://aplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0
+    - {
+        name: "name",
+        artist: "artist",
+        url: "/songs/test.mp3",
+        cover: "/img/cover.jpg",
+      }
+    - {
+        name: "name",
+        artist: "artist",
+        url: "https://...url.mp3",
+        cover: "https://...cover.jpg",
+      }
 
 #---------------------------
 # 页头
 # Header
 #---------------------------
 navbar:
-  blog_title:  # 导航栏左侧的标题，为空则按 hexo config.title 显示
-  menu:  # 可自行增减，若想减去某个入口，可以将值留空，显示文本关联 languages
-    - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
-    - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill' }
-    - { key: 'category', link: '/categories/', icon: 'iconfont icon-category-fill' }
-    - { key: 'tag', link: '/tags/', icon: 'iconfont icon-tags-fill' }
-    - { key: 'about', link: '/about/', icon: 'iconfont icon-user-fill' }
-    - { key: 'links', link: '/links/', icon: 'iconfont icon-link-fill' }  # 友链页，把前面#去掉即可展示
+  blog_title: # 导航栏左侧的标题，为空则按 hexo config.title 显示
+  menu: # 可自行增减，若想减去某个入口，可以将值留空，显示文本关联 languages
+    - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
+    - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
+    - {
+        key: "category",
+        link: "/categories/",
+        icon: "iconfont icon-category-fill",
+      }
+    - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" } # 友链页，把前面#去掉即可展示
     # - { key: RSS, link: '/atom.xml' }
 
 search: # 搜索栏
@@ -120,32 +132,31 @@ search: # 搜索栏
   field: post
   content: true
 
-scroll_down_arrow:  # 向下滚动的箭头
+scroll_down_arrow: # 向下滚动的箭头
   enable: true
-  banner_height_limit: 90  # 头图高度不小于指定比例，才显示箭头
-  scroll_after_turning_page: true  # 翻页后自动滚动
+  banner_height_limit: 90 # 头图高度不小于指定比例，才显示箭头
+  scroll_after_turning_page: true # 翻页后自动滚动
 
 # banner_parallax: true  # 头图滚动视差
-
 
 #---------------------------
 # 页脚
 # Footer
 #---------------------------
 footer:
-  statistics:  # 统计网站 PV、UV，使用的是不蒜子，显示在页脚  *不蒜子近期连接不稳定，谨慎开启
+  statistics: # 统计网站 PV、UV，使用的是不蒜子，显示在页脚  *不蒜子近期连接不稳定，谨慎开启
     enable: false
-    pv_format: "总访问量 {} 次"  # 显示的文本，{}是数字的占位符（必须包含)，下同
+    pv_format: "总访问量 {} 次" # 显示的文本，{}是数字的占位符（必须包含)，下同
     uv_format: "总访客数 {} 人"
 
-  beian:  # The footer of China's website policy, other areas keep disable
+  beian: # The footer of China's website policy, other areas keep disable
     enable: false
     icp_text: 京ICP证123456号 # ICP证号
     police_text: 京公网安备12345678号 # 公安备案号，不填则只显示ICP
     police_code: 12345678 # 公安备案的编号，用于URL跳转查询
     police_icon: /img/police_beian.png # 公安备案的图片. 为空时不显示备案图片
 
-scroll_top_arrow:  # 向顶部滚动的箭头
+scroll_top_arrow: # 向顶部滚动的箭头
   enable: true
 
 #---------------------------
@@ -153,15 +164,15 @@ scroll_top_arrow:  # 向顶部滚动的箭头
 # Index Page
 #---------------------------
 index:
-  banner_img: /img/default.webp  # 首页 Banner 头图，以下相同
-  banner_img_height: 100  # 头图高度，屏幕百分比，available: 0 - 100
-  post_default_img: '' # 默认的文章封面图，当没有指定 index_img 时会使用该图片，若都为空则不显示任何图片
-  slogan:  # 首页副标题的独立设置
-    enable: true  # 为 false 则不显示任何内容
+  banner_img: /img/default.webp # 首页 Banner 头图，以下相同
+  banner_img_height: 100 # 头图高度，屏幕百分比，available: 0 - 100
+  post_default_img: "" # 默认的文章封面图，当没有指定 index_img 时会使用该图片，若都为空则不显示任何图片
+  slogan: # 首页副标题的独立设置
+    enable: true # 为 false 则不显示任何内容
     text: 西木野羰基 # 为空则按 hexo config.subtitle 显示
   auto_excerpt:
     enable: true
-  post_url_target: _self  # available: _blank | _self
+  post_url_target: _self # available: _blank | _self
   post_meta: # 是否显示文章信息（时间、分类、标签）
     date: true
     category: true
@@ -171,8 +182,8 @@ index:
 # Custom Page
 page:
   banner_img: /img/default.webp
-  banner_img_height: 70  # available: 0 - 100
-  banner_mask_alpha: 0.3  # available: 0 - 1.0
+  banner_img_height: 70 # available: 0 - 100
+  banner_mask_alpha: 0.3 # available: 0 - 1.0
 
 #---------------------------
 # 文章页
@@ -180,18 +191,18 @@ page:
 #---------------------------
 post:
   banner_img: /img/default.webp
-  banner_img_height: 70  # available: 0 - 100
-  meta:  # 文章标题下方的信息
-    date:  # 文章日期
+  banner_img_height: 70 # available: 0 - 100
+  meta: # 文章标题下方的信息
+    date: # 文章日期
       enable: true
-      format: "dddd, MMMM Do YYYY, h:mm a"  # 格式参照 ISO-8601 日期格式化
-    wordcount:  # 字数统计
+      format: "dddd, MMMM Do YYYY, h:mm a" # 格式参照 ISO-8601 日期格式化
+    wordcount: # 字数统计
       enable: true
-      format: "{} 字"  # 显示的文本，{}是数字的占位符（必须包含)，下同
-    min2read:  # 阅读时间
+      format: "{} 字" # 显示的文本，{}是数字的占位符（必须包含)，下同
+    min2read: # 阅读时间
       enable: true
       format: "{} 分钟"
-    views:  # 阅读次数，统计基于不蒜子  *不蒜子近期连接不稳定，谨慎开启
+    views: # 阅读次数，统计基于不蒜子  *不蒜子近期连接不稳定，谨慎开启
       enable: false
       format: "{} 次"
   updated:
@@ -210,7 +221,7 @@ post:
     # Note class
     # Options: default | primary | info | success | warning | danger | light
     note_class: info
-  toc:  # 文章右侧目录
+  toc: # 文章右侧目录
     enable: true
     headingSelector: h1,h2,h3,h4,h5,h6
   copyright:
@@ -218,7 +229,7 @@ post:
 
     # CreativeCommons license
     # Options: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND
-    license: 'BY-SA'
+    license: "BY-SA"
 
     # 显示作者
     author:
@@ -235,24 +246,24 @@ post:
     update_date:
       enable: true
       format: "LL"
-  prev_next:  # 文章底部上一篇下一篇功能
+  prev_next: # 文章底部上一篇下一篇功能
     enable: true
-  custom:  # 文章底部自定义内容
+  custom: # 文章底部自定义内容
     enable: false
     content: '<img src="https://octodex.github.com/images/jetpacktocat.png" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">' # 自定义区域，支持 HTML，可自行插入赞赏码、公众号二维码等内容
-  comments:  # 评论
-    enable: true  # 开启评论
-    type: waline  # 指定使用的评论模块  available: disqus | valine | gitalk | utterances | changyan | livere  推荐 utterances
-  image_zoom:  # 文章图片可点击放大
+  comments: # 评论
+    enable: true # 开启评论
+    type: waline # 指定使用的评论模块  available: disqus | valine | gitalk | utterances | changyan | livere  推荐 utterances
+  image_zoom: # 文章图片可点击放大
     enable: true
-  math:  # 数学公式，开启之前需要更换 Markdown 渲染器，否则复杂公式会有兼容问题，具体请见 https://hexo.fluid-dev.com/docs/guide/#数学公式
+  math: # 数学公式，开启之前需要更换 Markdown 渲染器，否则复杂公式会有兼容问题，具体请见 https://hexo.fluid-dev.com/docs/guide/#数学公式
     enable: true
-    specific: true  # 开启后，只有在文章 Front-matter 里指定 `math: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
-    engine: mathjax  # 公式引擎  available: mathjax | katex
-  mermaid:  # 流程图，基于 mermaid-js，文档：http://mermaid-js.github.io/mermaid/
-    enable: true  # 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `mermaid: true`
-    specific: true  # 开启后，只有在文章 Front-matter 里指定 `mermaid: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
-    options: { theme: 'default' }  # 接口选项，具体可见：http://mermaid-js.github.io/mermaid/#/mermaidAPI
+    specific: true # 开启后，只有在文章 Front-matter 里指定 `math: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
+    engine: mathjax # 公式引擎  available: mathjax | katex
+  mermaid: # 流程图，基于 mermaid-js，文档：http://mermaid-js.github.io/mermaid/
+    enable: true # 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `mermaid: true`
+    specific: true # 开启后，只有在文章 Front-matter 里指定 `mermaid: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
+    options: { theme: "default" } # 接口选项，具体可见：http://mermaid-js.github.io/mermaid/#/mermaidAPI
 
 #---------------------------
 # 评论
@@ -276,17 +287,22 @@ disqus:
   shortname: # your shortname
 
 waline:
-  serverURL: 'https://waline.yanqiyu.info'
+  serverURL: "https://waline.yanqiyu.info"
   placeholder: 这是评论区
   path: window.location.pathname
   avatar: retro
-  meta: ['nick', 'mail', 'link']
+  meta: ["nick", "mail", "link"]
   pageSize: 10
+  wordLimit: 4096
   lang: zh-CN
   highlight: true
-  avatarCDN: 'https://gravatar.loli.net/avatar/'
+  avatarCDN: "https://gravatar.loli.net/avatar/"
   avatarForce: false
-  emoji: [https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji, https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili]
+  emoji:
+    [
+      https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji,
+      https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili,
+    ]
   dark: 'html[data-user-color-scheme="dark"]'
 #---------------------------
 # 归档页
@@ -294,8 +310,8 @@ waline:
 #---------------------------
 archive:
   banner_img: /img/default.webp
-  banner_img_height: 80  # available: 0 - 100
-  subtitle:  # 打字机内容
+  banner_img_height: 80 # available: 0 - 100
+  subtitle: # 打字机内容
 
 #---------------------------
 # 分类归档页
@@ -303,8 +319,8 @@ archive:
 #---------------------------
 category:
   banner_img: /img/default.webp
-  banner_img_height: 80  # available: 0 - 100
-  subtitle:  # 打字机内容
+  banner_img_height: 80 # available: 0 - 100
+  subtitle: # 打字机内容
 
 #---------------------------
 # 标签归档页
@@ -312,35 +328,40 @@ category:
 #---------------------------
 tag:
   banner_img: /img/default.webp
-  banner_img_height: 80  # available: 0 - 100
-  subtitle:  # 打字机内容
+  banner_img_height: 80 # available: 0 - 100
+  subtitle: # 打字机内容
   tagcloud: # 标签云
     min_font: 15
     max_font: 30
-    unit: px  # 字号单位
+    unit: px # 字号单位
     start_color: "#BBBBEE"
     end_color: "#337ab7"
-
 
 #---------------------------
 # 关于页
 # About Page
 #---------------------------
-about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/about.md 中编辑，支持 markdown 和 HTML
+about: # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/about.md 中编辑，支持 markdown 和 HTML
   banner_img: /img/default.webp
-  banner_img_height: 80  # available: 0 - 100
+  banner_img_height: 80 # available: 0 - 100
   banner_mask_alpha: 0.3
-  subtitle:  # 打字机内容
+  subtitle: # 打字机内容
   avatar: /img/favicon.webp # 头像
   name: Karuboniru
   introduce: 博士在读|粒子物理实验方向|可怜的单身肥宅 # 支持 HTML
   icons: # 更多图标可从 https://fontawesome.com/v5.10.0/icons?d=gallery 查找，并以 "图标名: url" 的格式添加在下方
-    - { class: 'iconfont icon-github',   link: 'https://github.com/karuboniru'}
-    - { class: 'iconfont icon-telegram', link: 'https://t.me/Karuboniru'}
-    - { class: 'iconfont icon-twitter',  link: 'https://twitter.com/Karuboniru'}
-    - { class: 'iconfont icon-gmail', link: 'mailto:nico@niconi.org' }
-    - { class: 'iconfont icon-reddit', link: 'https://www.reddit.com/user/Karuboniru' }
-    - { class: 'iconfont icon-FontAwesomemastodon', link: 'https://pawoo.net/web/accounts/834589' }
+    - { class: "iconfont icon-github", link: "https://github.com/karuboniru" }
+    - { class: "iconfont icon-telegram", link: "https://t.me/Karuboniru" }
+    - { class: "iconfont icon-twitter", link: "https://twitter.com/Karuboniru" }
+    - { class: "iconfont icon-gmail", link: "mailto:nico@niconi.org" }
+    - {
+        class: "iconfont icon-reddit",
+        link: "https://www.reddit.com/user/Karuboniru",
+      }
+    - {
+        class: "iconfont icon-FontAwesomemastodon",
+        link: "https://pawoo.net/web/accounts/834589",
+      }
     # - { class: 'fab fa-github',   link: 'https://github.com/karuboniru'}
     # - { class: 'fab fa-telegram', link: 'https://t.me/Karuboniru'}
     # - { class: 'fab fa-twitter',  link: 'https://twitter.com/Karuboniru'}
@@ -348,18 +369,15 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
     # - { class: 'fab fa-reddit', link: 'https://www.reddit.com/user/Karuboniru' }
     # - { class: 'fab fa-mastodon', link: 'https://pawoo.net/web/accounts/834589' }
 
-
-
 #---------------------------
 # 404页
 # 404 Page
 #---------------------------
 page404:
   banner_img: /img/default.webp
-  banner_img_height: 100  # available: 0 - 100
+  banner_img_height: 100 # available: 0 - 100
   banner_mask_alpha: 0.3
-  subtitle: 'Page not found'  # 打字机内容
-
+  subtitle: "Page not found" # 打字机内容
 
 #---------------------------
 # 友链页
@@ -368,138 +386,136 @@ page404:
 links:
   enable: true
   banner_img: /img/default.webp
-  banner_img_height: 80  # available: 0 - 100
+  banner_img_height: 80 # available: 0 - 100
   banner_mask_alpha: 0.3
-  subtitle:  # 打字机内容
-  items:  # 键是友链标题、值的列表内容分别是 [链接, 简介, 头像]，头像可以省略
+  subtitle: # 打字机内容
+  items: # 键是友链标题、值的列表内容分别是 [链接, 简介, 头像]，头像可以省略
     - {
-      title: "Binning's Blog",
-      intro: 'Plasma / Cycling / ACG / Kendo / Tennis / PC Repair',
-      link:  'https://binnig.cn',
-      image: 'https://cdn.yanqiyu.info/20200405155254.png'
-    }
+        title: "Binning's Blog",
+        intro: "Plasma / Cycling / ACG / Kendo / Tennis / PC Repair",
+        link: "https://binnig.cn",
+        image: "https://cdn.yanqiyu.info/20200405155254.png",
+      }
     - {
-      title: 'Hello Bibiu',
-      intro: 'A student',
-      link:  'https://www.bibiu.cc',
-      image: 'https://oss.bibiu.cc/bibiuapi/202204081820921.jpeg'
-    }
+        title: "Hello Bibiu",
+        intro: "A student",
+        link: "https://www.bibiu.cc",
+        image: "https://oss.bibiu.cc/bibiuapi/202204081820921.jpeg",
+      }
     - {
-      title: '未来遗迹',
-      intro: '欢迎来到 未来遗迹',
-      link:  'https://www.ruin-of-future.online/',
-      image: 'https://cdn.yanqiyu.info/20200405155121.png'
-    }
+        title: "未来遗迹",
+        intro: "欢迎来到 未来遗迹",
+        link: "https://www.ruin-of-future.online/",
+        image: "https://cdn.yanqiyu.info/20200405155121.png",
+      }
     - {
-      title: 'Oxywen',
-      intro: '不闻星河须臾，固执遇见你',
-      link:  'https://oxywen.github.io/',
-      image: 'https://cdn.yanqiyu.info/20200405154710.png'
-    }
+        title: "Oxywen",
+        intro: "不闻星河须臾，固执遇见你",
+        link: "https://oxywen.github.io/",
+        image: "https://cdn.yanqiyu.info/20200405154710.png",
+      }
     - {
-      title: 'imByteCat',
-      intro: '✨ To reach the unreachable star.',
-      link:  'https://www.imbytecat.com/',
-      image: 'https://cdn.yanqiyu.info/20200405154458.png'
-    }
+        title: "imByteCat",
+        intro: "✨ To reach the unreachable star.",
+        link: "https://www.imbytecat.com/",
+        image: "https://cdn.yanqiyu.info/20200405154458.png",
+      }
     - {
-      title: "倚窗，听雨 - Coelacanthus' blog",
-      intro: '凡人难以承受生活的全部真相，于是他们各执一端。',
-      link:  'https://blog.coelacanthus.moe/',
-      image: 'https://cdn.jsdelivr.net/gh/ayalhw/blog@master/static/icon.webp'
-    }
+        title: "倚窗，听雨 - Coelacanthus' blog",
+        intro: "凡人难以承受生活的全部真相，于是他们各执一端。",
+        link: "https://blog.coelacanthus.moe/",
+        image: "https://cdn.jsdelivr.net/gh/ayalhw/blog@master/static/icon.webp",
+      }
     - {
-      title: "Endle's Blog",
-      intro: 'Fedora / Firefox / Wine User. 统计学萌新',
-      link:  'https://endle.github.io/'
-    }
+        title: "Endle's Blog",
+        intro: "Fedora / Firefox / Wine User. 统计学萌新",
+        link: "https://endle.github.io/",
+      }
     - {
-      title: "LeiWang1999's Blog",
-      intro: '卷卷卷卷',
-      link: 'https://leiblog.wang/',
-      image: 'http://leiblog.wang/static/image/2021/5/sjcZ09.jpg'
-    }
+        title: "LeiWang1999's Blog",
+        intro: "卷卷卷卷",
+        link: "https://leiblog.wang/",
+        image: "http://leiblog.wang/static/image/2021/5/sjcZ09.jpg",
+      }
     - {
-      title: "庄逸的数学和技术屋",
-      intro: '大学生活记',
-      link: 'https://hfdxmy.cn'
-    }
+        title: "庄逸的数学和技术屋",
+        intro: "大学生活记",
+        link: "https://hfdxmy.cn",
+      }
     - {
-      title: "zhullyb's Blog",
-      intro: '竹林里有冰的博客',
-      link:  'https://zhul.in/',
-      image: 'https://static.031130.xyz/avatar.webp'
-    }
+        title: "zhullyb's Blog",
+        intro: "竹林里有冰的博客",
+        link: "https://zhul.in/",
+        image: "https://static.031130.xyz/avatar.webp",
+      }
     - {
-      title: "止息的博客",
-      intro: '旗亭下马解秋衣，请贳宜阳一壶酒',
-      link:  'https://zhangjk98.xyz/',
-      image: 'https://zhangjk98.xyz/uploads/jinmao.jpg'
-    }
+        title: "止息的博客",
+        intro: "旗亭下马解秋衣，请贳宜阳一壶酒",
+        link: "https://zhangjk98.xyz/",
+        image: "https://zhangjk98.xyz/uploads/jinmao.jpg",
+      }
     - {
-      title: "吃白饭的休伯利安号",
-      intro: '非专业搬砖的土木工程师',
-      link:  'https://eatrice.cn',
-      image: 'https://eatrice.cn/img/avatar.jpg'
-    }
+        title: "吃白饭的休伯利安号",
+        intro: "非专业搬砖的土木工程师",
+        link: "https://eatrice.cn",
+        image: "https://eatrice.cn/img/avatar.jpg",
+      }
     - {
-      title: "寒晶雪的文档站",
-      intro: 'openSUSE 新闻译者（En → zh-Hans）',
-      link:  'https://hanjingxue-boling.github.io/whiteboard/',
-      image: 'https://avatars.githubusercontent.com/u/87272716?v=4'
-    }
+        title: "寒晶雪的文档站",
+        intro: "openSUSE 新闻译者（En → zh-Hans）",
+        link: "https://hanjingxue-boling.github.io/whiteboard/",
+        image: "https://avatars.githubusercontent.com/u/87272716?v=4",
+      }
     - {
-      title: "凌冬的个人博客",
-      intro: '过去不优秀，不代表未来不精彩！',
-      link:  'https://blog.lyr-2000.xyz',
-      image: 'https://blog.lyr-2000.xyz/avatar.png'
-    }
+        title: "凌冬的个人博客",
+        intro: "过去不优秀，不代表未来不精彩！",
+        link: "https://blog.lyr-2000.xyz",
+        image: "https://blog.lyr-2000.xyz/avatar.png",
+      }
     - {
-      title: "kkocdko's Blog",
-      intro: 'kk 的一些独特技术经验和教程',
-      link:  'https://kkocdko.site',
-      image: 'https://cdn.jsdelivr.net/gh/kkocdko/kblog/units/avatar.svg'
-    }
+        title: "kkocdko's Blog",
+        intro: "kk 的一些独特技术经验和教程",
+        link: "https://kkocdko.site",
+        image: "https://cdn.jsdelivr.net/gh/kkocdko/kblog/units/avatar.svg",
+      }
     - {
-      title: "大黑的博客",
-      intro: '写点有意义的东西',
-      link:  'https://www.wanglewei.com',
-      image: 'https://img.sdut1.com/blog_2334s.jpg'
-    }
+        title: "大黑的博客",
+        intro: "写点有意义的东西",
+        link: "https://www.wanglewei.com",
+        image: "https://img.sdut1.com/blog_2334s.jpg",
+      }
     - {
-      title: "王卓Sco",
-      intro: "宁静致远，热爱生活。",
-      image: 'https://blog.wzsco.top/img/avatar.png',
-      link: 'https://blog.wzsco.top'
-    }
+        title: "王卓Sco",
+        intro: "宁静致远，热爱生活。",
+        image: "https://blog.wzsco.top/img/avatar.png",
+        link: "https://blog.wzsco.top",
+      }
     - {
-      title: "Shilin’s Blog",
-      intro: "分享和搜集有趣前沿的游戏和技术美术内容",
-      image: 'https://blog.zhushilin.top/img/headpic.png',
-      link: 'https://blog.zhushilin.top/'
-    }
+        title: "Shilin’s Blog",
+        intro: "分享和搜集有趣前沿的游戏和技术美术内容",
+        image: "https://blog.zhushilin.top/img/headpic.png",
+        link: "https://blog.zhushilin.top/",
+      }
     - {
-      title: "伞菌の博客",
-      intro: "闲鱼的生活记录",
-      image: 'https://umb.ink/static/img/ch.ico',
-      link: 'https://umb.ink'
-    }
+        title: "伞菌の博客",
+        intro: "闲鱼的生活记录",
+        image: "https://umb.ink/static/img/ch.ico",
+        link: "https://umb.ink",
+      }
     - {
-      title: "Bluempty 的博客",
-      intro: "Bluempty 的博客",
-      link: 'https://blog.bluempty.com'
-    }  
+        title: "Bluempty 的博客",
+        intro: "Bluempty 的博客",
+        link: "https://blog.bluempty.com",
+      }
 
   comments:
     enable: true
     type: waline
-    
-    
+
 open_graph:
   twitter_card: summary_large_image
   twitter_id: karuboniru
   twitter_site: karuboniru
-
 
   iconfont: https://cdn.jsdelivr.net/gh/karuboniru/blog_ci@master/source/css/font_1749771_l0gzaaun88e.css
 
@@ -507,4 +523,3 @@ static_prefix:
   internal_js: /js
   internal_css: /css
   internal_img: /img
-  
