@@ -34,6 +34,8 @@ CSS CUSTOM PROPERTIES (Theme Variables)
     --theme-table-row-even: #fafafa;
     --theme-table-row-hover: #f0f0f0;
     --theme-math-filter: none;
+    --theme-back-to-top: #555;
+    --theme-back-to-top-hover: #111;
 }
 
 /* Dark mode variables */
@@ -62,6 +64,8 @@ html:not([data-theme]) {
     --theme-table-row-even: #2a2a2a;
     --theme-table-row-hover: #383838;
     --theme-math-filter: invert(1) hue-rotate(180deg);
+    --theme-back-to-top: #bbb;
+    --theme-back-to-top-hover: #fff;
 }
 
 /* System preference: only apply dark variables when no explicit theme is set */
@@ -90,6 +94,8 @@ html:not([data-theme]) {
         --theme-table-row-even: #fafafa;
         --theme-table-row-hover: #f0f0f0;
         --theme-math-filter: none;
+        --theme-back-to-top: #555;
+        --theme-back-to-top-hover: #111;
     }
 }
 
@@ -190,6 +196,66 @@ table tbody tr:hover {
 
 [role="math"] {
     filter: var(--theme-math-filter) !important;
+}
+
+
+/*******************************************************************************
+BACK TO TOP BUTTON
+*******************************************************************************/
+
+.back-to-top-btn {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    color: var(--theme-back-to-top);
+    background: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.35rem);
+    transition:
+        color 0.15s ease,
+        opacity 0.15s ease,
+        transform 0.15s ease,
+        visibility 0.15s ease;
+}
+
+.back-to-top-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+    color: var(--theme-back-to-top-hover);
+}
+
+.back-to-top-btn:focus-visible {
+    outline: 2px solid var(--highlight-strong, rgba(128, 128, 128, 0.4));
+    outline-offset: 2px;
+}
+
+.back-to-top-btn svg {
+    width: 2.1rem;
+    height: 2.1rem;
+}
+
+@media (max-width: 760px) {
+    .back-to-top-btn {
+        right: 1rem;
+        bottom: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
 }
 
 
