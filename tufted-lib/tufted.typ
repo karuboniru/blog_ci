@@ -6,9 +6,10 @@
 #import "links.typ": template-links
 #import "metadata.typ": metadata
 
-/// Tufted 博客模板的主包装函数。
+/// The main wrapper function of Tufted Blog Template.
 ///
-/// 用于生成完整的 HTML 页面结构，包含 SEO 元数据、CSS/JS 资源加载以及页眉页脚布局。
+/// Used to generate a complete HTML page structure,
+/// including SEO metadata, CSS/JS resource loading, and header and footer layout.
 #let tufted-web(
   header-links: (:),
 
