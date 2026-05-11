@@ -6,6 +6,8 @@
 
 开发中的更新内容将在此记录。
 
+## v1.1.0
+
 - 功能：引入了基于 [actions-template-sync](https://github.com/marketplace/actions/actions-template-sync) 的自动更新工作流（[#28](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/28), [@HerveyB3B4](https://github.com/HerveyB3B4)）
 - 功能：添加了返回顶部按钮（[#32](https://github.com/Yousa-Mirage/Tufted-Blog-Template/issues/32)）
 - 功能：增加了 Blog 的 Entry 函数，用于在博客索引页面显示博客条目（感谢 [@etiennebacher](https://github.com/etiennebacher)）
