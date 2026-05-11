@@ -1,6 +1,6 @@
 /**
- * Adds a theme toggle button and keeps the page aligned with the current
- * session preference or the system color-scheme setting.
+ * Wires up the theme toggle button and keeps the page aligned with the
+ * current session preference or the system color-scheme setting.
  *
  * Behavior:
  * 1. New tabs follow the system theme by default.
@@ -85,25 +85,12 @@
 		applyTheme(newTheme);
 	}
 
-	// Create the single-icon toggle button used in the site header.
-	function createToggleButton() {
-		const button = document.createElement("button");
-		button.id = "theme-toggle";
-		button.className = "theme-toggle-btn";
-		button.type = "button";
-		button.setAttribute("aria-label", "切换主题");
-
-		button.addEventListener("click", toggleTheme);
-
-		return button;
-	}
-
 	// Apply the initial theme as early as possible to avoid flicker.
 	function init() {
 		const theme = getCurrentTheme();
 		document.documentElement.setAttribute("data-theme", theme);
 
-		// Add the toggle button once the DOM is ready.
+		// Bind the existing toggle button once the DOM is ready.
 		if (document.readyState === "loading") {
 			document.addEventListener("DOMContentLoaded", onDOMReady);
 		} else {
@@ -112,15 +99,9 @@
 	}
 
 	function onDOMReady() {
-		const button = createToggleButton();
-
-		// Prefer the header navigation as the button mount point.
-		const nav = document.querySelector("header nav");
-		if (nav) {
-			nav.appendChild(button);
-		} else {
-			// Fall back to the document body if no nav is present.
-			document.body.appendChild(button);
+		const button = document.getElementById("theme-toggle");
+		if (button) {
+			button.addEventListener("click", toggleTheme);
 		}
 
 		// Sync the icon with the current theme before listening for changes.

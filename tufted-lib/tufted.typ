@@ -106,11 +106,23 @@
         // Add website navigation
         html.header(
           class: "site-header",
-          if header-links != none and header-links.len() > 0 {
+          if header-links != none {
             html.nav(
               class: "site-nav",
-              for (href, title) in header-links {
-                html.a(href: href, title)
+              {
+                for (href, title) in header-links {
+                  html.a(href: href, title)
+                }
+                html.elem(
+                  "button",
+                  attrs: (
+                    id: "theme-toggle",
+                    class: "theme-toggle-btn",
+                    type: "button",
+                    aria-label: "Toggle theme",
+                  ),
+                  "",
+                )
               },
             )
           }

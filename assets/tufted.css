@@ -538,6 +538,13 @@ header nav {
 	gap: 1em;
 }
 
+header nav > p {
+	display: flex;
+	gap: inherit;
+	margin: 0;
+	flex-wrap: wrap;
+}
+
 header nav a,
 header nav a:link,
 header nav a:visited {

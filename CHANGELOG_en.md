@@ -9,6 +9,7 @@ Development updates will be recorded here.
 - feat: introduce an auto-update workflow based on [actions-template-sync](https://github.com/marketplace/actions/actions-template-sync) ([#28](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/28), [@HerveyB3B4](https://github.com/HerveyB3B4))
 - feat: add back-to-top button ([#32](https://github.com/Yousa-Mirage/Tufted-Blog-Template/issues/32))
 - fix: fix theme toggle issue where reopening the webpage automatically follows the system theme instead of the last manually selected theme
+- refactor: move theme toggle button element from JS script to Typst generation (thanks [@etiennebacher](https://github.com/etiennebacher))
 - chore: use biome for code linting and formatting
 
 ## v1.0.0
