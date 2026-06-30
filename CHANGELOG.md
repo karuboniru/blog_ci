@@ -4,9 +4,9 @@
 
 ## 开发阶段
 
-## v1.2.0
-
 开发中的更新内容将在此记录。
+
+## v1.2.0
 
 - 功能：在文章第一个一级标题下方显示作者、日期和可选的额外信息（[#35](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/35), [@tortrixx](https://github.com/tortrixx)）
 - 功能：新增导出的 `tufted.blog-entry()` 函数，用于生成带日期栏的博客索引条目，效果预览见 [Blog 页面](https://tufted-blog.pages.dev/Blog/)
