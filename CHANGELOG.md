@@ -6,7 +6,7 @@
 
 开发中的更新内容将在此记录。
 
-- 功能：支持 Typst 0.15 及之后版本的 HTML MathML 公式导出，并兼容旧版本的 SVG 公式样式
+- 功能：支持 Typst 0.15 及之后版本的 HTML MathML 公式导出，并兼容旧版本的 SVG 公式样式（[#40](https://github.com/Yousa-Mirage/Tufted-Blog-Template/issues/40)）
 - 功能：为行内和块级公式添加点击复制 MathML 功能
 
 ## v1.2.0
