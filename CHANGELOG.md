@@ -6,6 +6,8 @@
 
 开发中的更新内容将在此记录。
 
+- 功能：支持 Typst 0.15 及之后版本的 HTML MathML 公式导出，并兼容旧版本的 SVG 公式样式
+
 ## v1.2.0
 
 - 功能：在文章第一个一级标题下方显示作者、日期和可选的额外信息（[#35](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/35), [@tortrixx](https://github.com/tortrixx)）

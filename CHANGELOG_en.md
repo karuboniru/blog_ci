@@ -4,6 +4,10 @@
 
 ## Develop
 
+Development updates will be recorded here.
+
+- feat: support HTML MathML formula output with Typst 0.15 and later while keeping SVG formula styles compatible with older versions
+
 ## v1.2.0
 
 - feat: show author, date, and optional extra information below the first level-one heading of articles ([#35](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/35), [@tortrixx](https://github.com/tortrixx))
