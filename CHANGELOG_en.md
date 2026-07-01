@@ -6,6 +6,8 @@
 
 Development updates will be recorded here.
 
+## v1.3.0
+
 - feat: support HTML MathML formula output with Typst 0.15 and later while keeping SVG formula styles compatible with older versions ([#40](https://github.com/Yousa-Mirage/Tufted-Blog-Template/issues/40))
 - feat: add click-to-copy MathML support for inline and block formulas
 
