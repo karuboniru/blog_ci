@@ -7,10 +7,10 @@
 开发中的更新内容将在此记录。
 
 - 功能：支持 Typst 0.15 及之后版本的 HTML MathML 公式导出，并兼容旧版本的 SVG 公式样式
+- 功能：为行内和块级公式添加点击复制 MathML 功能
 
 ## v1.2.0
 
-- 功能：为行内和块级公式添加点击复制 MathML 功能
 - 功能：在文章第一个一级标题下方显示作者、日期和可选的额外信息（[#35](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/35), [@tortrixx](https://github.com/tortrixx)）
 - 功能：新增导出的 `tufted.blog-entry()` 函数，用于生成带日期栏的博客索引条目，效果预览见 [Blog 页面](https://tufted-blog.pages.dev/Blog/)
 - 功能：优化了图片加载逻辑，图片转为静态资源并默认懒加载（[#31](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/31), [@CST-Cat](https://github.com/CST-Cat)）

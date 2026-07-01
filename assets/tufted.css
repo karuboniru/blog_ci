@@ -136,7 +136,7 @@ figure > .math-block {
 .math-inline.is-copyable,
 .math-block.is-copyable {
 	position: relative;
-	cursor: copy;
+	cursor: pointer;
 }
 
 .math-inline.is-copyable:focus-visible,

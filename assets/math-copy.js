@@ -62,7 +62,6 @@
 	function initFormula(formula) {
 		formula.classList.add(COPYABLE_CLASS);
 		formula.tabIndex = 0;
-		formula.setAttribute("title", "Copy formula as MathML");
 
 		formula.addEventListener("click", () => {
 			copyFormula(formula);
