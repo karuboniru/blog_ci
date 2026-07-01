@@ -95,6 +95,51 @@ section > figure:not(.fullwidth) > svg {
 }
 
 /*******************************************************************************
+MATH NOTATION
+*******************************************************************************/
+
+.math-block {
+	display: block;
+	width: 55%;
+	text-align: center;
+	margin: 1em 0;
+	padding: 0.5em 0;
+	font-size: 1.4em;
+	line-height: 1.2;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+figure > .math-block {
+	width: 100%;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+.math-inline {
+	display: inline-block;
+	vertical-align: baseline;
+	margin: 0 0.1em;
+	text-indent: 0;
+}
+
+.math-inline > math,
+.math-block > math {
+	color: inherit;
+}
+
+.math-inline > svg,
+.math-block > svg {
+	display: inline-block;
+}
+
+.math-block > svg {
+	min-width: max-content;
+	text-align: center;
+}
+
+/*******************************************************************************
 TYPOGRAPHY
 *******************************************************************************/
 
@@ -394,6 +439,10 @@ RESPONSIVE LAYOUT
 *******************************************************************************/
 
 @media (max-width: 760px) {
+	.math-block {
+		width: 100%;
+	}
+
 	/* Margin notes render inline on narrow screens */
 	.marginnote {
 		display: block;
