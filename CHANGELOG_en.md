@@ -10,6 +10,7 @@ Development updates will be recorded here.
 
 - feat: support HTML MathML formula output with Typst 0.15 and later while keeping SVG formula styles compatible with older versions ([#40](https://github.com/Yousa-Mirage/Tufted-Blog-Template/issues/40))
 - feat: add click-to-copy MathML support for inline and block formulas
+- fix: fix centering and width display for `tufted.full-width()`
 
 ## v1.2.0
 
@@ -17,7 +18,6 @@ Development updates will be recorded here.
 - feat: Added `tufted.blog-entry()` function to generate blog index entries with date columns. For a preview of the effect, see [Blog Page](https://tufted-blog.pages.dev/Blog/)
 - feat: optimize image loading logic by converting images to static resources and enabling lazy loading by default ([#31](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/31), [@CST-Cat](https://github.com/CST-Cat))
 - fix: optimize the display of the table of contents ([#39](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/39), [@CST-Cat](https://github.com/CST-Cat))
-- fix: fix centering and width display for `tufted.full-width()`
 - fix: rename the back-to-top button DOM identifiers to avoid accidental blocking
 - fix: Excluded `CHANGELOG.md` and `CHANGELOG_en.md` from template-sync
 
