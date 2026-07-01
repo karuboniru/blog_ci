@@ -411,6 +411,14 @@ $
   - underbrace(sum_(i, j=1)^3 (y_(i j)^u bar(Q)_(L i) tilde(phi) u_(R j) + y_(i j)^d bar(Q)_(L i) phi d_(R j) + y_(i j)^e bar(L)_(L i) phi e_(R j) + h.c.), "Yukawa Couplings")
 $
 
+使用 `tufted.full-width()` 可以让公式占用整个页面宽度并居中显示：
+
+#tufted.full-width[
+  $
+    Psi(x, t) = sum_(n=1)^infinity c_n phi_n(x) e^(-i E_n t / planck) = integral_(-infinity)^(+infinity) tilde(Psi)(k) e^(i k x - i omega(k) t) d k = e^(i (k x - omega t)) + sum_(l=1)^infinity a_l e^(i (k_l x + phi_l - omega_l t))
+  $
+]
+
 更加复杂的公式和符号写法可参考#link("https://typst-doc-cn.github.io/docs/reference/math/")[官方文档]。
 
 
