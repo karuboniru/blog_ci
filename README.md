@@ -226,11 +226,13 @@ Tufted-Blog-Template/
 
 - 修改部分文本样式以适应中文排版习惯
 - 微调了大量样式细节，增强了深色模式，优化了各种元素的显示效果
+- 目录跳转支持
 - 优化代码块样式，增加行号和复制功能
 - 增加 Python 构建脚本，从而支持跨平台构建
 - 增加 PDF 构建支持，允许编译 PDF 文档并链接到网页
 - 增加了网站标签页图标支持
 - 添加了详细的使用说明和代码注释，帮助用户快速开发
+- ......
 
 本模板项目基于 [MIT License](https://github.com/Yousa-Mirage/Tufted-Blog-Template/blob/main/LICENSE) 开源。
 

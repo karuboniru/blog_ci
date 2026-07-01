@@ -226,11 +226,13 @@ This template is based on the Typst package [Tufted](https://github.com/vsheg/tu
 
 - Modified some text styles to adapt to Chinese typesetting conventions
 - Fine-tuned a large number of style details, enhanced dark mode, and optimized the display effects of various elements
+- Added directory jump support
 - Optimized code block styles, added line numbers and copy functionality
 - Added Python build script for cross-platform build support
 - Added PDF build support, allowing compilation of PDF documents and linking to web pages
 - Added website favicon support
 - Added detailed usage instructions and code comments to help users quickly develop
+- ...
 
 This template project is open source under the [MIT License](https://github.com/Yousa-Mirage/Tufted-Blog-Template/blob/main/LICENSE).
 
