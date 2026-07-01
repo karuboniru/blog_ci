@@ -49,6 +49,7 @@ By default, the project loads the following JavaScript files on every page. They
 - `format-headings.js` - improves heading formatting
 - `theme-toggle.js` - toggles dark/light mode
 - `marginnote-toggle.js` - toggles margin notes (improves mobile experience)
+- `math-copy.js` - copies formula MathML source on click
 
 These scripts are automatically loaded in `tufted-lib/tufted.typ` via the `js-scripts` parameter.
 
@@ -73,4 +74,3 @@ If you need to add a JavaScript file only for a specific page, you can set `js-s
   js-scripts: ("/assets/page-specific.js"),
 )
 ```
-

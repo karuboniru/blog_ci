@@ -10,6 +10,7 @@ Development updates will be recorded here.
 
 ## v1.2.0
 
+- feat: add click-to-copy MathML support for inline and block formulas
 - feat: show author, date, and optional extra information below the first level-one heading of articles ([#35](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/35), [@tortrixx](https://github.com/tortrixx))
 - feat: Added `tufted.blog-entry()` function to generate blog index entries with date columns. For a preview of the effect, see [Blog Page](https://tufted-blog.pages.dev/Blog/)
 - feat: optimize image loading logic by converting images to static resources and enabling lazy loading by default ([#31](https://github.com/Yousa-Mirage/Tufted-Blog-Template/pull/31), [@CST-Cat](https://github.com/CST-Cat))

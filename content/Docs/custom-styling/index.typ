@@ -48,6 +48,7 @@ a {
 - `format-headings.js` - 优化标题格式
 - `theme-toggle.js` - 控制深色/浅色模式切换
 - `marginnote-toggle.js` - 控制侧边注的显示/隐藏（改善移动端体验）
+- `math-copy.js` - 点击复制公式的 MathML 源码
 
 这些脚本已在 `tufted-lib/tufted.typ` 中通过 `js-scripts` 参数自动加载。
 
@@ -72,4 +73,3 @@ a {
   js-scripts: ("/assets/page-specific.js"),
 )
 ```
-

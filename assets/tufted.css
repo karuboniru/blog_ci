@@ -133,6 +133,72 @@ figure > .math-block {
 	text-indent: 0;
 }
 
+.math-inline.is-copyable,
+.math-block.is-copyable {
+	position: relative;
+	cursor: copy;
+}
+
+.math-inline.is-copyable:focus-visible,
+.math-block.is-copyable:focus-visible {
+	outline: 1px solid currentColor;
+	outline-offset: 0.15em;
+}
+
+.math-inline.is-copyable::after,
+.math-block.is-copyable::after {
+	content: "Copy MathML";
+	position: absolute;
+	z-index: 1;
+	padding: 0.15em 0.45em;
+	color: var(--theme-copy-btn-text, #666);
+	background: var(--theme-copy-btn-bg, #fff);
+	border: 1px solid var(--theme-copy-btn-border, #ccc);
+	border-radius: var(--radius-sm);
+	font-size: 0.75rem;
+	font-style: normal;
+	line-height: 1.4;
+	white-space: nowrap;
+	pointer-events: none;
+	opacity: 0;
+	transition:
+		opacity 120ms ease,
+		transform 120ms ease;
+}
+
+.math-inline.is-copyable::after {
+	left: 50%;
+	bottom: 100%;
+	transform: translate(-50%, 0.2em);
+}
+
+.math-block.is-copyable::after {
+	top: 0.35em;
+	right: 0.35em;
+	transform: translateY(-0.2em);
+}
+
+.math-inline.is-copyable:hover::after,
+.math-inline.is-copyable:focus-visible::after {
+	opacity: 1;
+	transform: translate(-50%, -0.15em);
+}
+
+.math-block.is-copyable:hover::after,
+.math-block.is-copyable:focus-visible::after {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.math-inline.is-copyable.is-copied::after,
+.math-block.is-copyable.is-copied::after {
+	content: "Copied";
+	color: var(--theme-copy-btn-copied-text, #008000);
+	border-color: var(--theme-copy-btn-copied-border, #008000);
+	background: var(--theme-copy-btn-copied-bg, #e6fffa);
+	opacity: 1;
+}
+
 .math-inline > math,
 .math-block > math {
 	color: inherit;
