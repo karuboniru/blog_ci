@@ -85,6 +85,7 @@
 
         // load JS scripts
         let base-js = (
+          "/assets/service-worker.js",
           "/assets/code-blocks.js",
           "/assets/format-headings.js",
           "/assets/theme-toggle.js",

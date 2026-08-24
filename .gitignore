@@ -22,7 +22,14 @@ biome.json
 
 # build outputs
 _site/
+public/
 target/
+
+# Node.js
+node_modules/
+
+# Downloaded build tools
+typst-*-unknown-linux-musl/
 
 # auto-generated blog index
 /content/Blog/index.typ
