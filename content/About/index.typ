@@ -15,13 +15,9 @@ Poor PhD. in Particle Physics and Nuclear Physics
 
 In case you need my GPG key: `0x65F2DF12`
 
-== What I Do
-
-Fedora Linux 无情的打包者：要是有 Fedora 玩家想要什么软件包出现在仓库里面可以 ping 我，我要是也感兴趣可以尽力。
-
 == How To Contact
 
-邮件或者 Telegram 回复速度应该最快，要是 24 小时没回复可以再试试，没准我没看见。
+#link("Telegram")[Telegram] 回复速度应该最快，要是 24 小时没回复可以再试试，没准我没看见。
 
 == About the Blog
 
