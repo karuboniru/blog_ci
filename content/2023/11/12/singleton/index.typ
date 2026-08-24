@@ -50,7 +50,14 @@ mkdir build && cd build && cmake .. && cmake --build .
 
 And run it:
 
-- `./wrong` `Start of sth::sth(), I will try to put logs  logger::logger() you can start putting logs now  LOG     std is being initialized  End of sth::sth(), the runtime will consider I am fully constructed then  LOG     sth::do_something() is called  logger::~logger() you should not being putting logs anymore  LOG     I am dead, I cannot put logs anymore           But I will try to put this log: std is being deinitialized`
+- `./wrong` 
+  ```
+  Start of sth::sth(), I will try to put logs  
+  logger::logger() you can start putting logs now  
+  LOG     std is being initialized  End of sth::sth(), the runtime will consider I am fully constructed then 
+  LOG     sth::do_something() is called  logger::~logger() you should not being putting logs anymore  
+  LOG     I am dead, I cannot put logs anymore. But I will try to put this log: std is being deinitialized
+  ```
 
 - `./right{,1,2}`
 
