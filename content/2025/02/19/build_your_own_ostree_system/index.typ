@@ -1,4 +1,6 @@
 #import "../../../../index.typ": template, tufted
+#import "@preview/theorion:0.6.0": *
+
 // 原文件: source/_posts/build_your_own_ostree_system.md
 // 原文时间: 2025-02-19 20:12:00
 // tags: Fedora, rpm-ostree
@@ -11,7 +13,7 @@
 
 = Build your own fedora OSTree Remix
 
-#quote(block: true)[
+#caution-block[
 I am not responsible for bricked computers, system instabilities, dead cats, thermonuclear war or you getting fired because you lost important work.
 
 Please make a backup of your device or of the data, and make a boot drive in case of necessity. Do some research if you have any concerns about steps documented in this guide.

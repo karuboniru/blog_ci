@@ -1,4 +1,5 @@
 #import "../../../../index.typ": template, tufted
+#import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/huawei-v-qwr.md
 // 原文时间: 2021-06-21 13:32:57
 #show: template.with(
@@ -31,7 +32,7 @@
 
 然后 Qu Wenruo 向 LKML #link("https://lore.kernel.org/linux-btrfs/e78add0a-8211-86c3-7032-6d851c30f614@suse.com/T/#u")[发送了邮件]直接的指出了不满，原邮件网上有大量翻译，这里我连引用都懒得。但是这一句话
 
-#quote(block: true)[
+#quote-block[
 But what you guys are doing is really KPI grabbing, I have already see several maintainers arguing with you on such "cleanups", and you're always defending yourself to try to get those patches merged.
 ]
 
@@ -45,7 +46,7 @@ But what you guys are doing is really KPI grabbing, I have already see several m
 
 当事人 Zhen Lei 做出了#link("https://lore.kernel.org/linux-btrfs/0a9ae22c-44a0-6239-f61a-fa516f2a0de6@huawei.com/")[回复]，基本上是平淡的解释了一下低创 commit 的原因，加上
 
-#quote(block: true)[
+#quote-block[
 I will continue to make more and more important contributions to the Linux community.
 ]
 

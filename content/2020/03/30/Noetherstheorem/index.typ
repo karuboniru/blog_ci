@@ -1,4 +1,5 @@
 #import "../../../../index.typ": template, tufted
+#import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/Noetherstheorem.md
 // 原文时间: 2020-03-30 21:33:47
 // tags: 学习
@@ -36,7 +37,7 @@
 
 而$partial_mu f'$被换成$partial_mu f$带来的差异不会大于$delta x$的一阶. 并定义$f' \( x^mu \) - f \( x \)$为$delta_0 f$从而可以写出: $ delta f = delta_0 f + delta x^mu partial_mu f $ 或者说 $ delta = delta_0 + delta x^mu partial_mu $ 其中$delta_0 f$表述场本身的变化, 而$delta x^mu partial_mu f$表示由于点坐标的变化带来的变化.
 
-#quote(block: true)[
+#quote-block[
 对于时空平移变换$x' ^mu = x^mu + a^mu \, thin delta phi.alt = 0$
 
 此时有 $ delta_0 phi.alt = - a^mu partial_mu phi.alt $ 其实这就对应于场在平移下的变换: $ phi.alt' \( x^mu \) = phi.alt \( x^mu - a^mu \) $
@@ -66,14 +67,14 @@ $ 0 = delta S & = integral upright(d)^4 x partial_mu [cal(L) delta x^mu + frac(p
 == 举例
 对于时空平移变换的特殊情况:
 
-#quote(block: true)[
+#quote-block[
 平移变换具有各向同性(说人话就是朝着时空四个轴有四个#strong[生成元]) 那么, 诺特流就会升级成为能量动量张量 原来的守恒流长这样 $ j^mu = (cal(L) delta_mu^nu - frac(partial cal(L), partial \( partial_mu phi.alt \)) partial_nu phi.alt) delta x^nu + frac(partial cal(L), partial \( partial_mu phi.alt \)) delta phi.alt $ 去掉场的本身的变换:$delta phi.alt = 0$, 考虑到$delta x^nu = a^nu$的任意性 $ partial_mu (cal(L) delta_mu^nu - frac(partial cal(L), partial \( partial_mu phi.alt \)) partial_nu phi.alt) = 0 $ 这就是场论的能量动量张量: $ T_nu^mu = (- cal(L) delta_mu^nu + frac(partial cal(L), partial \( partial_mu phi.alt \)) partial_nu phi.alt)\
 T^(mu nu) = (- cal(L) eta^(mu nu) + frac(partial cal(L), partial \( partial_mu phi.alt \)) partial^nu phi.alt) $
 ]
 
 对于一个场的内禀变换而言, 比如复 Klein-Gordon 场的$U \( 1 \)$对称性
 
-#quote(block: true)[
+#quote-block[
 $ phi.alt & arrow.r upright(e)^(i alpha) phi.alt\
 phi.alt^(*) & arrow.r upright(e)^(- i alpha) phi.alt^(*) $ 借助生成元$delta phi.alt = i phi.alt \, thin delta phi.alt^(*) = i phi.alt^(*)$, 可以写出 $ j^mu = i [\( partial^mu phi.alt^(*) \) phi.alt - phi.alt^(*) \( partial^mu phi.alt \)] $ 它对应的守恒荷就是: $ Q = integral upright(d)^3 x j^0 = i integral upright(d)^3 x (dot(phi.alt)^(*) phi.alt - phi.alt^(*) dot(phi.alt)) $ 可以通过正则量子化计算发现这个守恒就对应电荷守恒.
 ]

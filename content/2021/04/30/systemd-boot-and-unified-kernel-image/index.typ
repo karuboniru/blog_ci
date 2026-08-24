@@ -1,4 +1,5 @@
 #import "../../../../index.typ": template, tufted
+#import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/systemd-boot-and-unified-kernel-image.md
 // 原文时间: 2021-04-30 11:32:57
 #show: template.with(
@@ -9,7 +10,7 @@
 
 = Switch to systemd-boot and Unified Kernel Image on Fedora
 
-#quote(block: true)[
+#caution-block[
 I am not responsible for bricked computers, system instabilities, dead cats, thermonuclear war or you getting fired because you lost important work.
 
 Please make a backup of your device or of the data, and make a boot drive in case of necessity. Do some research if you have any concerns about steps documented in this guide.
@@ -21,7 +22,7 @@ YOU are choosing to make these modifications, and if you point the finger at me 
 Ok… Since I want to sign secure boot on my own, without breaking Fedora's current multi-kernel behavior. Luckily that #link("https://www.freedesktop.org/software/systemd/man/kernel-install.html")[kernel-install.d] provides enough power to customize kernel install process.
 
 == Switch to Systemd-Boot (from Grub+Shim)
-#quote(block: true)[
+#caution-block[
 ENSURE YOU ARE ON UEFI BEFORE DOING THIS.
 ]
 
@@ -56,7 +57,7 @@ sudo bootctl install
 
 And you may umount `/boot` and remove its fstab entry now since it will no longer be used.
 
-#quote(block: true)[
+#caution-block[
 DO NOT REBOOT UNTIL I TOLD YOU THAT YOU CAN.
 ]
 

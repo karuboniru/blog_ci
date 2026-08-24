@@ -1,4 +1,5 @@
 #import "../../../../index.typ": template, tufted
+#import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/geant4-basic.md
 // 原文时间: 2020-09-26 11:23:37
 // tags: Geant 4
@@ -11,15 +12,15 @@
 
 = 轻松的安装 Geant4
 
-#quote(block: true)[
+#quote-block[
 本文主要是给组里面的同学们快速配置自己的 Geant 4 之用
 ]
 
-#quote(block: true)[
+#quote-block[
 本文使用 Fedora 操作系统（或者是其 WSL remix）
 ]
 
-#quote(block: true)[
+#quote-block[
 如果你是高贵的 Arch 用户，AUR 里面貌似有现成的 Geant 4, 也是开箱即用的，但是 Arch 用户大概不需要这篇文章
 ]
 
@@ -58,7 +59,7 @@ sudo dnf install geant4 geant4-data geant4-devel geant4-examples
 就完成了安装。
 
 === 编译安装
-#quote(block: true)[
+#quote-block[
 我不怎么建议自己编译安装，因为编译慢，安装的位置不好还需要手动设置一下环境变量
 ]
 

@@ -1,4 +1,5 @@
 #import "../../../../index.typ": template, tufted
+#import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/yolo-fedora34.md
 // 原文时间: 2021-03-15 11:16:54
 // tags: 瞎折腾
@@ -13,7 +14,7 @@
 
 = 莽一把，升级 Fedora 34
 
-#quote(block: true)[
+#quote-block[
 Fedora 34 （在 2021 年 3 月 15 日）还处于 Prerelease 状态，虽然我使用过程没遇到严重问题，但是不建议新手盲目上测试版。
 ]
 

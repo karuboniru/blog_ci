@@ -1,4 +1,5 @@
 #import "../../../../index.typ": template, tufted
+#import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/btrfs-ENOSPC.md
 // 原文时间: 2022-08-10 21:18:53
 // tags: Btrfs, Troubleshoot
@@ -36,7 +37,7 @@
 
 马尾接下来识破了问题的本质（感情是 btrfs 开发者，btrfs 怎么谎报军情都了如指掌）
 
-#quote(block: true)[
+#quote-block[
 如果 mismatch 只是 abort 的时候出现，那是没啥问题。。。
 ]
 

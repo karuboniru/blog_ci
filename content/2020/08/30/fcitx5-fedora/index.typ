@@ -1,4 +1,5 @@
 #import "../../../../index.typ": template, tufted
+#import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/fcitx5-fedora.md
 // 原文时间: 2020-08-30 17:44:07
 // 更新时间: 2020-11-06 16:41:10
@@ -69,7 +70,7 @@ $ ln -s /usr/share/applications/fcitx5.desktop ~/.config/autostart/
 === 对于 Gnome 用户
 见 #link("https://plumz.me/archives/11740/")[李先生的博客] 文章，建议安装 #strong[kimpanel] 插件以改善体验。(以下引用 block 是直接厚颜无耻照抄的, 意味着内容可能过时，没准 Gnome 商店的版本也超级好使呢？)
 
-#quote(block: true)[
+#quote-block[
 众所周知，网络上吹 Fcitx 5 的用户大多数都是 Arch Linux 用户、而且用的都是 KDE，没有人告诉你 Gnome-shell 要怎么办，不过万幸的是伟大的囧脸的 Gnome shell 插件是支持 Fcitx 5 的，因为用的都是 Kimpanel，也就是说，装了这个 Gnome-shell extension，无论你是 Fcitx 4 还是 Fcitx 5，都是可以用的，赞美囧脸！ 不过这个插件在 Gnome 官方的 Extension 网站上的版本有一些问题：
 
 - #link("https://github.com/wengxt/gnome-shell-extension-kimpanel/issues/46")[快速打字的时候会出现部分内容显示不全]

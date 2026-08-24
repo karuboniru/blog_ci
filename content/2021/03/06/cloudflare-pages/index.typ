@@ -1,4 +1,5 @@
 #import "../../../../index.typ": template, tufted
+#import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/cloudflare-pages.md
 // 原文时间: 2021-03-06 11:53:53
 // tags: 瞎折腾
@@ -14,7 +15,7 @@
 = 我是来吹 Cloudflare Pages 的
 
 == 迁移博客到 Cloudflare Pages
-#quote(block: true)[
+#quote-block[
 薅羊毛，就要薅到底
 ]
 
