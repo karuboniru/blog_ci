@@ -827,9 +827,11 @@ def get_feed_dirs() -> set[str]:
 
         match = re.search(r"feed-dir\s*:\s*\((.*?)\)", content, re.DOTALL)
         if match:
-            return set(
-                c.strip("/") for c in re.findall(r'"([^"]*)"', match.group(1)) if c and c.strip("/")
-            )
+            return {
+                c.strip("/") if c.strip("/") else "/"
+                for c in re.findall(r'"([^"]*)"', match.group(1))
+                if c
+            }
     except Exception as e:
         print(f"⚠️ 解析 feed-dir 失败: {e}")
 
@@ -911,27 +913,22 @@ def collect_posts(dirs: set[str], site_url: str) -> list[dict]:
     posts = []
 
     for d in dirs:
-        dir_path = SITE_DIR / d
+        dir_path = SITE_DIR if d in ("/", "") else SITE_DIR / d
+        if not dir_path.exists():
+            continue
 
-        for item in dir_path.iterdir():
-            if not item.is_dir():
-                continue
-
-            index_html = item / "index.html"
-            if not index_html.exists():
-                continue
-
+        for index_html in sorted(dir_path.rglob("index.html")):
             title, description, link, date_obj = extract_post_metadata(index_html)
 
             if not date_obj:
-                print(f"⚠️ 无法确定文章 '{item.name}' 的日期，已跳过。")
                 continue
 
+            rel_parts = index_html.relative_to(SITE_DIR).parts
             posts.append(
                 {
                     "title": title,
                     "description": description,
-                    "dir": d,
+                    "dir": rel_parts[0] if rel_parts else d,
                     "link": link,
                     "date": date_obj,
                 }
@@ -1035,7 +1032,9 @@ def generate_rss(site_url: str) -> bool:
         return True
 
     # 检查是否至少有一个目录存在
-    existing = {d for d in dirs if (SITE_DIR / d).exists()}
+    existing = {
+        d for d in dirs if (SITE_DIR if d in ("/", "") else SITE_DIR / d).exists()
+    }
     missing = dirs - existing
 
     for d in missing:
