@@ -7,6 +7,7 @@
   title: "规划",
   date: datetime(year: 2020, month: 3, day: 27),
   extra-info: "分类：杂项",
+  comments: true,
 )
 
 = 规划

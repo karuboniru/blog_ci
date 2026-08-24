@@ -71,3 +71,8 @@ html[data-theme="dark"] .friend-link-body:hover {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+
+/* Waline comments */
+#comments {
+  margin-top: 2.5rem;
+}

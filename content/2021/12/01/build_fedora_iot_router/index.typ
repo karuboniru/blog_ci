@@ -4,6 +4,7 @@
 #show: template.with(
   title: "Building a router based on Fedora IoT",
   date: datetime(year: 2021, month: 12, day: 1),
+  comments: true,
 )
 
 = Building a router based on Fedora IoT

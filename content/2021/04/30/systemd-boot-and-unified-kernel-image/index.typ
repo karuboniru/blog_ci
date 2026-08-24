@@ -4,6 +4,7 @@
 #show: template.with(
   title: "Switch to systemd-boot and Unified Kernel Image on Fedora",
   date: datetime(year: 2021, month: 4, day: 30),
+  comments: true,
 )
 
 = Switch to systemd-boot and Unified Kernel Image on Fedora

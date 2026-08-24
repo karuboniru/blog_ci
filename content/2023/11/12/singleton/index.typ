@@ -7,6 +7,7 @@
   title: "Singleton Patterns are DANGEROUS (when used across the border of shared libraries)",
   date: datetime(year: 2023, month: 11, day: 12),
   extra-info: "标签：C++",
+  comments: true,
 )
 
 = Singleton Patterns are DANGEROUS (when used across the border of shared libraries)

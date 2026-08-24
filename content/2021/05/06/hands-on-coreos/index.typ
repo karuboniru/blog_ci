@@ -4,6 +4,7 @@
 #show: template.with(
   title: "上手 Fedora CoreOS，以搭建代理为例",
   date: datetime(year: 2021, month: 5, day: 6),
+  comments: true,
 )
 
 = 上手 Fedora CoreOS，以搭建代理为例

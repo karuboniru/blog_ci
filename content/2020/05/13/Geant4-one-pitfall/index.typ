@@ -7,6 +7,7 @@
   title: "Geant 4 的一个坑",
   date: datetime(year: 2020, month: 5, day: 13),
   extra-info: "标签：Geant 4",
+  comments: true,
 )
 
 = Geant 4 的一个坑

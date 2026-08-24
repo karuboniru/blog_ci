@@ -7,6 +7,7 @@
   title: "如何下周就在 Fedora 32 用上 Fcitx 5",
   date: datetime(year: 2020, month: 8, day: 30),
   extra-info: "分类：打包",
+  comments: true,
 )
 
 = 如何下周就在 Fedora 32 用上 Fcitx 5

@@ -7,6 +7,7 @@
   title: "如何更加优雅的在 fedora 上安装 fcitx5",
   date: datetime(year: 2020, month: 11, day: 6),
   extra-info: "分类：打包",
+  comments: true,
 )
 
 = 如何更加优雅的在 fedora 上安装 fcitx5

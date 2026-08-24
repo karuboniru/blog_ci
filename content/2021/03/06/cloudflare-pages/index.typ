@@ -8,6 +8,7 @@
   date: datetime(year: 2021, month: 3, day: 6),
   image-path: "https://cdn.yanqiyu.info/20210306115901.png",
   extra-info: "标签：瞎折腾 | 分类：瞎折腾",
+  comments: true,
 )
 
 = 我是来吹 Cloudflare Pages 的

@@ -6,6 +6,7 @@
   title: "Don't Panic",
   date: datetime(year: 2022, month: 8, day: 10),
   extra-info: "标签：Btrfs · Troubleshoot",
+  comments: true,
 )
 
 = Don't Panic

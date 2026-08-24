@@ -7,6 +7,7 @@
 #import "links.typ": template-links
 #import "metadata.typ": metadata
 #import "byline.typ": template-byline
+#import "comments.typ": waline-comments
 
 /// The main wrapper function of Tufted Blog Template.
 ///
@@ -38,6 +39,9 @@
   // Custom CSS and JS Scripts
   css: ("/assets/custom.css",),
   js-scripts: (),
+
+  // Waline comments
+  comments: false,
 
   content,
 ) = {
@@ -138,6 +142,10 @@
         html.article(
           html.section(content),
         )
+
+        if comments {
+          waline-comments()
+        }
 
         // Custom footer elements
         html.footer({

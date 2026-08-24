@@ -32,6 +32,7 @@
 #show: template.with(
   title: "友情链接",
   description: "友情链接",
+  comments: true,
 )
 
 = 友情链接

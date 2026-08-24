@@ -34,6 +34,7 @@ Tufted Blog Template 构建脚本
 """
 
 import argparse
+import json
 import os
 import re
 import shutil
@@ -500,6 +501,146 @@ def _compile_files(
     return stats
 
 
+def parse_typ_string_field(text: str, field: str) -> str | None:
+    """Parse a quoted string field from Typst metadata."""
+    match = re.search(
+        rf'^\s*{field}:\s*"((?:[^"\\]|\\.)*)"\s*,?\s*$',
+        text,
+        re.M,
+    )
+    if match is None:
+        return None
+
+    raw = match.group(1)
+    try:
+        return json.loads('"' + raw + '"')
+    except json.JSONDecodeError:
+        return raw.replace('\\"', '"').replace("\\\\", "\\")
+
+
+def parse_typ_date(text: str) -> datetime | None:
+    """Parse a date from Typst metadata."""
+    match = re.search(
+        r"date:\s*datetime\(\s*year:\s*(\d{4}),\s*month:\s*(\d{1,2}),\s*day:\s*(\d{1,2})",
+        text,
+    )
+    if match is not None:
+        year, month, day = (int(value) for value in match.groups())
+        return datetime(year, month, day)
+
+    match = re.search(r'date:\s*"(\d{4})-(\d{2})-(\d{2})"', text)
+    if match is not None:
+        year, month, day = (int(value) for value in match.groups())
+        return datetime(year, month, day)
+
+    return None
+
+
+def collect_blog_entries() -> list[tuple[datetime, str, str]]:
+    """Collect blog posts from date directories and content/Blog/*.typ files."""
+    entries: list[tuple[datetime, str, str]] = []
+
+    for typ_file in sorted(CONTENT_DIR.rglob("index.typ")):
+        rel_path = typ_file.relative_to(CONTENT_DIR)
+        parts = rel_path.parts
+        if len(parts) != 5:
+            continue
+
+        year, month, day, slug, filename = parts
+        if not (len(year) == 4 and year.isdigit() and month.isdigit() and day.isdigit()):
+            continue
+        if filename != "index.typ":
+            continue
+
+        text = typ_file.read_text(encoding="utf-8")
+        date = parse_typ_date(text)
+        if date is None:
+            print(f"⚠️ 跳过无日期元数据的文章: {typ_file}")
+            continue
+
+        title = parse_typ_string_field(text, "title") or slug
+        entries.append((date, f"/{year}/{month}/{day}/{slug}/", title))
+
+    blog_dir = CONTENT_DIR / "Blog"
+    if blog_dir.exists():
+        for typ_file in sorted(blog_dir.rglob("*.typ")):
+            rel_path = typ_file.relative_to(blog_dir)
+            if rel_path == Path("index.typ"):
+                continue
+            if "pdf" in typ_file.stem.lower():
+                continue
+            if any(part.startswith("_") for part in rel_path.parts):
+                continue
+
+            text = typ_file.read_text(encoding="utf-8")
+            date = parse_typ_date(text)
+            if date is None:
+                print(f"⚠️ 跳过无日期元数据的文章: {typ_file}")
+                continue
+
+            if rel_path.name == "index.typ":
+                path = rel_path.parent.as_posix() + "/"
+                fallback_title = rel_path.parent.name
+            else:
+                path = rel_path.with_suffix(".html").as_posix()
+                fallback_title = rel_path.stem
+
+            title = parse_typ_string_field(text, "title") or fallback_title
+            entries.append((date, path, title))
+
+    return entries
+
+
+def generate_blog_index() -> bool:
+    """Regenerate content/Blog/index.typ from Typst metadata."""
+    try:
+        entries = collect_blog_entries()
+        entries.sort(key=lambda entry: (entry[0], entry[1]), reverse=True)
+
+        lines = [
+            '#import "../index.typ": template, tufted',
+            "#show: template.with(",
+            '  title: "Blog",',
+            '  description: "Karuboniru 的博客归档",',
+            ")",
+            "",
+            "= 博客 / Blog",
+            "",
+        ]
+
+        by_year: dict[int, list[tuple[datetime, str, str]]] = {}
+        for date, path, title in entries:
+            by_year.setdefault(date.year, []).append((date, path, title))
+
+        for year in sorted(by_year, reverse=True):
+            lines.append(f"== {year}")
+            for date, path, title in by_year[year]:
+                lines.append("#tufted.blog-entry(")
+                lines.append(
+                    f"  date: datetime(year: {date.year}, month: {date.month}, day: {date.day}),"
+                )
+                lines.append(f'  path: {json.dumps(path, ensure_ascii=False)},')
+                lines.append(f'  title: {json.dumps(title, ensure_ascii=False)},')
+                lines.append(")")
+            lines.append("")
+
+        blog_dir = CONTENT_DIR / "Blog"
+        blog_dir.mkdir(parents=True, exist_ok=True)
+        index_file = blog_dir / "index.typ"
+        new_content = "\n".join(lines) + "\n"
+
+        if index_file.exists() and index_file.read_text(encoding="utf-8") == new_content:
+            print(f"✅ 博客索引自动生成完成: {len(entries)} 篇")
+            return True
+
+        index_file.write_text(new_content, encoding="utf-8")
+        print(f"✅ 博客索引自动生成完成: {len(entries)} 篇")
+        return True
+    except Exception as e:
+        print(f"❌ 生成博客索引失败: {e}")
+        return False
+
+
 def build_html(force: bool = False) -> bool:
     """
     编译所有 .typ 文件为 HTML（文件名中包含 PDF 的除外）。
@@ -508,6 +649,9 @@ def build_html(force: bool = False) -> bool:
         force: 是否强制重建所有文件
     """
     SITE_DIR.mkdir(parents=True, exist_ok=True)
+
+    if not generate_blog_index():
+        return False
 
     typ_files = find_typ_files()
 

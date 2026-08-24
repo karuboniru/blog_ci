@@ -4,6 +4,7 @@
 #show: template.with(
   title: "Waydroid on Fedora",
   date: datetime(year: 2021, month: 10, day: 25),
+  comments: true,
 )
 
 = Waydroid on Fedora

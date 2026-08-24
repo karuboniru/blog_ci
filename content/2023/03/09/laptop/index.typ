@@ -7,6 +7,7 @@
   title: "整点新笔记本",
   date: datetime(year: 2023, month: 3, day: 9),
   extra-info: "标签：败家 | 分类：败家",
+  comments: true,
 )
 
 = 整点新笔记本

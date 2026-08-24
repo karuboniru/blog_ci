@@ -6,6 +6,7 @@
   title: "轻松的安装 Geant4",
   date: datetime(year: 2020, month: 9, day: 26),
   extra-info: "标签：Geant 4",
+  comments: true,
 )
 
 = 轻松的安装 Geant4

@@ -7,6 +7,7 @@
   title: "Trojan for Fedora and EPEL",
   date: datetime(year: 2020, month: 6, day: 21),
   extra-info: "标签：打包 | 分类：瞎折腾",
+  comments: true,
 )
 
 = Trojan for Fedora and EPEL

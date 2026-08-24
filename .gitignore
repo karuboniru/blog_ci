@@ -24,6 +24,9 @@ biome.json
 _site/
 target/
 
+# auto-generated blog index
+/content/Blog/index.typ
+
 # temp files
 *.tmp
 *.bak

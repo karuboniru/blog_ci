@@ -6,6 +6,7 @@
   title: "一些绝妙的 WSL 技巧",
   date: datetime(year: 2020, month: 3, day: 27),
   extra-info: "标签：瞎折腾 · WSL",
+  comments: true,
 )
 
 = 一些绝妙的 WSL 技巧

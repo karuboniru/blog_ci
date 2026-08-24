@@ -4,6 +4,7 @@
 #show: template.with(
   title: "某不知名网友怒斥华为，究竟发生了什么",
   date: datetime(year: 2021, month: 6, day: 21),
+  comments: true,
 )
 
 = 某不知名网友怒斥华为，究竟发生了什么

@@ -6,6 +6,7 @@
   title: "Build your own fedora OSTree Remix",
   date: datetime(year: 2025, month: 2, day: 19),
   extra-info: "标签：Fedora · rpm-ostree",
+  comments: true,
 )
 
 = Build your own fedora OSTree Remix

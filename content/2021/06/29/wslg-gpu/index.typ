@@ -7,6 +7,7 @@
   title: "尝试 WSLg 以及启用图形加速",
   date: datetime(year: 2021, month: 6, day: 29),
   extra-info: "标签：瞎折腾 | 分类：瞎折腾",
+  comments: true,
 )
 
 = 尝试 WSLg 以及启用图形加速
