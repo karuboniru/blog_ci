@@ -537,29 +537,8 @@ def parse_typ_date(text: str) -> datetime | None:
 
 
 def collect_blog_entries() -> list[tuple[datetime, str, str]]:
-    """Collect blog posts from date directories and content/Blog/*.typ files."""
+    """Collect blog posts from content/Blog/."""
     entries: list[tuple[datetime, str, str]] = []
-
-    for typ_file in sorted(CONTENT_DIR.rglob("index.typ")):
-        rel_path = typ_file.relative_to(CONTENT_DIR)
-        parts = rel_path.parts
-        if len(parts) != 5:
-            continue
-
-        year, month, day, slug, filename = parts
-        if not (len(year) == 4 and year.isdigit() and month.isdigit() and day.isdigit()):
-            continue
-        if filename != "index.typ":
-            continue
-
-        text = typ_file.read_text(encoding="utf-8")
-        date = parse_typ_date(text)
-        if date is None:
-            print(f"⚠️ 跳过无日期元数据的文章: {typ_file}")
-            continue
-
-        title = parse_typ_string_field(text, "title") or slug
-        entries.append((date, f"/{year}/{month}/{day}/{slug}/", title))
 
     blog_dir = CONTENT_DIR / "Blog"
     if blog_dir.exists():
@@ -1302,6 +1281,31 @@ Sitemap: {site_url}/sitemap.xml
         return False
 
 
+def generate_cloudflare_redirects() -> bool:
+    """Generate year-scoped redirects for legacy blog URLs."""
+    blog_dir = CONTENT_DIR / "Blog"
+    redirects_file = SITE_DIR / "_redirects"
+
+    try:
+        years = sorted(
+            path.name
+            for path in blog_dir.iterdir()
+            if path.is_dir()
+            and re.fullmatch(r"\d{4}", path.name)
+            and any(path.rglob("index.typ"))
+        )
+        rules = [
+            f"/{year}/:month/:day/:slug/ /Blog/{year}/:slug/ 301"
+            for year in years
+        ]
+        redirects_file.write_text("\n".join(rules) + "\n", encoding="utf-8")
+        print(f"✅ Cloudflare Redirects 生成完成: {len(rules)} 条")
+        return True
+    except Exception as e:
+        print(f"❌ 生成 Cloudflare Redirects 失败: {e}")
+        return False
+
+
 def build(force: bool = False) -> bool:
     """
     完整构建：HTML + PDF + 资源。
@@ -1329,6 +1333,7 @@ def build(force: bool = False) -> bool:
 
     results.append(copy_assets())
     results.append(copy_content_assets(force))
+    results.append(generate_cloudflare_redirects())
 
     if site_url := get_site_url():
         results.append(generate_sitemap(site_url))
