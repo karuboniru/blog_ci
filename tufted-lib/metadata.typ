@@ -91,7 +91,7 @@
     "Untitled Page"
   }
   html.title(page-title)
-  html.link(rel: "icon", href: "/assets/favicon.ico")
+  html.link(rel: "icon", href: "https://cdn.yanqiyu.info/2026/08/24/logo.webp")
 
   // Date
   if type(date) == datetime {
