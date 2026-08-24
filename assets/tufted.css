@@ -232,6 +232,11 @@ dl {
 	line-height: 2.2rem;
 }
 
+/* Tufte CSS 1.8.0 only declares the WebKit-prefixed list indentation. */
+section > :is(ol, ul, dl) {
+	padding-inline-start: 5%;
+}
+
 /* Heading styles */
 h1,
 h2,
