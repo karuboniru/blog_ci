@@ -74,5 +74,15 @@ html[data-theme="dark"] .friend-link-body:hover {
 
 /* Waline comments */
 #comments {
+  width: 55%;
+  margin-left: 0;
+  margin-right: 0;
   margin-top: 2.5rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 760px) {
+  #comments {
+    width: 100%;
+  }
 }
