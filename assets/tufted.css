@@ -15,6 +15,7 @@ BASE STYLES
 html {
 	font-size: 10.5pt;
 	height: 100%;
+	text-autospace: normal;
 }
 
 /* Sticky footer layout */
