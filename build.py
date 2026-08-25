@@ -85,6 +85,14 @@ class BuildStats:
         return self.failed > 0
 
 
+@dataclass(frozen=True)
+class GitLastModified:
+    """A tracked file's most recent Git commit time and calendar date."""
+
+    timestamp: int
+    date: str
+
+
 class HTMLMetadataParser(HTMLParser):
     """
     从 HTML 文件中提取元数据的解析器。
@@ -1246,6 +1254,92 @@ def generate_rss(site_url: str) -> bool:
         return False
 
 
+def get_git_last_modified(path: Path) -> GitLastModified:
+    """Return the latest commit time for one tracked file, following renames."""
+    result = subprocess.run(
+        [
+            "git",
+            "log",
+            "-1",
+            "--follow",
+            "--format=%ct%x00%cs",
+            "--",
+            path.as_posix(),
+        ],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if result.returncode != 0:
+        detail = result.stderr.strip() or f"git log exited with {result.returncode}"
+        raise RuntimeError(f"无法读取 {path} 的 Git 历史: {detail}")
+
+    output = result.stdout.strip()
+    if not output:
+        raise RuntimeError(f"Git 历史中没有源文件: {path}")
+
+    try:
+        timestamp_text, commit_date = output.split("\x00", maxsplit=1)
+        return GitLastModified(timestamp=int(timestamp_text), date=commit_date)
+    except (TypeError, ValueError) as e:
+        raise RuntimeError(f"无法解析 {path} 的 Git 修改时间: {output!r}") from e
+
+
+def find_blog_post_sources() -> list[Path]:
+    """Return actual blog post sources, excluding the index and helper files."""
+    blog_dir = CONTENT_DIR / "Blog"
+    if not blog_dir.exists():
+        return []
+
+    post_sources = []
+    for typ_file in sorted(blog_dir.rglob("*.typ")):
+        rel_path = typ_file.relative_to(blog_dir)
+        if rel_path == Path("index.typ") or "pdf" in typ_file.stem.lower():
+            continue
+        if any(part.startswith("_") for part in rel_path.parts):
+            continue
+        post_sources.append(typ_file)
+    return post_sources
+
+
+def find_latest_blog_post_source() -> tuple[Path, datetime]:
+    """Find the latest blog post using the same published date as the archive."""
+    dated_posts: list[tuple[datetime, Path]] = []
+    for source_path in find_blog_post_sources():
+        html_path = SITE_DIR / source_path.relative_to(CONTENT_DIR).with_suffix(".html")
+        if not html_path.exists():
+            raise RuntimeError(f"博客文章缺少已生成的 HTML: {html_path}")
+        _, _, _, published_at = extract_post_metadata(html_path)
+        if published_at is not None:
+            dated_posts.append((published_at, source_path))
+
+    if not dated_posts:
+        raise RuntimeError("Blog/index.html 没有带发布日期的博客文章")
+
+    published_at, source_path = max(dated_posts, key=lambda item: item[0])
+    return source_path, published_at
+
+
+def get_sitemap_lastmod(
+    html_path: Path,
+    git_dates: dict[Path, GitLastModified],
+) -> tuple[str, Path]:
+    """Resolve an HTML page's sitemap date from its source file's Git history."""
+    rel_path = html_path.relative_to(SITE_DIR)
+
+    def cached_git_date(source_path: Path) -> GitLastModified:
+        if source_path not in git_dates:
+            git_dates[source_path] = get_git_last_modified(source_path)
+        return git_dates[source_path]
+
+    if rel_path == Path("Blog/index.html"):
+        latest_source, _ = find_latest_blog_post_source()
+        return cached_git_date(latest_source).date, latest_source
+
+    source_path = CONTENT_DIR / rel_path.with_suffix(".typ")
+    return cached_git_date(source_path).date, source_path
+
+
 def generate_sitemap(site_url: str) -> bool:
     """
     使用 Python 标准库 xml.etree.ElementTree 生成 sitemap.xml。
@@ -1261,30 +1355,61 @@ def generate_sitemap(site_url: str) -> bool:
     # 创建根元素
     urlset = ET.Element("urlset", xmlns=sitemap_ns)
 
-    # 遍历 _site 目录
-    for file_path in sorted(SITE_DIR.rglob("*.html")):
-        rel_path = file_path.relative_to(SITE_DIR).as_posix()
+    shallow_result = subprocess.run(
+        ["git", "rev-parse", "--is-shallow-repository"],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if shallow_result.returncode != 0:
+        print("❌ Sitemap 构建失败: 当前目录不是可读取历史的 Git 仓库")
+        return False
+    if shallow_result.stdout.strip() == "true":
+        print("❌ Sitemap 构建失败: Git 仓库是浅克隆，请先运行 git fetch --unshallow")
+        return False
 
-        # 确定 URL 路径
-        if rel_path == "index.html":
-            url_path = ""
-        elif rel_path.endswith("/index.html"):
-            url_path = rel_path.removesuffix("index.html")
-        elif rel_path.endswith(".html"):
-            url_path = rel_path.removesuffix(".html") + "/"
-        else:
-            url_path = rel_path
+    print("ℹ️ Sitemap lastmod 使用对应 .typ 文件的 Git 最后提交日期")
+    git_dates: dict[Path, GitLastModified] = {}
+    blog_index_source: Path | None = None
+    blog_index_lastmod: str | None = None
 
-        full_url = f"{site_url}/{url_path}"
+    try:
+        # 遍历 _site 目录
+        for file_path in sorted(SITE_DIR.rglob("*.html")):
+            rel_path = file_path.relative_to(SITE_DIR).as_posix()
 
-        # 获取最后修改时间
-        mtime = file_path.stat().st_mtime
-        lastmod = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d")
+            # 确定 URL 路径
+            if rel_path == "index.html":
+                url_path = ""
+            elif rel_path.endswith("/index.html"):
+                url_path = rel_path.removesuffix("index.html")
+            elif rel_path.endswith(".html"):
+                url_path = rel_path.removesuffix(".html") + "/"
+            else:
+                url_path = rel_path
 
-        # 创建 url 元素
-        url_elem = ET.SubElement(urlset, "url")
-        ET.SubElement(url_elem, "loc").text = full_url
-        ET.SubElement(url_elem, "lastmod").text = lastmod
+            full_url = f"{site_url}/{url_path}"
+
+            # 从对应 Typst 源文件的 Git 历史获取最后修改日期。
+            lastmod, source_path = get_sitemap_lastmod(file_path, git_dates)
+            if rel_path == "Blog/index.html":
+                blog_index_source = source_path
+                blog_index_lastmod = lastmod
+
+            # 创建 url 元素
+            url_elem = ET.SubElement(urlset, "url")
+            ET.SubElement(url_elem, "loc").text = full_url
+            ET.SubElement(url_elem, "lastmod").text = lastmod
+    except RuntimeError as e:
+        print(f"❌ Sitemap 构建失败: {e}")
+        return False
+
+    if blog_index_source is not None:
+        print(
+            "ℹ️ Blog/index.html lastmod: "
+            f"{blog_index_lastmod}（按发布日期选择最新文章 "
+            f"{blog_index_source.as_posix()}）"
+        )
 
     # 生成 XML 字符串
     ET.indent(urlset, space="  ")
