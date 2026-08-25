@@ -105,7 +105,7 @@
       }
       html.elem(
         "script",
-        attrs: (type: "module", src: "/assets/sidenote-layout.mjs", data-cfasync: "false"),
+        attrs: (data-cfasync: "false", type: "module", src: "/assets/sidenote-layout.mjs"),
         "",
       )
 
