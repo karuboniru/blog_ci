@@ -729,6 +729,19 @@ sup.footnote-ref {
 	pointer-events: none;
 }
 
+/* Keep multi-paragraph notes at the margin-note size. */
+.marginnote p {
+	width: 100%;
+	margin: 0 0 0.6em;
+	font-size: inherit;
+	line-height: inherit;
+	text-align: start;
+}
+
+.marginnote p:last-child {
+	margin-bottom: 0;
+}
+
 @media (min-width: 761px) {
 	sup.marginnote-ref {
 		display: none;
