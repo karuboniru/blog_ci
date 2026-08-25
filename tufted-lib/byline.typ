@@ -1,3 +1,5 @@
+#import "tags.typ": tag-id
+
 /// Render article metadata below the document title.
 #let article-byline(author: none, date: none, tag: (), extra-info: none) = {
   let tags = if type(tag) == str { (tag,) } else { tag }
@@ -47,7 +49,7 @@
               if index > 0 {
                 [ · ]
               }
-              html.a(href: "/Tag/", name)
+              html.a(href: "/Tag/#" + tag-id(name), name)
             }
           },
         )

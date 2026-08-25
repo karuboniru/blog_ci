@@ -40,6 +40,7 @@
   // Custom CSS and JS scripts
   css: ("/assets/custom.css",),
   js-scripts: (),
+  head-elements: (),
 
   // Waline comments
   comments: false,
@@ -103,6 +104,10 @@
         html.script(src: js-src)
       }
       html.script(type: "module", src: "/assets/sidenote-layout.mjs")
+
+      for element in head-elements {
+        element
+      }
     },
   )
 
