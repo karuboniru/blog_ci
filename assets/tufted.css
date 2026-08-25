@@ -713,6 +713,16 @@ sup.footnote-ref {
 	transition-delay: 0s;
 }
 
+.sidenote-footnote.is-sidenote-highlighted {
+	--highlight: var(--highlight-weak);
+	transition-delay: 0s;
+}
+
+.footnote-ref.is-sidenote-highlighted {
+	--highlight: var(--highlight-strong);
+	transition-delay: 0s;
+}
+
 .sidenote-anchor {
 	font: inherit;
 	line-height: inherit;
@@ -763,9 +773,35 @@ sup.footnote-ref {
 		container-type: inline-size;
 	}
 
-	article > section .marginnote {
+	article > section:not(.sidenotes-active) .marginnote {
 		inline-size: 27.5cqi;
 		margin-inline-end: -33cqi;
+	}
+
+	article > section.sidenotes-active {
+		position: relative;
+	}
+
+	/* Keep the margin column relative to the article, not nested content. */
+	article > section.sidenotes-active .marginnote {
+		display: block;
+		position: absolute;
+		float: none;
+		inset-inline-start: 60.5%;
+		inline-size: 27.5%;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+	article > section.sidenotes-active .sidenote-layer {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	article > section.sidenotes-active .sidenote-layer .marginnote {
+		pointer-events: auto;
 	}
 }
 
