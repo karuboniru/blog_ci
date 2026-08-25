@@ -1,5 +1,6 @@
 #import "../../../index.typ": template, tufted
 #import "@preview/theorion:0.6.0": *
+#import "@preview/physica:0.9.8": *
 // 原文件: source/_posts/Noetherstheorem.md
 // 原文时间: 2020-03-30 21:33:47
 // tags: 学习
@@ -58,8 +59,8 @@ $ 0 = delta S & = integral upright(d)^4 x partial_mu [cal(L) delta x^mu + frac(p
 
 === 诺特荷
 对于一个在有限空间内分布的流(无穷远处, 场应该趋近于零, 这是其物理意义要求的), 考虑场的等时变分 $ 0 & = integral upright(d)^4 x partial_mu j^mu\
- & = integral_(t_1)^(t_2) ⅆ x^0 integral ⅆ x^3 (partial_0 j^0 + nabla dot.op arrow(j))\
- & = integral_(t_1)^(t_2) ⅆ x^0 partial_0 integral upright(d)^3 x j^0\
+  & = integral_(t_1)^(t_2) dd(x^0) integral dd(x^3) (partial_0 j^0 + nabla dot.op arrow(j))\
+ & = integral_(t_1)^(t_2) dd(x^0) partial_0 integral upright(d)^3 x j^0\
  & = Q \( t_2 \) - Q \( t_1 \) $
 
 则$Q = integral upright(d)^3 x j^0$就是诺特荷, 是在这个对称性给出的守恒量.
