@@ -18,7 +18,13 @@
         class: "marginnote sidenote-footnote",
         id: fn-id,
         role: "note",
-        html.sup(html.a(class: "footnote-ref-link", href: "#" + ref-id, number)) + [ ] + it.body,
+        html.span(
+          class: "sidenote-note-layout",
+          html.span(
+            class: "sidenote-label",
+            html.sup(html.a(class: "footnote-ref-link", href: "#" + ref-id, number)),
+          ) + html.span(class: "sidenote-body", it.body),
+        ),
       )
     }
   }

@@ -223,7 +223,6 @@ TYPOGRAPHY
 /* Paragraph alignment and spacing */
 p {
 	text-align: justify;
-	text-justify: inter-ideograph;
 	line-height: 2.2rem;
 }
 
@@ -730,13 +729,34 @@ sup.footnote-ref {
 	pointer-events: none;
 }
 
+.marginnote {
+	text-align: justify;
+}
+
+/* Keep the footnote label outside the justified text's spacing context. */
+.sidenote-note-layout {
+	display: grid;
+	grid-template-columns: max-content minmax(0, 1fr);
+	column-gap: 0.35em;
+	align-items: start;
+}
+
+.sidenote-label {
+	white-space: nowrap;
+}
+
+.sidenote-body {
+	min-width: 0;
+	text-align: justify;
+}
+
 /* Keep multi-paragraph notes at the margin-note size. */
 .marginnote p {
 	width: 100%;
 	margin: 0 0 0.6em;
 	font-size: inherit;
 	line-height: inherit;
-	text-align: start;
+	text-align: justify;
 }
 
 .marginnote p:last-child {
