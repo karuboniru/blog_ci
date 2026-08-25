@@ -6,7 +6,7 @@
 #let post = (
   title: [Don't Panic],
   date: datetime(year: 2022, month: 8, day: 10),
-  tag: ("Btrfs", "Troubleshoot"),
+  tag: ("Btrfs", "Troubleshoot", "Linux"),
   comments: true,
 )
 #show: template.with(..post)

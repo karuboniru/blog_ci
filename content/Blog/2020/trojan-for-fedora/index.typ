@@ -5,7 +5,7 @@
 #let post = (
   title: [Trojan for Fedora and EPEL],
   date: datetime(year: 2020, month: 6, day: 21),
-  tag: ("打包",),
+  tag: ("打包", "Linux"),
   comments: true,
 )
 #show: template.with(..post)

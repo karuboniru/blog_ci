@@ -5,6 +5,7 @@
 #let post = (
   title: [规划],
   date: datetime(year: 2020, month: 3, day: 27),
+  tag: ("记录",),
   comments: true,
 )
 #show: template.with(..post)

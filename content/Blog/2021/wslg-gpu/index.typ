@@ -5,7 +5,7 @@
 #let post = (
   title: [尝试 WSLg 以及启用图形加速],
   date: datetime(year: 2021, month: 6, day: 29),
-  tag: ("瞎折腾",),
+  tag: ("瞎折腾", "Linux"),
   comments: true,
 )
 #show: template.with(..post)

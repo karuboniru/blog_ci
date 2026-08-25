@@ -5,7 +5,7 @@
 #let post = (
   title: [整点新笔记本],
   date: datetime(year: 2023, month: 3, day: 9),
-  tag: ("败家",),
+  tag: ("败家", "Linux"),
   comments: true,
 )
 #show: template.with(..post)

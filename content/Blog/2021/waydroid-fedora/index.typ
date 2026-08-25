@@ -4,6 +4,7 @@
 #let post = (
   title: [Waydroid on Fedora],
   date: datetime(year: 2021, month: 10, day: 25),
+  tag: ("Linux",),
   comments: true,
 )
 #show: template.with(..post)

@@ -7,7 +7,7 @@
   title: [我是来吹 Cloudflare Pages 的],
   date: datetime(year: 2021, month: 3, day: 6),
   image-path: "https://cdn.yanqiyu.info/20210306115901.png",
-  tag: ("瞎折腾",),
+  tag: ("瞎折腾", "记录"),
   comments: true,
 )
 #show: template.with(..post)

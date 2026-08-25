@@ -6,7 +6,7 @@
 #let post = (
   title: [轻松的安装 Geant4],
   date: datetime(year: 2020, month: 9, day: 26),
-  tag: ("Geant 4",),
+  tag: ("Geant 4", "Linux"),
   comments: true,
 )
 #show: template.with(..post)

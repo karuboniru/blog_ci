@@ -5,7 +5,7 @@
 #let post = (
   title: [在 Hyper-V 会话中对于 Fedora 启用增强会话],
   date: datetime(year: 2020, month: 8, day: 22),
-  tag: ("瞎折腾",),
+  tag: ("瞎折腾", "Linux"),
   comments: true,
 )
 #show: template.with(..post)

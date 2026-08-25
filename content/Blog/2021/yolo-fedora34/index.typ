@@ -7,7 +7,7 @@
   title: [莽一把，升级 Fedora 34],
   date: datetime(year: 2021, month: 3, day: 15),
   image-path: "https://cdn.yanqiyu.info/20210315111708.png",
-  tag: ("瞎折腾",),
+  tag: ("瞎折腾", "Linux"),
   comments: true,
 )
 #show: template.with(..post)

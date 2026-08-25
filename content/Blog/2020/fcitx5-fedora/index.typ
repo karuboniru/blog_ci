@@ -6,6 +6,7 @@
 #let post = (
   title: [如何下周就在 Fedora 32 用上 Fcitx 5],
   date: datetime(year: 2020, month: 8, day: 30),
+  tag: ("Linux",),
   comments: true,
 )
 #show: template.with(..post)

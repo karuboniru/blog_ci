@@ -2,6 +2,7 @@
 #let post = (
   title: [绝妙的Typst博客框架],
   date: datetime(year: 2026, month: 8, day: 25),
+  tag: ("记录",),
   comments: true,
 )
 #show: template.with(..post)

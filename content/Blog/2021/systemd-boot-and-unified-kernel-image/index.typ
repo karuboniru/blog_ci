@@ -5,6 +5,7 @@
 #let post = (
   title: [Switch to systemd-boot and Unified Kernel Image on Fedora],
   date: datetime(year: 2021, month: 4, day: 30),
+  tag: ("Linux",),
   comments: true,
 )
 #show: template.with(..post)
