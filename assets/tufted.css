@@ -836,9 +836,25 @@ BLOG INDEX
 	white-space: nowrap;
 }
 
+.tag-group {
+	width: 55%;
+	border-bottom: 1px solid var(--theme-table-border, #ccc);
+}
+
+.tag-group summary {
+	cursor: pointer;
+	padding: 1em 0;
+	font-size: 1.5em;
+}
+
+.tag-group .blog-entry {
+	width: 100%;
+}
+
 @media (max-width: 760px) {
 	/* Blog index rows take full width on mobile */
-	.blog-entry {
+	.blog-entry,
+	.tag-group {
 		width: 100%;
 	}
 }

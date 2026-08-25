@@ -2,11 +2,10 @@
 // 原文件: source/_posts/wslg-gpu.md
 // 原文时间: 2021-06-29 13:31:03
 // tags: 瞎折腾
-// categories: 瞎折腾
 #let post = (
   title: [尝试 WSLg 以及启用图形加速],
   date: datetime(year: 2021, month: 6, day: 29),
-  extra-info: "标签：瞎折腾 | 分类：瞎折腾",
+  tag: ("瞎折腾",),
   comments: true,
 )
 #show: template.with(..post)

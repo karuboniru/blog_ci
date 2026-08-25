@@ -7,7 +7,7 @@
 #let post = (
   title: [Build your own fedora OSTree Remix],
   date: datetime(year: 2025, month: 2, day: 19),
-  extra-info: "标签：Fedora · rpm-ostree",
+  tag: ("Fedora", "rpm-ostree"),
   comments: true,
 )
 #show: template.with(..post)

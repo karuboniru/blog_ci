@@ -3,11 +3,9 @@
 // 原文件: source/_posts/fcitx5-fedora.md
 // 原文时间: 2020-08-30 17:44:07
 // 更新时间: 2020-11-06 16:41:10
-// categories: 打包
 #let post = (
   title: [如何下周就在 Fedora 32 用上 Fcitx 5],
   date: datetime(year: 2020, month: 8, day: 30),
-  extra-info: "分类：打包",
   comments: true,
 )
 #show: template.with(..post)

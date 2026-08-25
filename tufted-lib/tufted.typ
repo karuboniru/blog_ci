@@ -22,6 +22,7 @@
   description: none,
   lang: "zh",
   date: none,
+  tag: (),
   extra-info: none,
   website-title: "",
   website-url: none,
@@ -58,7 +59,12 @@
   show: template-notes
   show: template-figures
   show: template-links
-  show: template-byline.with(author: author, date: date, extra-info: extra-info)
+  show: template-byline.with(
+    author: author,
+    date: date,
+    tag: tag,
+    extra-info: extra-info,
+  )
 
   // These elements are valid only in <head>. Keeping them in a template makes
   // the initial HTML inert and gives build.py an exact fragment to relocate.

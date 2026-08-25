@@ -58,6 +58,10 @@ SITE_DIR = Path("_site")  # 输出目录
 ASSETS_DIR = Path("assets")  # 静态资源目录
 CONFIG_FILE = Path("config.typ")  # 全局配置文件
 MATHML_MIN_TYPST_VERSION = (0, 15, 0)
+BLOG_DERIVED_INDEXES = {
+    Path("Blog/index.html"),
+    Path("Tag/index.html"),
+}
 
 
 @dataclass
@@ -1332,7 +1336,7 @@ def get_sitemap_lastmod(
             git_dates[source_path] = get_git_last_modified(source_path)
         return git_dates[source_path]
 
-    if rel_path == Path("Blog/index.html"):
+    if rel_path in BLOG_DERIVED_INDEXES:
         latest_source, _ = find_latest_blog_post_source()
         return cached_git_date(latest_source).date, latest_source
 
@@ -1370,8 +1374,7 @@ def generate_sitemap(site_url: str) -> bool:
 
     print("ℹ️ Sitemap lastmod 使用对应 .typ 文件的 Git 最后提交日期")
     git_dates: dict[Path, GitLastModified] = {}
-    blog_index_source: Path | None = None
-    blog_index_lastmod: str | None = None
+    derived_index_dates: dict[Path, tuple[str, Path]] = {}
 
     try:
         # 遍历 _site 目录
@@ -1392,9 +1395,9 @@ def generate_sitemap(site_url: str) -> bool:
 
             # 从对应 Typst 源文件的 Git 历史获取最后修改日期。
             lastmod, source_path = get_sitemap_lastmod(file_path, git_dates)
-            if rel_path == "Blog/index.html":
-                blog_index_source = source_path
-                blog_index_lastmod = lastmod
+            rel_page = Path(rel_path)
+            if rel_page in BLOG_DERIVED_INDEXES:
+                derived_index_dates[rel_page] = (lastmod, source_path)
 
             # 创建 url 元素
             url_elem = ET.SubElement(urlset, "url")
@@ -1404,11 +1407,12 @@ def generate_sitemap(site_url: str) -> bool:
         print(f"❌ Sitemap 构建失败: {e}")
         return False
 
-    if blog_index_source is not None:
+    for rel_path in sorted(derived_index_dates):
+        lastmod, source_path = derived_index_dates[rel_path]
         print(
-            "ℹ️ Blog/index.html lastmod: "
-            f"{blog_index_lastmod}（按发布日期选择最新文章 "
-            f"{blog_index_source.as_posix()}）"
+            f"ℹ️ {rel_path.as_posix()} lastmod: "
+            f"{lastmod}（按发布日期选择最新文章 "
+            f"{source_path.as_posix()}）"
         )
 
     # 生成 XML 字符串

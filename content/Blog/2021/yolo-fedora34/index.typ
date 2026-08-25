@@ -3,12 +3,11 @@
 // 原文件: source/_posts/yolo-fedora34.md
 // 原文时间: 2021-03-15 11:16:54
 // tags: 瞎折腾
-// categories: 瞎折腾
 #let post = (
   title: [莽一把，升级 Fedora 34],
   date: datetime(year: 2021, month: 3, day: 15),
   image-path: "https://cdn.yanqiyu.info/20210315111708.png",
-  extra-info: "标签：瞎折腾 | 分类：瞎折腾",
+  tag: ("瞎折腾",),
   comments: true,
 )
 #show: template.with(..post)

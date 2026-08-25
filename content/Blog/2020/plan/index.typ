@@ -1,12 +1,10 @@
 #import "../../../../config.typ": template, tufted
 // 原文件: source/_posts/plan.md
 // 原文时间: 2020-03-27 12:47:48
-// categories: 杂项
 // math: true
 #let post = (
   title: [规划],
   date: datetime(year: 2020, month: 3, day: 27),
-  extra-info: "分类：杂项",
   comments: true,
 )
 #show: template.with(..post)

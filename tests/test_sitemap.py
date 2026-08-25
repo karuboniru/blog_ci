@@ -19,7 +19,7 @@ class SitemapLastmodTests(unittest.TestCase):
 
         self.assertEqual(modified, build.GitLastModified(1756081817, "2025-08-25"))
 
-    def test_blog_index_uses_git_date_of_latest_published_article(self):
+    def test_blog_derived_indexes_use_git_date_of_latest_published_article(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             content_dir = root / "content"
@@ -29,8 +29,9 @@ class SitemapLastmodTests(unittest.TestCase):
             old_post_html = site_dir / "Blog/2024/old/index.html"
             new_post_html = site_dir / "Blog/2025/new/index.html"
             blog_index = content_dir / "Blog/index.typ"
+            tag_index = content_dir / "Tag/index.typ"
             ignored_helper = content_dir / "Blog/_posts.typ"
-            for path in (old_post, new_post, blog_index, ignored_helper):
+            for path in (old_post, new_post, blog_index, tag_index, ignored_helper):
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.touch()
             old_post_html.parent.mkdir(parents=True, exist_ok=True)
@@ -53,12 +54,15 @@ class SitemapLastmodTests(unittest.TestCase):
                 patch.object(build, "SITE_DIR", site_dir),
                 patch.object(build, "get_git_last_modified", side_effect=dates.__getitem__),
             ):
-                lastmod, source = build.get_sitemap_lastmod(
-                    site_dir / "Blog/index.html", {}
-                )
+                results = [
+                    build.get_sitemap_lastmod(site_dir / rel_path, {})
+                    for rel_path in build.BLOG_DERIVED_INDEXES
+                ]
 
-        self.assertEqual(lastmod, "2025-03-05")
-        self.assertEqual(source, new_post)
+        self.assertEqual(
+            results,
+            [("2025-03-05", new_post)] * len(build.BLOG_DERIVED_INDEXES),
+        )
 
     def test_generate_sitemap_uses_source_commit_dates(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -67,8 +71,9 @@ class SitemapLastmodTests(unittest.TestCase):
             site_dir = root / "_site"
             home_html = site_dir / "index.html"
             blog_html = site_dir / "Blog/index.html"
+            tag_html = site_dir / "Tag/index.html"
             post_source = content_dir / "Blog/2025/post/index.typ"
-            for path in (home_html, blog_html, post_source):
+            for path in (home_html, blog_html, tag_html, post_source):
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.touch()
 
@@ -77,7 +82,7 @@ class SitemapLastmodTests(unittest.TestCase):
             )
 
             def sitemap_date(html_path, _git_dates):
-                if html_path == blog_html:
+                if html_path in (blog_html, tag_html):
                     return "2025-06-07", post_source
                 return "2024-02-03", content_dir / "index.typ"
 
@@ -103,6 +108,7 @@ class SitemapLastmodTests(unittest.TestCase):
             {
                 "https://example.com/": "2024-02-03",
                 "https://example.com/Blog/": "2025-06-07",
+                "https://example.com/Tag/": "2025-06-07",
             },
         )
 

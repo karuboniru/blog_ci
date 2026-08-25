@@ -3,12 +3,11 @@
 // 原文件: source/_posts/cloudflare-pages.md
 // 原文时间: 2021-03-06 11:53:53
 // tags: 瞎折腾
-// categories: 瞎折腾
 #let post = (
   title: [我是来吹 Cloudflare Pages 的],
   date: datetime(year: 2021, month: 3, day: 6),
   image-path: "https://cdn.yanqiyu.info/20210306115901.png",
-  extra-info: "标签：瞎折腾 | 分类：瞎折腾",
+  tag: ("瞎折腾",),
   comments: true,
 )
 #show: template.with(..post)

@@ -2,11 +2,10 @@
 // 原文件: source/_posts/laptop.md
 // 原文时间: 2023-03-09 12:51:03
 // tags: 败家
-// categories: 败家
 #let post = (
   title: [整点新笔记本],
   date: datetime(year: 2023, month: 3, day: 9),
-  extra-info: "标签：败家 | 分类：败家",
+  tag: ("败家",),
   comments: true,
 )
 #show: template.with(..post)

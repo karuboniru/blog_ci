@@ -2,11 +2,10 @@
 // 原文件: source/_posts/trojan-for-fedora.md
 // 原文时间: 2020-06-21 09:12:50
 // tags: 打包
-// categories: 瞎折腾
 #let post = (
   title: [Trojan for Fedora and EPEL],
   date: datetime(year: 2020, month: 6, day: 21),
-  extra-info: "标签：打包 | 分类：瞎折腾",
+  tag: ("打包",),
   comments: true,
 )
 #show: template.with(..post)

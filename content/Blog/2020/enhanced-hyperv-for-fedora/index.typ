@@ -2,11 +2,10 @@
 // 原文件: source/_posts/enhanced-hyperv-for-fedora.md
 // 原文时间: 2020-08-22 10:31:03
 // tags: 瞎折腾
-// categories: 瞎折腾
 #let post = (
   title: [在 Hyper-V 会话中对于 Fedora 启用增强会话],
   date: datetime(year: 2020, month: 8, day: 22),
-  extra-info: "标签：瞎折腾 | 分类：瞎折腾",
+  tag: ("瞎折腾",),
   comments: true,
 )
 #show: template.with(..post)

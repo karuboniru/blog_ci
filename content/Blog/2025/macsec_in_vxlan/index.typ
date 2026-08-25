@@ -5,7 +5,7 @@
 #let post = (
   title: [一种很怪的隧道 (MACsec in VXLAN)],
   date: datetime(year: 2025, month: 4, day: 20),
-  extra-info: "标签：瞎折腾",
+  tag: ("瞎折腾",),
   comments: true,
 )
 #show: template.with(..post)

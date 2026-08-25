@@ -1,5 +1,7 @@
 /// Render article metadata below the document title.
-#let article-byline(author: none, date: none, extra-info: none) = {
+#let article-byline(author: none, date: none, tag: (), extra-info: none) = {
+  let tags = if type(tag) == str { (tag,) } else { tag }
+
   let formatted-date = if date != none {
     if type(date) == datetime {
       (display: date.display(), datetime: date.display())
@@ -36,6 +38,21 @@
         )
       }
 
+      if tags.len() > 0 {
+        html.p(
+          class: "article-extra-info",
+          {
+            [标签：]
+            for (index, name) in tags.enumerate() {
+              if index > 0 {
+                [ · ]
+              }
+              html.a(href: "/Tag/", name)
+            }
+          },
+        )
+      }
+
       if extra-info != none {
         html.p(class: "article-extra-info", extra-info)
       }
@@ -44,8 +61,10 @@
 }
 
 /// Inject article metadata once, directly below the document title.
-#let template-byline(content, author: none, date: none, extra-info: none) = {
-  if date != none or extra-info != none {
+#let template-byline(content, author: none, date: none, tag: (), extra-info: none) = {
+  let tags = if type(tag) == str { (tag,) } else { tag }
+
+  if date != none or tags.len() > 0 or extra-info != none {
     let injected = state("article-byline-injected", false)
 
     show title: it => {
@@ -53,7 +72,12 @@
       context {
         if not injected.get() {
           injected.update(true)
-          article-byline(author: author, date: date, extra-info: extra-info)
+          article-byline(
+            author: author,
+            date: date,
+            tag: tags,
+            extra-info: extra-info,
+          )
         }
       }
     }

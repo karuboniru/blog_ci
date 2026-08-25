@@ -8,7 +8,7 @@
 #let post = (
   title: [诺特定律],
   date: datetime(year: 2020, month: 3, day: 30),
-  extra-info: "标签：学习",
+  tag: ("学习",),
   comments: true,
 )
 #show: template.with(..post)

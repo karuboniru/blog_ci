@@ -6,7 +6,7 @@
   title: [在 WSL 2 下运行 Anbox],
   date: datetime(year: 2020, month: 3, day: 27),
   image-path: "https://cdn.yanqiyu.info/20200404211503.webp",
-  extra-info: "标签：瞎折腾 · WSL",
+  tag: ("瞎折腾", "WSL"),
   comments: true,
 )
 #show: template.with(..post)

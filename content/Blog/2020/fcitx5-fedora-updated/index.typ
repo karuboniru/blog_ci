@@ -2,11 +2,9 @@
 // 原文件: source/_posts/fcitx5-fedora-updated.md
 // 原文时间: 2020-11-06 16:41:10
 // 更新时间: 2020-11-06 16:41:10
-// categories: 打包
 #let post = (
   title: [如何更加优雅的在 fedora 上安装 fcitx5],
   date: datetime(year: 2020, month: 11, day: 6),
-  extra-info: "分类：打包",
   comments: true,
 )
 #show: template.with(..post)

@@ -5,7 +5,7 @@
 #let post = (
   title: [博客创建过程与总结],
   date: datetime(year: 2020, month: 3, day: 30),
-  extra-info: "标签：记录",
+  tag: ("记录",),
   comments: true,
 )
 #show: template.with(..post)

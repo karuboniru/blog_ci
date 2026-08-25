@@ -1,7 +1,7 @@
 #import "../../../../config.typ": template, tufted
 #let post = (
   title: [True passwordless SSH login to IHEP cluster],
-  extra-info: "标签：IHEP, SSH",
+  tag: ("IHEP", "SSH"),
   date: datetime(year: 2026, month: 8, day: 24),
   comments: true,
 )
