@@ -1,27 +1,28 @@
-#import "../../../index.typ": template, tufted
+#import "../../../../config.typ": template, tufted
 #import "@preview/theorion:0.6.0": *
 #import "@preview/physica:0.9.8": *
 // 原文件: source/_posts/Noetherstheorem.md
 // 原文时间: 2020-03-30 21:33:47
 // tags: 学习
 // math: true
-#show: template.with(
-  title: "诺特定律",
+#let post = (
+  title: [诺特定律],
   date: datetime(year: 2020, month: 3, day: 30),
   extra-info: "标签：学习",
   comments: true,
 )
+#show: template.with(..post)
 
-= 诺特定律
+#title()
 
 诺特定律, 也即对称性蕴含守恒流, 更加准确的说法是
 
 每一个局部作用的可微的对称性, 都蕴含某种守恒流.
 
-=== 什么是守恒流
+= 什么是守恒流
 守恒流是满足: $ partial_mu j^mu = 0 $ 的一个场.
 
-=== 场在对称变换下的描述
+= 场在对称变换下的描述
 而对称性的考量数学上就有两种看法
 
 - 主动视角, 对应参照系不变, 物理点运动;
@@ -46,7 +47,7 @@
 
 在此之外, 场可能有内禀变换, 此时$delta x = 0$, 变化的只有场.
 
-== 诺特流的推导
+= 诺特流的推导
 考虑一个场, 其作用量可以写作 $ S \( phi.alt \( x \) \) = integral upright(d)^4 x cal(L) \( phi.alt \, partial_mu phi.alt \, x \) $
 
 系统的演化路径遵循$delta S = 0$, 则: $ 0 = delta S & = integral [delta \( upright(d)^4 x \) cal(L) + upright(d)^4 x delta cal(L)]\
@@ -57,7 +58,7 @@
 $ 0 = delta S & = integral upright(d)^4 x partial_mu [cal(L) delta x^mu + frac(partial cal(L), partial \( partial_mu phi.alt \)) \( delta - delta x^nu partial_nu \) phi.alt]\
  & = integral upright(d)^4 x partial_mu [(cal(L) delta_mu^nu - frac(partial cal(L), partial \( partial_mu phi.alt \)) partial_nu phi.alt) delta x^nu + frac(partial cal(L), partial \( partial_mu phi.alt \)) delta phi.alt] $ 这样, 就得到了一个守恒流, 也就是本文的核心: $ j^mu = (cal(L) delta_mu^nu - frac(partial cal(L), partial \( partial_mu phi.alt \)) partial_nu phi.alt) delta x^nu + frac(partial cal(L), partial \( partial_mu phi.alt \)) delta phi.alt $
 
-=== 诺特荷
+== 诺特荷
 对于一个在有限空间内分布的流(无穷远处, 场应该趋近于零, 这是其物理意义要求的), 考虑场的等时变分 $ 0 & = integral upright(d)^4 x partial_mu j^mu\
   & = integral_(t_1)^(t_2) dd(x^0) integral dd(x^3) (partial_0 j^0 + nabla dot.op arrow(j))\
  & = integral_(t_1)^(t_2) dd(x^0) partial_0 integral upright(d)^3 x j^0\
@@ -65,7 +66,7 @@ $ 0 = delta S & = integral upright(d)^4 x partial_mu [cal(L) delta x^mu + frac(p
 
 则$Q = integral upright(d)^3 x j^0$就是诺特荷, 是在这个对称性给出的守恒量.
 
-== 举例
+= 举例
 对于时空平移变换的特殊情况:
 
 #quote-block[

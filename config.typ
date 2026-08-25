@@ -16,14 +16,14 @@
   ),
 
   /// 首页默认标题。
-  title: "Karuboniru's Blog",
+  title: [Karuboniru's Blog],
 
-  /// 网站的站点标题。会显示在浏览器标签页以及 SEO/社交分享卡片中。
+  /// 网站的站点标题。用于 RSS 等全站级元数据；页面标签标题来自上面的 title。
   website-title: "Karuboniru's Blog",
-  /// 网站作者。用于生成 <meta name="author"> 标签。（可选）
+  /// 网站作者。用于生成文档作者元数据。（可选）
   author: "Karuboniru",
   /// 网站描述。用于 SEO 搜索引擎摘要和社交媒体分享预览。（可选）
-  description: "就是个学物理的，懂个屁的计算机",
+  description: [就是个学物理的，懂个屁的计算机],
   /// 站点的根 URL (例如 "https://example.com")。用于生成 Canonical URL 元数据。（可选）
   website-url: "https://niconi.org/",
   /// 网站的默认语言，例如 "zh" 或 "en"，默认为 "zh"。

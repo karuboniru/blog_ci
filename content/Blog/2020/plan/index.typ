@@ -1,16 +1,17 @@
-#import "../../../index.typ": template, tufted
+#import "../../../../config.typ": template, tufted
 // 原文件: source/_posts/plan.md
 // 原文时间: 2020-03-27 12:47:48
 // categories: 杂项
 // math: true
-#show: template.with(
-  title: "规划",
+#let post = (
+  title: [规划],
   date: datetime(year: 2020, month: 3, day: 27),
   extra-info: "分类：杂项",
   comments: true,
 )
+#show: template.with(..post)
 
-= 规划
+#title()
 
 因为万恶的知乎审查逐渐疯狂, 于是机智的我决定注销愚蠢的知乎, 转向使用美妙的 #link("https://hexo.io/")[Hexo].
 

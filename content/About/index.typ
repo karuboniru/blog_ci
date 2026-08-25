@@ -1,11 +1,11 @@
-#import "../index.typ": template, tufted
+#import "../../config.typ": template, tufted
 #show: template.with(
-  title: "关于",
-  description: "About Karuboniru",
+  title: [关于],
+  description: [About Karuboniru],
   comments: true,
 )
 
-= 关于
+#title()
 
 Poor PhD. in Particle Physics and Nuclear Physics
 
@@ -15,11 +15,11 @@ Poor PhD. in Particle Physics and Nuclear Physics
 
 In case you need my GPG key: `0x65F2DF12`
 
-== How To Contact
+= How To Contact
 
 #link("Telegram")[Telegram] 回复速度应该最快，要是 24 小时没回复可以再试试，没准我没看见。
 
-== About the Blog
+= About the Blog
 
 这个博客本身是基于 #link("https://github.com/Yousa-Mirage/Tufted-Blog-Template")[Tufted-Blog-Template]，相关代码可以在 #link("https://github.com/karuboniru/blog_ci")[GitHub] 上看到，博客的页面托管是 Cloudflare Pages，文章的仓库和主题单列。评论系统是 #link("https://github.com/walinejs/waline")[Waline]，评论使用的邮箱我保证不会用于发送回复通知邮件之外的目的。评论区也可以用 GitHub 登陆。评论系统比较卡轻喷。
 

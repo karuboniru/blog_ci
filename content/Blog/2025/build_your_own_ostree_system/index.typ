@@ -1,17 +1,18 @@
-#import "../../../index.typ": template, tufted
+#import "../../../../config.typ": template, tufted
 #import "@preview/theorion:0.6.0": *
 
 // 原文件: source/_posts/build_your_own_ostree_system.md
 // 原文时间: 2025-02-19 20:12:00
 // tags: Fedora, rpm-ostree
-#show: template.with(
-  title: "Build your own fedora OSTree Remix",
+#let post = (
+  title: [Build your own fedora OSTree Remix],
   date: datetime(year: 2025, month: 2, day: 19),
   extra-info: "标签：Fedora · rpm-ostree",
   comments: true,
 )
+#show: template.with(..post)
 
-= Build your own fedora OSTree Remix
+#title()
 
 #caution-block[
 I am not responsible for bricked computers, system instabilities, dead cats, thermonuclear war or you getting fired because you lost important work.
@@ -23,10 +24,10 @@ YOU are choosing to make these modifications, and if you point the finger at me 
 
 After a long break, I decided to continue with my blog (PhD life is tough).
 
-== What Is This?
+= What Is This?
 This guide shows you how to build your own Fedora OSTree Remix from scratch using `rpm-ostree compose`. I created it because I wanted my frequently used packages in the base image instead of relying on `toolbox`, which can be cumbersome to update alongside the full Fedora release. Also, by adding some important configuration to the base image would allow easier tracking of changes and updates.
 
-== Writing your own rpm-ostree Tree configuration
+= Writing your own rpm-ostree Tree configuration
 The customization process starts with fedora's official `workstation-ostree-config` repo:
 
 ```bash
@@ -53,7 +54,7 @@ packages:
 
 More possible configuration can be found in the #link("https://coreos.github.io/rpm-ostree/treefile/")[official documentation].
 
-== Building the OSTree with GitHub Actions
+= Building the OSTree with GitHub Actions
 The action file that do the build looks like following, the `${{ vars.COMPOSEFILE }}` can be replaced with the file name you created in the previous step:
 
 ```yaml
@@ -110,8 +111,8 @@ reboot
 
 and you are now using own Fedora OSTree Remix.
 
-== Some useful customizations
-=== howdy
+= Some useful customizations
+== howdy
 The following file is `howdy.repo` that refers to the copr:
 
 ```ini
@@ -176,7 +177,7 @@ include:
   // ...
 ```
 
-=== IWD
+== IWD
 ```yaml
 packages:
   - iwd
@@ -190,7 +191,7 @@ exclude-packages:
   - wpa_supplicant
 ```
 
-=== NVIDIA Drivers
+== NVIDIA Drivers
 Due to #link("https://github.com/coreos/rpm-ostree/issues/4983")[some reason], simply adding the related packages won't work during a compose, and everything related to `akmods` should be avoided here. For this reason, a "dummy" package is created to install the drivers packages without pulling in `akmods`:
 
 ```ini
@@ -258,5 +259,5 @@ postprocess:
     fi
 ```
 
-== When New Fedora Release
+= When New Fedora Release
 Just switch to new branches, and cherry-pick the changes from the previous branch, push the new branch and do another rebase.

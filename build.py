@@ -44,6 +44,7 @@ import threading
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from html import escape as escape_html
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Literal
@@ -91,6 +92,7 @@ class HTMLMetadataParser(HTMLParser):
     解析以下元数据：
     - lang: 从 <html lang="..."> 属性获取
     - title: 从 <title> 标签获取
+    - author: 从 <meta name="authors" content="..."> 获取
     - description: 从 <meta name="description" content="..."> 获取
     - link: 从 <link rel="canonical" href="..."> 获取
     - date: 从 <meta name="date" content="..."> 获取
@@ -111,7 +113,9 @@ class HTMLMetadataParser(HTMLParser):
                 self._in_title = True
             case "meta":
                 name = attrs_dict.get("name", "")
-                if name in {"description", "date"}:
+                if name in {"author", "authors"}:
+                    self.metadata["author"] = attrs_dict.get("content", "")
+                elif name in {"description", "date"}:
                     self.metadata[name] = attrs_dict.get("content", "")
             case "link":
                 if attrs_dict.get("rel") == "canonical":
@@ -189,51 +193,12 @@ def get_file_mtime(path: Path) -> float:
         return 0.0
 
 
-def is_dep_file(path: Path) -> bool:
-    """
-    判断一个文件是否被追踪为依赖）。
-
-    content/ 下的普通页面文件不被视为模板文件，因为它们是独立的页面，
-    不应该相互依赖。
-
-    参数:
-        path: 文件路径
-
-    返回:
-        bool: 是否是依赖文件
-    """
-    try:
-        resolved_path = path.resolve()
-        project_root = Path(__file__).parent.resolve()
-        content_dir = (project_root / CONTENT_DIR).resolve()
-
-        # config.typ 是依赖文件
-        if resolved_path == (project_root / CONFIG_FILE).resolve():
-            return True
-
-        # 检查是否在 content/ 目录下
-        try:
-            relative_to_content = resolved_path.relative_to(content_dir)
-            # content/_* 目录下的文件视为依赖文件
-            parts = relative_to_content.parts
-            if len(parts) > 0 and parts[0].startswith("_"):
-                return True
-            # content/ 下的其他文件不是依赖文件
-            return False
-        except ValueError:
-            # 不在 content/ 目录下，视为依赖文件（如 config.typ）
-            return True
-
-    except Exception:
-        return True
-
-
 def find_typ_dependencies(typ_file: Path) -> set[Path]:
     """
     解析 .typ 文件中的依赖（通过 #import 和 #include 导入的文件）。
 
-    只追踪 .typ 文件的依赖，忽略 content/ 下的普通页面文件。
-    其他资源文件（如 .md, .bib, 图片等）通过 copy_content_assets 处理。
+    只追踪显式 import/include 的 .typ 文件。页面也可能作为模块被导入，
+    例如博客目录会动态读取各文章导出的 post 元数据。
 
     参数:
         typ_file: .typ 文件路径
@@ -277,7 +242,7 @@ def find_typ_dependencies(typ_file: Path) -> set[Path]:
             # 规范化路径，只追踪 .typ 文件
             try:
                 dep_path = dep_path.resolve()
-                if dep_path.exists() and dep_path.suffix == ".typ" and is_dep_file(dep_path):
+                if dep_path.exists() and dep_path.suffix == ".typ":
                     dependencies.add(dep_path)
             except Exception:
                 pass
@@ -463,6 +428,7 @@ def _compile_files(
     common_deps: list[Path],
     get_output_path_func,
     build_args_func,
+    postprocess_func=None,
 ) -> BuildStats:
     """
     通用文件编译函数，减少重复代码。
@@ -473,6 +439,7 @@ def _compile_files(
         common_deps: 公共依赖列表
         get_output_path_func: 获取输出路径的函数
         build_args_func: 构建编译参数的函数
+        postprocess_func: 可选的编译后处理函数
 
     返回:
         BuildStats: 构建统计信息
@@ -493,7 +460,11 @@ def _compile_files(
         args = build_args_func(typ_file, output_path)
 
         if run_typst_command(args):
-            stats.success += 1
+            if postprocess_func is None or postprocess_func(typ_file, output_path):
+                stats.success += 1
+            else:
+                print(f"  ❌ {typ_file} 后处理失败")
+                stats.failed += 1
         else:
             print(f"  ❌ {typ_file} 编译失败")
             stats.failed += 1
@@ -501,122 +472,180 @@ def _compile_files(
     return stats
 
 
-def parse_typ_string_field(text: str, field: str) -> str | None:
-    """Parse a quoted string field from Typst metadata."""
-    match = re.search(
-        rf'^\s*{field}:\s*"((?:[^"\\]|\\.)*)"\s*,?\s*$',
-        text,
-        re.M,
-    )
-    if match is None:
-        return None
-
-    raw = match.group(1)
+def generate_blog_manifest() -> bool:
+    """Generate the path-only manifest consumed by content/Blog/index.typ."""
     try:
-        return json.loads('"' + raw + '"')
-    except json.JSONDecodeError:
-        return raw.replace('\\"', '"').replace("\\\\", "\\")
-
-
-def parse_typ_date(text: str) -> datetime | None:
-    """Parse a date from Typst metadata."""
-    match = re.search(
-        r"date:\s*datetime\(\s*year:\s*(\d{4}),\s*month:\s*(\d{1,2}),\s*day:\s*(\d{1,2})",
-        text,
-    )
-    if match is not None:
-        year, month, day = (int(value) for value in match.groups())
-        return datetime(year, month, day)
-
-    match = re.search(r'date:\s*"(\d{4})-(\d{2})-(\d{2})"', text)
-    if match is not None:
-        year, month, day = (int(value) for value in match.groups())
-        return datetime(year, month, day)
-
-    return None
-
-
-def collect_blog_entries() -> list[tuple[datetime, str, str]]:
-    """Collect blog posts from content/Blog/."""
-    entries: list[tuple[datetime, str, str]] = []
-
-    blog_dir = CONTENT_DIR / "Blog"
-    if blog_dir.exists():
+        blog_dir = CONTENT_DIR / "Blog"
+        blog_dir.mkdir(parents=True, exist_ok=True)
+        post_files: list[Path] = []
         for typ_file in sorted(blog_dir.rglob("*.typ")):
             rel_path = typ_file.relative_to(blog_dir)
-            if rel_path == Path("index.typ"):
-                continue
-            if "pdf" in typ_file.stem.lower():
+            if rel_path == Path("index.typ") or "pdf" in typ_file.stem.lower():
                 continue
             if any(part.startswith("_") for part in rel_path.parts):
                 continue
-
-            text = typ_file.read_text(encoding="utf-8")
-            date = parse_typ_date(text)
-            if date is None:
-                print(f"⚠️ 跳过无日期元数据的文章: {typ_file}")
-                continue
-
-            if rel_path.name == "index.typ":
-                path = rel_path.parent.as_posix() + "/"
-                fallback_title = rel_path.parent.name
-            else:
-                path = rel_path.with_suffix(".html").as_posix()
-                fallback_title = rel_path.stem
-
-            title = parse_typ_string_field(text, "title") or fallback_title
-            entries.append((date, path, title))
-
-    return entries
-
-
-def generate_blog_index() -> bool:
-    """Regenerate content/Blog/index.typ from Typst metadata."""
-    try:
-        entries = collect_blog_entries()
-        entries.sort(key=lambda entry: (entry[0], entry[1]), reverse=True)
+            post_files.append(typ_file)
 
         lines = [
-            '#import "../index.typ": template, tufted',
-            "#show: template.with(",
-            '  title: "Blog",',
-            '  description: "Karuboniru 的博客归档",',
-            ")",
-            "",
-            "= 博客 / Blog",
-            "",
+            "// Generated by build.py. Only article paths belong here.",
+            "#let post-sources = (",
         ]
+        for typ_file in post_files:
+            rel_path = typ_file.relative_to(blog_dir)
+            if rel_path.name == "index.typ":
+                page_path = rel_path.parent.as_posix() + "/"
+            else:
+                page_path = rel_path.with_suffix("").as_posix() + "/"
+            lines.append("  (")
+            lines.append(f"    source: {json.dumps(rel_path.as_posix(), ensure_ascii=False)},")
+            lines.append(f"    path: {json.dumps(page_path, ensure_ascii=False)},")
+            lines.append("  ),")
+        lines.append(")")
 
-        by_year: dict[int, list[tuple[datetime, str, str]]] = {}
-        for date, path, title in entries:
-            by_year.setdefault(date.year, []).append((date, path, title))
-
-        for year in sorted(by_year, reverse=True):
-            lines.append(f"== {year}")
-            for date, path, title in by_year[year]:
-                lines.append("#tufted.blog-entry(")
-                lines.append(
-                    f"  date: datetime(year: {date.year}, month: {date.month}, day: {date.day}),"
-                )
-                lines.append(f'  path: {json.dumps(path, ensure_ascii=False)},')
-                lines.append(f'  title: {json.dumps(title, ensure_ascii=False)},')
-                lines.append(")")
-            lines.append("")
-
-        blog_dir = CONTENT_DIR / "Blog"
-        blog_dir.mkdir(parents=True, exist_ok=True)
-        index_file = blog_dir / "index.typ"
+        manifest_file = blog_dir / "_posts.typ"
         new_content = "\n".join(lines) + "\n"
-
-        if index_file.exists() and index_file.read_text(encoding="utf-8") == new_content:
-            print(f"✅ 博客索引自动生成完成: {len(entries)} 篇")
+        content_changed = (
+            not manifest_file.exists()
+            or manifest_file.read_text(encoding="utf-8") != new_content
+        )
+        source_changed = manifest_file.exists() and any(
+            get_file_mtime(path) > get_file_mtime(manifest_file) for path in post_files
+        )
+        if not content_changed and not source_changed:
+            print(f"✅ 博客文章清单已是最新: {len(post_files)} 篇")
             return True
 
-        index_file.write_text(new_content, encoding="utf-8")
-        print(f"✅ 博客索引自动生成完成: {len(entries)} 篇")
+        manifest_file.write_text(new_content, encoding="utf-8")
+        print(f"✅ 博客文章清单生成完成: {len(post_files)} 篇")
         return True
     except Exception as e:
-        print(f"❌ 生成博客索引失败: {e}")
+        print(f"❌ 生成博客文章清单失败: {e}")
+        return False
+
+
+HEAD_STAGING_RE = re.compile(
+    r'<template\s+data-tufted-head(?:="")?>(.*?)</template>',
+    re.DOTALL,
+)
+FINALIZED_HEAD_MARKER = '<meta property="og:title"'
+
+
+class ExportedEndnotesLocator(HTMLParser):
+    """Locate Typst's automatically appended HTML endnotes in the source text."""
+
+    def __init__(self, html_text: str):
+        super().__init__(convert_charrefs=False)
+        self.html_text = html_text
+        self.ranges: list[tuple[int, int]] = []
+        self._line_starts = [0]
+        self._line_starts.extend(
+            match.end() for match in re.finditer(r"\n", html_text)
+        )
+        self._section_depth = 0
+        self._range_start: int | None = None
+
+    def _absolute_position(self) -> int:
+        line, column = self.getpos()
+        return self._line_starts[line - 1] + column
+
+    def handle_starttag(
+        self, tag: str, attrs: list[tuple[str, str | None]]
+    ) -> None:
+        if self._section_depth:
+            if tag == "section":
+                self._section_depth += 1
+            return
+
+        attrs_dict = dict(attrs)
+        if tag == "section" and attrs_dict.get("role") == "doc-endnotes":
+            self._range_start = self._absolute_position()
+            self._section_depth = 1
+
+    def handle_endtag(self, tag: str) -> None:
+        if not self._section_depth or tag != "section":
+            return
+
+        self._section_depth -= 1
+        if self._section_depth:
+            return
+
+        end_tag_start = self._absolute_position()
+        end = self.html_text.find(">", end_tag_start)
+        if end == -1 or self._range_start is None:
+            raise ValueError("无法确定 Typst 文末脚注的 HTML 边界")
+        self.ranges.append((self._range_start, end + 1))
+        self._range_start = None
+
+    def finish(self) -> list[tuple[int, int]]:
+        if self._section_depth or self._range_start is not None:
+            raise ValueError("Typst 文末脚注的 <section> 未闭合")
+        return self.ranges
+
+
+def strip_exported_endnotes(html_text: str) -> tuple[str, int]:
+    """Remove exporter endnotes; footnotes are already rendered as sidenotes."""
+    locator = ExportedEndnotesLocator(html_text)
+    locator.feed(html_text)
+    locator.close()
+    ranges = locator.finish()
+    for start, end in reversed(ranges):
+        html_text = html_text[:start] + html_text[end:]
+    return html_text, len(ranges)
+
+
+def finalize_html_output(html_path: Path, page_path: str) -> bool:
+    """Finalize injected head elements and the site's sidenote-only footnotes."""
+    try:
+        html_text = html_path.read_text(encoding="utf-8")
+        staged = HEAD_STAGING_RE.search(html_text)
+        if staged is None:
+            # Typst may leave an unchanged target in place when a dependency
+            # edit does not alter the exported document. In that case the
+            # existing target has already passed through this function.
+            if FINALIZED_HEAD_MARKER not in html_text:
+                print(f"  ❌ 未找到待注入的 head 元素: {html_path}")
+                return False
+            finalized, _ = strip_exported_endnotes(html_text)
+            if finalized != html_text:
+                html_path.write_text(finalized, encoding="utf-8")
+            return True
+
+        parser = HTMLMetadataParser()
+        parser.feed(html_text)
+        title = parser.metadata.get("title", "").strip()
+        description = parser.metadata.get("description", "").strip()
+        author = parser.metadata.get("author", "").strip()
+        canonical_url = parser.metadata.get("link", "").strip()
+        og_type = "website" if page_path in {"", "/"} else "article"
+
+        seo = [
+            f'<meta property="og:title" content="{escape_html(title, quote=True)}">',
+            f'<meta property="og:type" content="{og_type}">',
+        ]
+        if description:
+            seo.append(
+                f'<meta property="og:description" content="{escape_html(description, quote=True)}">'
+            )
+        if canonical_url:
+            seo.append(
+                f'<meta property="og:url" content="{escape_html(canonical_url, quote=True)}">'
+            )
+        if author and og_type == "article":
+            seo.append(
+                f'<meta property="article:author" content="{escape_html(author, quote=True)}">'
+            )
+
+        head_content = staged.group(1) + "".join(seo)
+        html_text = HEAD_STAGING_RE.sub("", html_text, count=1)
+        if "</head>" not in html_text:
+            print(f"  ❌ HTML 缺少 </head>: {html_path}")
+            return False
+        html_text = html_text.replace("</head>", head_content + "</head>", 1)
+        html_text, _ = strip_exported_endnotes(html_text)
+        html_path.write_text(html_text, encoding="utf-8")
+        return True
+    except Exception as e:
+        print(f"  ❌ HTML 后处理失败: {e}")
         return False
 
 
@@ -629,7 +658,7 @@ def build_html(force: bool = False) -> bool:
     """
     SITE_DIR.mkdir(parents=True, exist_ok=True)
 
-    if not generate_blog_index():
+    if not generate_blog_manifest():
         return False
 
     typ_files = find_typ_files()
@@ -646,8 +675,7 @@ def build_html(force: bool = False) -> bool:
     # 获取公共依赖
     common_deps = find_common_dependencies()
 
-    def build_html_args(typ_file: Path, output_path: Path) -> list[str]:
-        """构建 HTML 编译参数"""
+    def get_page_path(typ_file: Path) -> str:
         try:
             rel_path = typ_file.relative_to(CONTENT_DIR)
 
@@ -664,6 +692,12 @@ def build_html(force: bool = False) -> bool:
                 page_path = rel_path.with_suffix("").as_posix()
         except ValueError:
             page_path = ""
+
+        return page_path
+
+    def build_html_args(typ_file: Path, output_path: Path) -> list[str]:
+        """构建 HTML 编译参数"""
+        page_path = get_page_path(typ_file)
 
         return [
             "compile",
@@ -687,6 +721,9 @@ def build_html(force: bool = False) -> bool:
         common_deps,
         lambda typ_file: get_file_output_path(typ_file, "html"),
         build_html_args,
+        lambda typ_file, output_path: finalize_html_output(
+            output_path, get_page_path(typ_file)
+        ),
     )
 
     print(f"✅ HTML 构建完成。{stats.format_summary()}")

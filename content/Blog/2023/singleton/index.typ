@@ -1,18 +1,19 @@
-#import "../../../index.typ": template, tufted
+#import "../../../../config.typ": template, tufted
 // 原文件: source/_posts/singleton.md
 // 原文时间: 2023-11-12 00:05:00
 // tags: C++
 // math: false
-#show: template.with(
-  title: "Singleton Patterns are DANGEROUS (when used across the border of shared libraries)",
+#let post = (
+  title: [Singleton Patterns are DANGEROUS (when used across the border of shared libraries)],
   date: datetime(year: 2023, month: 11, day: 12),
   extra-info: "标签：C++",
   comments: true,
 )
+#show: template.with(..post)
 
-= Singleton Patterns are DANGEROUS (when used across the border of shared libraries)
+#title()
 
-== Singleton Patterns are DANGEROUS
+= Singleton Patterns are DANGEROUS
 … When you want to control the order of initialization/deinitialization of your objects across shared libraries.
 
 Consider the case where you have a beautiful logger class, which is a singleton, and another class which will put some information to log. It is also totally legit that you want to log when the object is being contructed and being destructed.
@@ -39,7 +40,7 @@ In this case, you might think that the order of initialization and deinitializat
 
 The finish of construction of `logger` is sequenced before the finish of construction of `sth`. That runtime #emph[should] be destructing `sth` before `logger`.
 
-== Minimal Reproducible Example for the Issue
+= Minimal Reproducible Example for the Issue
 The point of #link("https://github.com/karuboniru/singleton_pitfall/")[this repository] is to prove things can go wrong when you are doing this in a complexed project without properly specifying the dependency of shared libraries.
 
 Just compile the project:
@@ -73,7 +74,7 @@ And run it:
 
 It seems to be legal in C++ standard that the order don't matter when things goes to beyond the boundary of shared libraries. There are some discussions #link("https://stackoverflow.com/questions/54562874/destruction-order-of-static-objects-in-shared-libraries")[here] you can refer to.
 
-== What Happens in Runtime?
+= What Happens in Runtime?
 And when it comes to the implementation of glibc, things related to destruction and dynamic libraries are:
 
 - The data structure controlling the destruct of all static objects is #link("https://github.com/bminor/glibc/blob/d1dcb565a1fb5829f9476a1438c30eccc4027d04/stdlib/exit.h#L55-L60")[`exit_function_list`]. This is basicially a chain list containing several `exit_function` structs. Each `exit_function` struct records function pointer to call and information indicating when to call.
@@ -124,7 +125,7 @@ So, if we don't properly specify the dependency of shared libraries, and the ini
 
 And if we did not specify the dependency of shared libraries properly, it becomes the order of linking. This leads to #strong[wrong] order of destruction of global objects in some cases.
 
-== Recommendation if you really want to get the order right
+= Recommendation if you really want to get the order right
 - Avoid using singleton pattern across shared libraries.
 - Avoid using other global objects in destructors of global objects if you have to do above.
 - If you still have to do above, always to correctly specify the dependency of shared libraries.

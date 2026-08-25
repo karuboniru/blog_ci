@@ -43,9 +43,6 @@
 			const link = document.createElement("a");
 
 			item.classList.add(`toc-${heading.tagName.toLowerCase()}`);
-			if (index > 0) {
-				item.classList.add("toc-after-title");
-			}
 			link.href = `#${id}`;
 			link.textContent = heading.textContent.trim();
 

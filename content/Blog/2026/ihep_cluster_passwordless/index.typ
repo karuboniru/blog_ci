@@ -1,14 +1,15 @@
-#import "../../../index.typ": template, tufted
-#show: template.with(
-  title: "True passwordless SSH login to IHEP cluster",
+#import "../../../../config.typ": template, tufted
+#let post = (
+  title: [True passwordless SSH login to IHEP cluster],
   extra-info: "标签：IHEP, SSH",
   date: datetime(year: 2026, month: 8, day: 24),
   comments: true,
 )
+#show: template.with(..post)
 
-= True passwordless SSH login to IHEP cluster
+#title()
 
-== Strange design of IHEP cluster
+= Strange design of IHEP cluster
 IHEP's computing service is organized in a somewhat unusual way. Although it supports
 SSH key-based login, users who log in to the cluster must
 #link("http://afsapply.ihep.ac.cn/cchelp/en/local-cluster/login/#21-login-clusters-under-linux")[
@@ -22,7 +23,7 @@ a distributed file system that requires a keytab for authentication. The keytab 
 cluster's authentication server, which is designed to authenticate users with a password.
 SSH key-based login gives you access to the shell, but not to AFS.
 
-== The solution
+= The solution
 The solution is that you can get a Kerberos ticket from your local machine and use it to authenticate 
 to both the login node and AFS #footnote[
   Initially learned from https://doc.cc.in2p3.fr/en/Daily-usage/kerberos.html, pretty suprising that 

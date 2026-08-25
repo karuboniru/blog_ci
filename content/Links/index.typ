@@ -1,4 +1,4 @@
-#import "../index.typ": template, tufted
+#import "../../config.typ": template, tufted
 #import "../_data/links.typ": owner, links
 
 #let friend-link(item) = {
@@ -30,23 +30,23 @@
 }
 
 #show: template.with(
-  title: "友情链接",
-  description: "友情链接",
+  title: [友情链接],
+  description: [友情链接],
   comments: true,
 )
 
-= 友情链接
+#title()
 
 交换友链，你可以直接在下面评论或者是在 #link("https://github.com/karuboniru/blog_ci")[这里] 提 issue。
 
-== 我的信息
+= 我的信息
 
 - 标题: #raw(owner.title)
 - 链接: #raw(owner.url)
 - 头像: #raw(owner.avatar)
 - 简介: #owner.intro
 
-== 友链
+= 友链
 
 #html.div(
   class: "friend-links",

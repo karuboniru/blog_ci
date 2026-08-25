@@ -31,8 +31,8 @@ node_modules/
 # Downloaded build tools
 typst-*-unknown-linux-musl/
 
-# auto-generated blog index
-/content/Blog/index.typ
+# auto-generated blog article manifest
+/content/Blog/_posts.typ
 
 # temp files
 *.tmp

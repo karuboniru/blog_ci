@@ -1,27 +1,28 @@
-#import "../../../index.typ": template, tufted
+#import "../../../../config.typ": template, tufted
 // 原文件: source/_posts/waydroid-fedora.md
 // 原文时间: 2021-10-25 23:10:07
-#show: template.with(
-  title: "Waydroid on Fedora",
+#let post = (
+  title: [Waydroid on Fedora],
   date: datetime(year: 2021, month: 10, day: 25),
   comments: true,
 )
+#show: template.with(..post)
 
-= Waydroid on Fedora
+#title()
 
 There is a new #link("https://copr.fedorainfracloud.org/coprs/aleasto/waydroid/")[Waydroid build for fedora] that don't need a custom kernel, by dropping `ashmem` requirements, you can check out there.
 
 #html.hr()
 
-== Waydroid need kernel with ashmem and binder
+= Waydroid need kernel with ashmem and binder
 Ashmem and binder is what makes "Android kernel" different from traditional desktop's. They are not built with Fedora's stock kernel for now (#link("https://bugzilla.redhat.com/show_bug.cgi?id=1455411")[But they are planning so]). So we need to install a kernel with ashmem and binder support.
 
-=== Use XanMod Kernel
+== Use XanMod Kernel
 You can find XanMod Kernel from #link("https://copr.fedorainfracloud.org/coprs/rmnscnce/kernel-xanmod/")[Copr], just follow instructions and you are all set. And you need to add `psi=1` to kernel command line during boot to avoid a `lmkd` crash.
 
 #strike[XanMod kernel is causing lmkd to crash, use self built kernel instead]
 
-=== Build Kernel with Ashmem and Binder
+== Build Kernel with Ashmem and Binder
 Fedora don't ship kernel with Ashmem and Binder support, we need to build on our own. Before starting please confirm your secboot status is #strong[off], or your have set up self signing secboot flow.
 
 Then install required package to build kernel by `sudo dnf install mock fedpkg`. Clone fedora's kernel packaging files:
@@ -47,7 +48,7 @@ Then open kernel.spec, find `./process_configs.sh $OPTS kernel %{rpmversion}` an
 
 Finally, execute `fedpkg mockbuild`, wait for several minutes, you will find built kernel in `results_kernel` folder, just install package `kernel`, `kernel-core` and `kernel-modules` should be enough.
 
-== Install Waydroid
+= Install Waydroid
 I have build waydroid in Copr, you can find them #link("https://copr.fedorainfracloud.org/coprs/yanqiyu/waydroid/")[here]. And install them by
 
 ```
@@ -89,7 +90,7 @@ To begin using Waydroid.
 
 #html.hr()
 
-== Known problem
+= Known problem
 #strike[Multi-window mode is not working for me, you can refer to #link("https://github.com/waydroid/waydroid/issues/131")[this issue]]
 
 By default, you are getting wrong colors in Waydroid if you are on Gnome, you can workaround this by enabling inverted colors in Android Settings, but doing this will break Multi-window mode. The only way to solve this is to make mutter compatible with android's frame buffer, related patches are merged upstream, just stay tuned and wait for update.

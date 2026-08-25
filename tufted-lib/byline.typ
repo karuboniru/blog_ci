@@ -1,4 +1,4 @@
-/// Render article metadata below the first level-one heading.
+/// Render article metadata below the document title.
 #let article-byline(author: none, date: none, extra-info: none) = {
   let formatted-date = if date != none {
     if type(date) == datetime {
@@ -43,12 +43,12 @@
   )
 }
 
-/// Inject article metadata once, directly below the first level-one heading.
+/// Inject article metadata once, directly below the document title.
 #let template-byline(content, author: none, date: none, extra-info: none) = {
   if date != none or extra-info != none {
     let injected = state("article-byline-injected", false)
 
-    show heading.where(level: 1): it => {
+    show title: it => {
       it
       context {
         if not injected.get() {

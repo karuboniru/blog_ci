@@ -1,20 +1,21 @@
-#import "../../../index.typ": template, tufted
+#import "../../../../config.typ": template, tufted
 #import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/cloudflare-pages.md
 // 原文时间: 2021-03-06 11:53:53
 // tags: 瞎折腾
 // categories: 瞎折腾
-#show: template.with(
-  title: "我是来吹 Cloudflare Pages 的",
+#let post = (
+  title: [我是来吹 Cloudflare Pages 的],
   date: datetime(year: 2021, month: 3, day: 6),
   image-path: "https://cdn.yanqiyu.info/20210306115901.png",
   extra-info: "标签：瞎折腾 | 分类：瞎折腾",
   comments: true,
 )
+#show: template.with(..post)
 
-= 我是来吹 Cloudflare Pages 的
+#title()
 
-== 迁移博客到 Cloudflare Pages
+= 迁移博客到 Cloudflare Pages
 #quote-block[
 薅羊毛，就要薅到底
 ]
@@ -56,17 +57,17 @@
   , kind: table
   )
 
-=== 我想要运行自定义脚本！
+== 我想要运行自定义脚本！
 那你就放一个#link("https://github.com/karuboniru/blog_ci/blob/master/build.sh")[自定义脚本]在你的仓库里面呗。构建命令就是 `./build.sh`, 记得加上 `+x` 权限。你的脚本任务就是把网页源代码变成站点的文件放到特定文件夹，在 Pages 设置里面你需要指定输出文件夹的路径。
 
-== 相对于使用 GitHub Actions 部署有什么好处/坏处？
+= 相对于使用 GitHub Actions 部署有什么好处/坏处？
 一方面 GitHub Actions 更快，Cloudflare Pages 的服务有时候会莫名其妙的卡几分钟到几十分钟在 `正在初始化构建环境` 阶段。但是 Cloudflare Pages 能优雅的处理 Pull Request 并且#link("https://developers.cloudflare.com/pages/platform/preview-deployments")[提供预览页面]。
 
 总之 Cloudflare 家大业大，并且是专门做网络服务的，做网页托管 #strong[应该] 不会太菜吧。
 
 另外 Cloudflare 的那个 Proxy 对于他们自己托管的页面不好使，可以看 #link("https://discord.com/channels/595317990191398933/789155108529111069/817438688555827280")[discord 聊天记录]，但是之后会修。还有些别的可能的坑可以看看#link("https://developers.cloudflare.com/pages/platform/known-issues")[已知问题]。
 
-== 关于网页跳转
+= 关于网页跳转
 虽然 CloudFlare Page #link("https://developers.cloudflare.com/pages/platform/redirects")[提供一定的跳转功能]，但是这个跳转不能跨域名。于是想要做一个 `www.yanqiyu.info` 到 `yanqiyu.info` 的跳转就需要借助 Worker 来完成。新建一个 Worker 填入
 
 ```javascript

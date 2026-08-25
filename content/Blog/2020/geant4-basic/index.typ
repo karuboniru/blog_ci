@@ -1,16 +1,17 @@
-#import "../../../index.typ": template, tufted
+#import "../../../../config.typ": template, tufted
 #import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/geant4-basic.md
 // 原文时间: 2020-09-26 11:23:37
 // tags: Geant 4
-#show: template.with(
-  title: "轻松的安装 Geant4",
+#let post = (
+  title: [轻松的安装 Geant4],
   date: datetime(year: 2020, month: 9, day: 26),
   extra-info: "标签：Geant 4",
   comments: true,
 )
+#show: template.with(..post)
 
-= 轻松的安装 Geant4
+#title()
 
 #quote-block[
 本文主要是给组里面的同学们快速配置自己的 Geant 4 之用
@@ -24,13 +25,13 @@
 如果你是高贵的 Arch 用户，AUR 里面貌似有现成的 Geant 4, 也是开箱即用的，但是 Arch 用户大概不需要这篇文章
 ]
 
-== 在 WSL 中配置你的 Fedora 环境
+= 在 WSL 中配置你的 Fedora 环境
 对于原生 Linux 用户，请忽略这一节。
 
-=== 启用 WSL 与安装 Linux
+== 启用 WSL 与安装 Linux
 请参阅#link("https://zhuanlan.zhihu.com/p/35801201")[这篇文章]的“为 WSL 做准备”章节，启用你的 Windows 下的 WSL。然后在#link("https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL/releases/tag/31.5.0")[Fedora Remix for WSL 发表页面]下载那个`appxbundle`文件，双击安装这个软件包，然后打开安装的程序，按照提示进行设置用户名以及密码。
 
-=== 安装 XServer
+== 安装 XServer
 为了能正确使用 ROOT/Geant4 的图形界面，你需要安装 XServer。在#link("https://sourceforge.net/projects/vcxsrv/")[这里]下载，安装后启动，全部选择默认配置即可。
 
 然后在 WSL 中运行
@@ -39,7 +40,7 @@
 echo 'export DISPLAY=127.0.0.1:0' >> ~/.bashrc
 ```
 
-=== 伪装 release 信息
+== 伪装 release 信息
 运行
 
 ```bash
@@ -48,7 +49,7 @@ sudo dnf install fedora-release --allowerasing
 
 WSL 配置至此结束，接下来是安装 Geant 4 以及 ROOT。
 
-== 安装 Geant 4
+= 安装 Geant 4
 运行
 
 ```bash
@@ -58,7 +59,7 @@ sudo dnf install geant4 geant4-data geant4-devel geant4-examples
 
 就完成了安装。
 
-=== 编译安装
+== 编译安装
 #quote-block[
 我不怎么建议自己编译安装，因为编译慢，安装的位置不好还需要手动设置一下环境变量
 ]
@@ -95,7 +96,7 @@ source /path/to/geant4.sh
 
 来设置环境变量，通过源安装的不需要。
 
-== 安装 ROOT
+= 安装 ROOT
 在多数情况下，可以通过安装
 
 ```bash
@@ -104,7 +105,7 @@ sudo dnf install root-hist-painter root-physics root-mathmore root-tree-datafram
 
 就足以支撑大部分 Geant4 开发之用，要是 `cmake` 的时候提示缺文件就再安装就行。
 
-== 基本程序框架
+= 基本程序框架
 - `physicsList`, 一般是 `G4VModularPhysicsList` 以及其派生的预定义物理类型, 这个类负责定义模拟中的物理过程;
 - `DetectorConstruction`, 派生自`G4VUserDetectorConstruction` 负责构建探测器的几何结构以及材料;
 - `ActionInitialization` 派生自 `G4VUserActionInitialization`, 主要工作是对于模拟进行准备操作, 通过 `SetUserAction` 来实现注册各个其他运行相关的类, 在简单的程序中包括 `RunAction`, `EventAction`, `SteppingAction`, `PrimaryGeneratorAction` , 如果需要保存直方图的话就要加上 `HistoManager` \;

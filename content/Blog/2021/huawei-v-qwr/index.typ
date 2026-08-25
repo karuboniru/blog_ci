@@ -1,18 +1,19 @@
-#import "../../../index.typ": template, tufted
+#import "../../../../config.typ": template, tufted
 #import "@preview/theorion:0.6.0": *
 // 原文件: source/_posts/huawei-v-qwr.md
 // 原文时间: 2021-06-21 13:32:57
-#show: template.with(
-  title: "某不知名网友怒斥华为，究竟发生了什么",
+#let post = (
+  title: [某不知名网友怒斥华为，究竟发生了什么],
   date: datetime(year: 2021, month: 6, day: 21),
   comments: true,
 )
+#show: template.with(..post)
 
-= 某不知名网友怒斥华为，究竟发生了什么
+#title()
 
 虽然国内新闻平台比较后知后觉，但是想必大家都看到了类似于这样的#link("https://www.cnbeta.com/articles/tech/1143079.htm")[报道]。报道中故事被显著的简化：一个提交 trivial patch 的华为员工被开发者社区怒斥。这个瓜显然不好啃，我大概简述一下我吃到的瓜长啥样。
 
-== 导火索的 patch
+= 导火索的 patch
 作为导火索的邮件是#link("https://lore.kernel.org/linux-btrfs/55b0c70b-f0c1-07e2-f8dd-073f4fdc8f07@gmx.com/T/#t")[这一封]。邮件中 Zhen Lei 想要提交一个 patch 以移除一个分配内存失败的警告。理由是如果能触发这个警告的情况下，call trace 应该能有效的提示开发者发生了什么。
 
 这个 patch 被礼貌的拒绝，理由是作为测试套件的一部分，尽可能的详细并不是一件坏事。移除它完全没必要。
@@ -27,7 +28,7 @@
 
 然后 Qu Wenruo 跟进并且反驳了上述争论，#strike[然后越看越气，]指出这人提交 patch 前就不知道开发流程，没仔细研究就来提交 patch，属于混 KPI 行为。
 
-== 指责的邮件
+= 指责的邮件
 然后大概是翻阅了当事人 Zhen Lei 的邮件，发现这类 trivial 的 patch 不止这一个。作为一个老鸟，抢这类低垂的果实不是太好的事情，因为这些简单的问题对于新手可能是他们接触 Linux 社区的第一步。这些 patch 都被老鸟抢干净了，那么 Linux 社区吸引新人的能力就会下降。另外，使用公司邮箱去跟维护者进行无意义的争论是很影响声望的事情。（参照之前明尼苏达大学的事件，有趣的是，那次事件也是 patch 被维护者礼貌拒绝，然后无意义争论惹怒维护者导致被翻旧帐）
 
 然后 Qu Wenruo 向 LKML #link("https://lore.kernel.org/linux-btrfs/e78add0a-8211-86c3-7032-6d851c30f614@suse.com/T/#u")[发送了邮件]直接的指出了不满，原邮件网上有大量翻译，这里我连引用都懒得。但是这一句话
