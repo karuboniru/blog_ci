@@ -769,6 +769,7 @@ sup.footnote-ref {
 
 .sidenote-body {
 	min-width: 0;
+	overflow-wrap: anywhere;
 	text-align: justify;
 }
 
