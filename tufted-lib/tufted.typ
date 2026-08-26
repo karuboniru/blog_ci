@@ -103,11 +103,7 @@
       for js-src in (base-js + js-scripts).dedup() {
         html.script(src: js-src)
       }
-      html.elem(
-        "script",
-        attrs: (data-cfasync: "false", type: "module", src: "/assets/sidenote-layout.mjs"),
-        "",
-      )
+      html.script(type: "module", src: "/assets/sidenote-layout.mjs")
 
       for element in head-elements {
         element
