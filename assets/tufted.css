@@ -765,6 +765,7 @@ sup.footnote-ref {
 
 .sidenote-label {
 	white-space: nowrap;
+	text-align: end;
 }
 
 .sidenote-body {
@@ -792,6 +793,26 @@ sup.footnote-ref {
 @media (min-width: 761px) {
 	sup.marginnote-ref {
 		display: none;
+	}
+
+	/*
+	 * Hang sidenote markers in the gutter. The body keeps the entire margin
+	 * column, while footnote numbers and figure labels share a right edge.
+	 */
+	.sidenote-note-layout {
+		position: relative;
+		display: block;
+	}
+
+	.sidenote-note-layout > .sidenote-label {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-end: calc(100% + 0.35em);
+	}
+
+	.sidenote-note-layout > .sidenote-body {
+		display: block;
+		width: 100%;
 	}
 
 	/* Keep fallback note geometry stable when notes are nested in lists or blocks. */

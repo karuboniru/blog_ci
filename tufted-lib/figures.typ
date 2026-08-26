@@ -5,7 +5,13 @@
   show figure.caption: it => html.span(
     class: "marginnote sidenote-caption",
     role: "note",
-    it.supplement + sym.space.nobreak + it.counter.display() + it.separator + it.body,
+    html.span(
+      class: "sidenote-note-layout",
+      html.span(
+        class: "sidenote-label sidenote-caption-label",
+        html.sup(it.supplement + sym.space.nobreak + it.counter.display()),
+      ) + html.span(class: "sidenote-body", it.body),
+    ),
   )
 
   // Add lazy-loading related attributes to raster images in HTML output.
