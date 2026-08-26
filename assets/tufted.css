@@ -725,7 +725,34 @@ sup.footnote-ref {
 }
 
 .marginnote {
+	/*
+	 * Treat a margin note as its own typography context. Tufte CSS and the
+	 * article styles assign font metrics directly to elements such as lists;
+	 * without this boundary those declarations replace the values inherited
+	 * from the note.
+	 */
+	--sidenote-font-size: 1.1rem;
+	--sidenote-line-height: 1.3;
+	font-size: var(--sidenote-font-size);
+	line-height: var(--sidenote-line-height);
 	text-align: justify;
+}
+
+/*
+ * Propagate the note's metrics through arbitrary nested markup. Keep this
+ * element-agnostic so new content types do not need one-off sidenote rules.
+ * Other font properties (family, weight, style) remain free to express the
+ * element's semantics.
+ */
+.marginnote :where(*) {
+	font-size: inherit;
+	line-height: inherit;
+}
+
+/* Preserve the semantic scale and vertical rhythm of scripts. */
+.marginnote :where(sup, sub) {
+	font-size: smaller;
+	line-height: 0;
 }
 
 /* Keep the footnote label outside the justified text's spacing context. */
@@ -749,13 +776,16 @@ sup.footnote-ref {
 .marginnote p {
 	width: 100%;
 	margin: 0 0 0.6em;
-	font-size: inherit;
-	line-height: inherit;
 	text-align: justify;
 }
 
 .marginnote p:last-child {
 	margin-bottom: 0;
+}
+
+/* Lists keep note typography, with indentation sized for the narrow column. */
+.marginnote :where(ol, ul, dl) {
+	padding-inline-start: 1.5em;
 }
 
 @media (min-width: 761px) {
@@ -772,11 +802,6 @@ sup.footnote-ref {
 		inline-size: 27.5cqi;
 		margin-inline-end: -33cqi;
 	}
-}
-
-/* Fix code size in margin notes (including inside links) */
-.marginnote code {
-	font-size: inherit;
 }
 
 /*******************************************************************************
