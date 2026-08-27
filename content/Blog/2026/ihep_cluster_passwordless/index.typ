@@ -3,6 +3,7 @@
   title: [True passwordless SSH login to IHEP cluster],
   tag: ("IHEP", "SSH", "Linux"),
   date: datetime(year: 2026, month: 8, day: 24),
+  lang: "en",
   comments: true,
 )
 #show: template.with(..post)
@@ -30,11 +31,9 @@ to both the login node and AFS #footnote[
   this also works for IHEP cluster without much modification. 
 ].
 
-+ Create a Kerberos configuration file `/etc/krb5.conf.d/IHEP_AC_CN` #footnote[
-    Can also be `~/.krb5.conf` or any user defined path, but in that case, you'll need to set
-    `KRB5_CONFIG` to point to the file.
-  ] 
-  with the following content:
++ #figure(
+    caption: [Kerberos realm configuration in `/etc/krb5.conf.d/IHEP_AC_CN`. This can also be `~/.krb5.conf` or any user-defined path; in that case, set `KRB5_CONFIG` to point to the file.],
+    [
   ```
   [realms]
    IHEPKRB5 = {
@@ -48,7 +47,11 @@ to both the login node and AFS #footnote[
    .ihep.ac.cn = IHEPKRB5
    ihep.ac.cn = IHEPKRB5
   ```
-+ Update your `~/.ssh/config` to include the following lines:
+    ],
+  )
++ #figure(
+    caption: [SSH host configuration in `~/.ssh/config`; replace `<username>` with your IHEP username],
+    [
   ```
   Host lx
      HostName                   lxlogin.ihep.ac.cn
@@ -58,7 +61,8 @@ to both the login node and AFS #footnote[
      GSSAPIDelegateCredentials  yes
      GSSAPITrustDns             yes
   ```
-  replacing `<username>` with your IHEP username. 
+    ],
+  )
 + Run `kinit <username>@IHEPKRB5` to obtain a Kerberos ticket. You will be prompted for your password.
 + Now you can log in to the cluster (`ssh lx`) without entering your password again, until the Kerberos ticket expires.
 

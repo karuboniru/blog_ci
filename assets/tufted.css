@@ -377,6 +377,16 @@ dl pre {
 	width: 100%;
 }
 
+/*
+ * Tufte CSS limits every figure to 55% of its containing block. A figure
+ * inside a list would therefore be limited to 55% of the already-narrow
+ * list column. Keep the list indentation, but do not narrow its figures a
+ * second time.
+ */
+:is(li, dd) > figure {
+	max-width: 100%;
+}
+
 /* Code blocks in figures */
 figure pre {
 	width: 100%;

@@ -22,7 +22,12 @@ MathJax 实验: $mat(delim: "[", a, b; c, d)$, 不过评论区貌似有一些奇
 
 Code Block 实验：
 
+#figure(
+  caption: [代码块显示实验],
+  [
 ```
 [ -1 ]
 [ 2 ]
 ```
+  ],
+)

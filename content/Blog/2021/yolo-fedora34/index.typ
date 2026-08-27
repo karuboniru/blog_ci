@@ -23,30 +23,65 @@ Fedora 34 （在 2021 年 3 月 15 日）还处于 Prerelease 状态，虽然我
 = 总之先搞一个快照
 顺便把快照传出去：
 
+#figure(
+  caption: [创建并导出 Fedora 33 的 Btrfs 快照],
+  [
 ```bash
 sudo btrfs sub snap -r / /.snapshot/fedora-33
 sudo btrfs send /.snapshot/fedora-33 | pigz --best > /any/path/fedora-33.btrfs.gz
 ```
+  ],
+)
 
 = 众所周知的升级过程
+#figure(
+  caption: [将系统升级至 Fedora 34],
+  [
 ```bash
 sudo dnf system-upgrade download --refresh --releasever=34
 sudo dnf system-upgrade reboot
 ```
+  ],
+)
 
-#html.img(src: "https://cdn.yanqiyu.info/20210315113127.png") 平平稳稳的重启，祈祷不要翻车。
+#figure(
+  caption: [升级后的 Fedora 34 桌面],
+  html.img(src: "https://cdn.yanqiyu.info/20210315113127.png"),
+)
+
+平平稳稳的重启，祈祷不要翻车。
 
 = 使用 Gnome 40 是一种怎样的体验
-说实话，第一眼看到 Gnome 40 的时候还是很喜欢这个设计的， #html.img(src: "https://cdn.yanqiyu.info/20210315113321.png") 虽然比较浪费纵向空间，但是好看啊。
+说实话，第一眼看到 Gnome 40 的时候还是很喜欢这个设计的。
+
+#figure(
+  caption: [Gnome 40 的活动概览],
+  html.img(src: "https://cdn.yanqiyu.info/20210315113321.png"),
+)
+
+虽然比较浪费纵向空间，但是好看啊。
 
 并且登陆就进入这个界面，比登陆就面对空无一物的桌面要好多了。
 
-还有一个没怎么被翻译的 Tour 应用，设置翻译也缺一些火候。想必是 Beta 版本的原因吧。 #html.img(src: "https://cdn.yanqiyu.info/20210315113443.png") #html.img(src: "https://cdn.yanqiyu.info/20210315113609.png")
+还有一个没怎么被翻译的 Tour 应用，设置翻译也缺一些火候。想必是 Beta 版本的原因吧。
+
+#figure(
+  caption: [Fedora 34 Beta 中尚未完整翻译的 Tour 与设置界面],
+  [
+    #html.img(src: "https://cdn.yanqiyu.info/20210315113443.png")
+    #html.img(src: "https://cdn.yanqiyu.info/20210315113609.png")
+  ],
+)
 
 = 蹬蹬咚
 一切都是好的…直到我开始准备在 Telegram 吹水…
 
-发现我的输入法 Panel 变回了 Fcitx5 的界面（而不是 kimpanel 的界面）。于是赶紧检查 Gnome 插件状态： #html.img(src: "https://cdn.yanqiyu.info/20210315114401.jpg")
+发现我的输入法 Panel 变回了 Fcitx5 的界面（而不是 kimpanel 的界面）。于是赶紧检查 Gnome 插件状态：
+
+#figure(
+  caption: [升级后全部失效的 Gnome 扩展],
+  html.img(src: "https://cdn.yanqiyu.info/20210315114401.jpg"),
+)
 
 好家伙，我的插件全部炸了。
 

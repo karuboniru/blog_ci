@@ -18,7 +18,12 @@
 = 遇到问题
 因为给最近在学习 Geant 4, 在老师的要求下准备写一个程序模拟获得质子行进的 $frac(upright(d) E, upright(d) x)$ 数据, 一开始我直接记录下每个 Step 的能量损失以及 `PostStepPoint` 对应的坐标. 然后对于质子穿透范围划成多个 bin, 将能量沉积填入其中.
 
-但是事与愿违: 我得到了这样的直方图: #html.img(src: "https://cdn.yanqiyu.info/20200506185055.png")
+但是事与愿违: 我得到了这样的直方图:
+
+#figure(
+  caption: [最初得到的能量沉积直方图],
+  html.img(src: "https://cdn.yanqiyu.info/20200506185055.png"),
+)
 
 它不正常, 一个质子行进的 $frac(upright(d) E, upright(d) x)$ 作图应该表现为单峰结构: #link("https://en.wikipedia.org/wiki/Bragg_peak")[Bragg Peak]. 但是可以看到在$x = 5 thin upright(c m)$ 上出现一个峰值.
 
@@ -27,7 +32,15 @@ OK, 出现了问题就去找问题.
 = 寻找源头
 #strong[理应]$x = 5 thin upright(c m)$附近不会有任何特殊性质, 至少在我的代码中 -- 说明问题出在 Geant 4, 我有什么地方用错了! 于是作图寻找什么与我的预期不一致:
 
-#html.img(src: "https://cdn.yanqiyu.info/20200513163759.png") #html.img(src: "https://cdn.yanqiyu.info/20200513163953.png") 这两张图是我觉得提示了不一致的地方:
+#figure(
+  caption: [提示模拟结果存在不一致的步长分布],
+  [
+    #html.img(src: "https://cdn.yanqiyu.info/20200513163759.png")
+    #html.img(src: "https://cdn.yanqiyu.info/20200513163953.png")
+  ],
+)
+
+这两张图是我觉得提示了不一致的地方:
 
 - 步长比我想象中的长, 我预期 $1 thin upright(c m)$ 长度会有数十次碰撞, 但是 Geant 4 追踪出现了数厘米的长度的 Step.
 - 步长被截断, 在 $5 thin upright(c m)$ 附近.
@@ -52,6 +65,9 @@ OK, 问题成因就很容易了解了, 因为有相当事例的 Step 跨越了�
 
 跑去看一眼 `TestEM11` 的代码:
 
+#figure(
+  caption: [`TestEM11` 中随机化能量沉积位置的实现],
+  [
 ```cpp
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
@@ -71,10 +87,17 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 ...
 }
 ```
+  ],
+)
 
 马上干一样的事情:
 
-#html.img(src: "https://cdn.yanqiyu.info/20200510175013.png") 修好了, 美妙.
+#figure(
+  caption: [随机化沉积位置后修正的直方图],
+  html.img(src: "https://cdn.yanqiyu.info/20200510175013.png"),
+)
+
+修好了, 美妙.
 
 = 经验
 - 蒙特卡洛模拟的时候, 一个均匀的随机数可以充当平均

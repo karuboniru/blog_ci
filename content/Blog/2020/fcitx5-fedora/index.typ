@@ -38,29 +38,40 @@
 
 = 环境变量和自启动
 == 对于 KDE 用户
+#figure(
+  caption: [为 KDE 选择 Fcitx 5 的全局输入法配置],
+  [
 ```bash
 $ sudo alternatives --config xinputrc
 ```
+  ],
+)
 
 即可修改全局输入法配置。但是想要修改自己的输入法配置可以考虑 im-settings 或者下面的方法。
 
 == 通用办法
-写一个
-
+#figure(
+  caption: [`~/.config/environment.d/00-fcitx5.conf` 的内容],
+  [
 ```
 INPUT_METHOD=fcitx5
 GTK_IM_MODULE=fcitx5
 QT_IM_MODULE=fcitx5
 XMODIFIERS=@im=fcitx5
 ```
-
-放到 `~/.config/environment.d/00-fcitx5.conf`
+  ],
+)
 
 然后运行（当然 `ln -s` 可以换成 `cp`）
 
+#figure(
+  caption: [将 Fcitx 5 添加到用户自启动目录],
+  [
 ```bash
 $ ln -s /usr/share/applications/fcitx5.desktop ~/.config/autostart/
 ```
+  ],
+)
 
 同样#strong[注销之后重新登陆]就会生效。
 
@@ -81,9 +92,14 @@ $ ln -s /usr/share/applications/fcitx5.desktop ~/.config/autostart/
 
 安装的话还是推荐安装 git 的版本，因为官方的还没有更新：
 
+#figure(
+  caption: [Kimpanel 扩展的 Git 仓库],
+  [
 ```
 https://github.com/wengxt/gnome-shell-extension-kimpanel
 ```
+  ],
+)
 
 安装依赖：gettext cmake 后直接在目录下运行 ./install.sh 就可以了，记得把原本的插件删掉再装。
 ]

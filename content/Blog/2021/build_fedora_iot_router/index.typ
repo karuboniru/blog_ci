@@ -4,6 +4,7 @@
 #let post = (
   title: [Building a router based on Fedora IoT],
   date: datetime(year: 2021, month: 12, day: 1),
+  lang: "en",
   tag: ("Linux",),
   comments: true,
 )
@@ -21,6 +22,9 @@ As described in #link("https://getfedora.org/en/iot/")[this page], Fedora IoT is
 = Setup lan bridge and assgin Firewall-zone
 In my device I have `enp1s0` as wan port and `enp[2-4]s0` as lan ports. Those lan ports should be bridged to `br0` bridge.
 
+#figure(
+  caption: [NetworkManager configuration for the WAN port and LAN bridge],
+  [
 ```
 nmcli connection modify enp1s0 connection.zone external
 nmcli connection add ifname br0 type bridge con-name br0 bridge.stp no ipv4.addresses 192.168.100.1/24 ipv4.method manual ipv6.addresses fdcc::1/64 ipv6.method manual connection.zone internal ipv4.may-fail no ipv6.may-fail no
@@ -28,27 +32,42 @@ nmcli connection add type bridge-slave ifname enp2s0 master br0
 nmcli connection add type bridge-slave ifname enp3s0 master br0
 ... (and for all other lan ports)
 ```
+  ],
+)
 
 Theoretically, If your ISP provides ipv6-PD, you can just set `ipv6.method` to `shared` and remove the `ipv6.addresses` part, NetworkManager will do prefix delegation on lan network. If you are also setting `ipv4.method shared`, you can even ignore the step setting up dhcp and route advertisement, NetworkManager will do it for you in this case.
 
 = Setup firewall
 == Enable masquerading on wan
+#figure(
+  caption: [Enable IPv4 and IPv6 masquerading on the WAN zone],
+  [
 ```
 firewall-cmd --zone=external --add-masquerade --permanent
 firewall-cmd --zone=external --add-rich-rule='rule family="ipv6" masquerade' --permanent
 ```
+  ],
+)
 
 This allows masquerading for both ipv4 and ipv6.
 
 == Allow some services on lan
+#figure(
+  caption: [Allow DHCP and DNS on the LAN zone],
+  [
 ```
 firewall-cmd --zone=internal --add-service=dhcp --permanent
 firewall-cmd --zone=internal --add-service=dns --permanent
 ```
+  ],
+)
 
 If you need more service just list them here.
 
 == Allow traffic to be forwarded from lan to wan
+#figure(
+  caption: [Firewall policy forwarding LAN traffic to the WAN],
+  [
 ```
 firewall-cmd --new-policy=router --permanent
 firewall-cmd --policy=router --add-ingress-zone internal --permanent
@@ -56,17 +75,25 @@ firewall-cmd --policy=router --add-egress-zone external --permanent
 firewall-cmd --policy=router --set-target ACCEPT --permanent
 firewall-cmd --policy=router --add-rich-rule='rule tcp-mss-clamp value=pmtu' --permanent
 ```
+  ],
+)
 
 == Disable SSH from wan (optional)
+#figure(
+  caption: [Optionally disable SSH access from the WAN],
+  [
 ```
 firewall-cmd --zone=external --remove-service=ssh --permanent
 ```
+  ],
+)
 
 Finally `firewall-cmd --reload` to apply the changes.
 
 = Setup dnsmasq
-Edit `/etc/dnsmasq.d/router.conf` and add the following lines:
-
+#figure(
+  caption: [`/etc/dnsmasq.d/router.conf`],
+  [
 ```
 port=0
 bogus-priv
@@ -84,23 +111,31 @@ dhcp-option=option6:dns-server,[fccd::1]
 enable-ra
 dhcp-range=fccd::, ra-stateless
 ```
+  ],
+)
 
 I disabled the dns server on lan ports since I will be using AdGuard Home instead. If you want to enable, just remove `port=0` and add `server ...` pointing to upstream dns server to the file. Also, you can specify `dns-dhcp-option=option:dns-server, ...` to your upstream servers.
 
-Then edit `/etc/systemd/system/dnsmasq.service.d/override.conf` and add the following lines:
-
+#figure(
+  caption: [`/etc/systemd/system/dnsmasq.service.d/override.conf`],
+  [
 ```
 [Unit]
 After=network-online.target
 ```
+  ],
+)
 
 to avoid early starting of dnsmasq, which may cause failure due to br0 is not ready.
 
 Then, just run `systemctl daemon-reload` and `systemctl enable --now dnsmasq` to apply the changes and start dnsmasq.
 
 = AdGuard Home
-AdGuard Home is a free and open source DNS filtering software. It is designed to block ads, malware, and other unwanted content. It is available via docker hub, we could use podman to run it. Create file `/etc/systemd/system/container-adguardhome.service` and add the following lines:
+AdGuard Home is a free and open source DNS filtering software. It is designed to block ads, malware, and other unwanted content. It is available via docker hub, we could use podman to run it.
 
+#figure(
+  caption: [`/etc/systemd/system/container-adguardhome.service`],
+  [
 ```
 [Unit]
 Description=Podman container-adguardhome.service
@@ -123,6 +158,8 @@ NotifyAccess=all
 [Install]
 WantedBy=multi-user.target 
 ```
+  ],
+)
 
 And do `mkdir -p /var/lib/adg/confdir /var/lib/adg/work` `systemctl daemon-reload` and `systemctl enable --now container-adguardhome.service` to enable and start AdGuard Home. And you should go to `http://192.168.100.1:3000` to configure your AdGuard Home.
 
@@ -133,6 +170,9 @@ At this point, you can find devices connected to lan ports can access network no
 = Auto-updating system image
 `rpm-ostree` don't ship with a automatic update service that reboots for you, we can make a service on our own:
 
+#figure(
+  caption: [`/etc/systemd/system/os-update.service` and `/etc/systemd/system/os-update.timer`],
+  [
 ```
 # /etc/systemd/system/os-update.service
 [Unit]
@@ -156,6 +196,8 @@ OnCalendar=*-*-* 04:00:00
 [Install]
 WantedBy=timers.target
 ```
+  ],
+)
 
 And then, we can enable and start the service: `systemctl daemon-reload && systemctl enable --now os-update.timer` This will check updates on `4:00` local time daily and reboot if there is any updates.
 
@@ -165,8 +207,11 @@ Execute `systemctl enable --now podman-auto-update.timer` to tell podman to chec
 #html.hr()
 
 = Allow podman containers to access ipv6 via nat
-If you want to set ipv6 dns in AdGuard Home as upstream, it can fail since podman don't provide ipv6 for container by default, but you can enable by changing `/etc/cni/net.d/87-podman.conflist` to
+If you want to set ipv6 dns in AdGuard Home as upstream, it can fail since podman don't provide ipv6 for container by default, but you can enable it with the following configuration.
 
+#figure(
+  caption: [`/etc/cni/net.d/87-podman.conflist` with IPv6 enabled],
+  [
 ```
 {
   "cniVersion": "0.4.0",
@@ -212,5 +257,7 @@ If you want to set ipv6 dns in AdGuard Home as upstream, it can fail since podma
   ]
 }
 ```
+  ],
+)
 
 And restart container, ipv6 will be available then.

@@ -6,6 +6,7 @@
 #let post = (
   title: [Singleton Patterns are DANGEROUS (when used across the border of shared libraries)],
   date: datetime(year: 2023, month: 11, day: 12),
+  lang: "en",
   tag: ("C++",),
   comments: true,
 )
@@ -20,6 +21,9 @@ Consider the case where you have a beautiful logger class, which is a singleton,
 
 In the object, codes can be like following:
 
+#figure(
+  caption: [Logging during global object construction],
+  [
 ```cpp
 sth::sth(){
   logger::instance().log("sth is being constructed");
@@ -35,6 +39,8 @@ sth::~sth(){
 // in following pattern
 static auto whatever = sth::instance().do_something();
 ```
+  ],
+)
 
 In this case, you might think that the order of initialization and deinitialization of the logger and the object is guaranteed. Since C++ standard seems to guarantee that for objects with static storage duration they are destructed as if `std::atexit` called is right after the completion of the constructor of the object to book the operation of destruction.
 
@@ -45,13 +51,21 @@ The point of #link("https://github.com/karuboniru/singleton_pitfall/")[this repo
 
 Just compile the project:
 
+#figure(
+  caption: [Build the example project],
+  [
 ```
 mkdir build && cd build && cmake .. && cmake --build . 
 ```
+  ],
+)
 
 And run it:
 
 - `./wrong` 
+  #figure(
+    caption: [Output from the incorrectly ordered executable],
+    [
   ```
   Start of sth::sth(), I will try to put logs  
   logger::logger() you can start putting logs now  
@@ -59,9 +73,14 @@ And run it:
   LOG     sth::do_something() is called  logger::~logger() you should not being putting logs anymore  
   LOG     I am dead, I cannot put logs anymore. But I will try to put this log: std is being deinitialized
   ```
+    ],
+  )
 
 - `./right{,1,2}`
 
+  #figure(
+    caption: [Output from the correctly ordered executables],
+    [
   ```
   Start of sth::sth(), I will try to put logs
   logger::logger() you can start putting logs now
@@ -71,6 +90,8 @@ And run it:
   LOG     std is being deinitialized
   logger::~logger() you should not being putting logs anymore
   ```
+    ],
+  )
 
 It seems to be legal in C++ standard that the order don't matter when things goes to beyond the boundary of shared libraries. There are some discussions #link("https://stackoverflow.com/questions/54562874/destruction-order-of-static-objects-in-shared-libraries")[here] you can refer to.
 
@@ -94,6 +115,9 @@ Now we are starting the program:
 
 - When `main()` is about to return, `exit_function_list` looks lile:
 
+  #figure(
+    caption: [Order of exit-function registration],
+    [
   ```
               dl_init()                          __libc_start_main_impl()
                   │                                │                 │
@@ -110,6 +134,8 @@ Now we are starting the program:
   │        Dynamic Libraries         │               │            Main.o                │    Ordinary Control Flow   │
   └──────────────────────────────────┴───────────────┴──────────────────────────────────┴────────────────────────────┘
   ```
+    ],
+  )
 
 - When program exits, `__GI_exit` will be called and it will call `__run_exit_handlers`, which will iterate through the `exit_function_list` structure and call the destructors in the reverse order of initialization.
 

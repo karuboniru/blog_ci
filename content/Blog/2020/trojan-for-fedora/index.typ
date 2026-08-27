@@ -21,12 +21,17 @@
 = Update 20/6/22
 已经可用
 
+#figure(
+  caption: [Fedora 仓库中的 Trojan 软件包信息],
+  [
 ```
 Package: trojan-1.16.0-4.fc33
 Summary: An unidentifiable mechanism that helps you avoid censorship
 RPMs:    trojan
 Size:    1.54 MiB
 ```
+  ],
+)
 
 = 接下来是 clash
 Clash 已经在 fedora 官方源可用!

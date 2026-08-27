@@ -7,6 +7,7 @@
 #let post = (
   title: [Build your own fedora OSTree Remix],
   date: datetime(year: 2025, month: 2, day: 19),
+  lang: "en",
   tag: ("Fedora", "rpm-ostree", "Linux"),
   comments: true,
 )
@@ -30,14 +31,22 @@ This guide shows you how to build your own Fedora OSTree Remix from scratch usin
 = Writing your own rpm-ostree Tree configuration
 The customization process starts with fedora's official `workstation-ostree-config` repo:
 
+#figure(
+  caption: [Clone the Fedora workstation OSTree configuration],
+  [
 ```bash
 git clone https://pagure.io/workstation-ostree-config.git
 cd workstation-ostree-config
 git checkout f41 # or any fedora version
 ```
+  ],
+)
 
 Assume you are a fan of `silverblue`, then you start with `cp silverblue.yaml myremix.yaml` and start editing `myremix.yaml` to your liking by adding something like (for example to add `fcitx5` and compilers):
 
+#figure(
+  caption: [Add packages to `myremix.yaml`],
+  [
 ```yaml
 packages:
   - fcitx5
@@ -51,12 +60,15 @@ packages:
   - gcc-gfortran
   - llvm
 ```
+  ],
+)
 
 More possible configuration can be found in the #link("https://coreos.github.io/rpm-ostree/treefile/")[official documentation].
 
 = Building the OSTree with GitHub Actions
-The action file that do the build looks like following, the `${{ vars.COMPOSEFILE }}` can be replaced with the file name you created in the previous step:
-
+#figure(
+  caption: [GitHub Actions workflow for building the OSTree container image; replace `${{ vars.COMPOSEFILE }}` with the compose file created above],
+  [
 ```yaml
 name: Build Ostree Container Image
 on:
@@ -99,22 +111,30 @@ jobs:
             $composefile \
             $registry/$image:$tag
 ```
+  ],
+)
 
 Commit all those changes, and publish everything to a GitHub repository. The action will run every 8 hours and build the image that looks like #link("https://github.com/karuboniru/karuboniru-workstation/pkgs/container/karuboniru-workstation/358447376?tag=f41")[this].
 
 Given the image is built, and available through `ghcr.io/karuboniru/karuboniru-workstation:f41`. You can now pull the image and deploy it on your system:
 
+#figure(
+  caption: [Rebase a system onto the custom OSTree image],
+  [
 ```bash
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/karuboniru/karuboniru-workstation:f41
 reboot
 ```
+  ],
+)
 
 and you are now using own Fedora OSTree Remix.
 
 = Some useful customizations
 == howdy
-The following file is `howdy.repo` that refers to the copr:
-
+#figure(
+  caption: [`howdy.repo` for the Howdy Copr],
+  [
 ```ini
 [howdy]
 name=Copr repo for howdy-beta owned by principis
@@ -127,9 +147,14 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 ```
+  ],
+)
 
 and a `YAML` tree that handles the installation and SELinux policy:
 
+#figure(
+  caption: [OSTree configuration for Howdy and its SELinux policy],
+  [
 ```yaml
 packages:
   - howdy 
@@ -167,17 +192,25 @@ postprocess:
     # workaround for canceling authentication in sudo/polkit
     # sed -i '1i auth sufficient pam_unix.so try_first_pass likeauth nullok' /etc/pam.d/system-auth
 ```
+  ],
+)
 
-Finally add the `howdy.yaml` to the `myremix.yaml` file, under the `include` array:
-
+#figure(
+  caption: [Include `howdy.yaml` from `myremix.yaml`],
+  [
 ```yaml
 include:
   // ...
   - howdy.yaml
   // ...
 ```
+  ],
+)
 
 == IWD
+#figure(
+  caption: [OSTree configuration replacing `wpa_supplicant` with IWD],
+  [
 ```yaml
 packages:
   - iwd
@@ -190,10 +223,15 @@ postprocess:
 exclude-packages:
   - wpa_supplicant
 ```
+  ],
+)
 
 == NVIDIA Drivers
 Due to #link("https://github.com/coreos/rpm-ostree/issues/4983")[some reason], simply adding the related packages won't work during a compose, and everything related to `akmods` should be avoided here. For this reason, a "dummy" package is created to install the drivers packages without pulling in `akmods`:
 
+#figure(
+  caption: [`dummy.repo` used to install NVIDIA driver packages without Akmods],
+  [
 ```ini
 # dummy.repo
 [dummy]
@@ -218,9 +256,14 @@ gpgcheck=0
 repo_gpgcheck=0
 skip_if_unavailable=True
 ```
+  ],
+)
 
 And the `YAML` tree:
 
+#figure(
+  caption: [OSTree configuration for the dummy NVIDIA repository and packages],
+  [
 ```yaml
 repos:
   - fedora-41
@@ -258,6 +301,8 @@ postprocess:
       make -O V=1 VERBOSE=1 CC='gcc -O2' LD=ld.bfd KERNEL_UNAME=${kernel_uname} modules_install
     fi
 ```
+  ],
+)
 
 = When New Fedora Release
 Just switch to new branches, and cherry-pick the changes from the previous branch, push the new branch and do another rebase.

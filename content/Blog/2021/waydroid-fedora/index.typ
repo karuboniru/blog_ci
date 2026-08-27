@@ -4,6 +4,7 @@
 #let post = (
   title: [Waydroid on Fedora],
   date: datetime(year: 2021, month: 10, day: 25),
+  lang: "en",
   tag: ("Linux",),
   comments: true,
 )
@@ -28,13 +29,19 @@ Fedora don't ship kernel with Ashmem and Binder support, we need to build on our
 
 Then install required package to build kernel by `sudo dnf install mock fedpkg`. Clone fedora's kernel packaging files:
 
+#figure(
+  caption: [Clone the Fedora kernel package sources],
+  [
 ```
 fedpkg clone -a kernel
 git checkout f34 # use your fedora release version
 ```
+  ],
+)
 
-Add following lines to `kernel-local` file:
-
+#figure(
+  caption: [Kernel options required by Waydroid in `kernel-local`],
+  [
 ```
 CONFIG_ASHMEM=y
 CONFIG_ANDROID=y
@@ -44,6 +51,8 @@ CONFIG_STAGING=y
 CONFIG_ANDROID_BINDERFS=n
 CONFIG_ANDROID_BINDER_IPC_SELFTEST=n
 ```
+  ],
+)
 
 Then open kernel.spec, find `./process_configs.sh $OPTS kernel %{rpmversion}` and change it to `./process_configs.sh $OPTS kernel %{rpmversion} ||:`.
 
@@ -52,13 +61,19 @@ Finally, execute `fedpkg mockbuild`, wait for several minutes, you will find bui
 = Install Waydroid
 I have build waydroid in Copr, you can find them #link("https://copr.fedorainfracloud.org/coprs/yanqiyu/waydroid/")[here]. And install them by
 
+#figure(
+  caption: [Install Waydroid from Copr],
+  [
 ```
 sudo dnf copr enable yanqiyu/waydroid
 sudo dnf install waydroid
 ```
+  ],
+)
 
-If you are using kernel from XanMod, you may need to change `/etc/gbinder.d/anbox.conf` to
-
+#figure(
+  caption: [`/etc/gbinder.d/anbox.conf` for a XanMod kernel],
+  [
 ```
 [Protocol]
 /dev/anbox-binder = aidl2
@@ -70,14 +85,21 @@ If you are using kernel from XanMod, you may need to change `/etc/gbinder.d/anbo
 /dev/anbox-vndbinder = aidl2
 /dev/anbox-hwbinder = hidl
 ```
+  ],
+)
 
 Then just follow #link("https://waydro.id/")[Official Waydroid Website]
 
+#figure(
+  caption: [Initialize and start Waydroid],
+  [
 ```
 sudo waydroid init
 sudo systemctl start waydroid-container
 waydroid show-full-ui
 ```
+  ],
+)
 
 To begin using Waydroid.
 
@@ -98,6 +120,9 @@ By default, you are getting wrong colors in Waydroid if you are on Gnome, you ca
 
 The patched mutter for f35 in available in #link("https://copr.fedorainfracloud.org/coprs/yanqiyu/mutter-bgr/")[copr] or build on your own with patch:
 
+#figure(
+  caption: [Patch Mutter to correct BGR buffer formats],
+  [
 ```patch
 --- mutter-41.0/src/wayland/meta-wayland-dma-buf.c  2021-09-19 21:37:45.655426700 +0800
 +++ mutter-41.0-patched/src/wayland/meta-wayland-dma-buf.c  2021-10-26 15:56:05.667487234 +0800
@@ -128,3 +153,5 @@ The patched mutter for f35 in available in #link("https://copr.fedorainfracloud.
    send_modifiers (resource, DRM_FORMAT_ABGR2101010);
    send_modifiers (resource, DRM_FORMAT_XRGB2101010);
 ```
+  ],
+)

@@ -23,18 +23,26 @@
 
 Ubuntu 上我也试过, #strong[但是不能正常显示(窗口啥都没有)], 但是 #strong[Android 跑起来了], 可能是 SDL 的锅. 跑 #strong[Arch] 的 WSL 也能跑起来 #strong[步骤几乎相同].
 
+#figure(
+  caption: [从 Copr 安装 Anbox],
+  [
 ```bash
 $ sudo dnf copr enable yanqiyu/anbox
 $ sudo dnf install anbox
 ```
+  ],
+)
 
 = 从源代码编译
 你需要 #link("https://github.com/anbox/anbox-modules")[anbox-modules] 和 #link("https://github.com/microsoft/WSL2-Linux-Kernel/releases")[kernel] 的源代码. 内核源代码选择和你的 WSL 一致的版本(`uname -r`).
 
 我这儿是 `4.19.84-microsoft-standard`, 下面的步骤以此为例, 如果你的版本不一样, 直接换掉版本就成.
 
-解压并准备好编译. (我把它解压到了 `~/WSL2-Linux-Kernel-4.19.84-microsoft-standard`).
+解压并准备好编译.
 
+#figure(
+  caption: [在 `~/WSL2-Linux-Kernel-4.19.84-microsoft-standard` 中准备内核模块编译环境],
+  [
 ```bash
 $ cd WSL2-Linux-Kernel-4.19.84-microsoft-standard
 $ cp /proc/config.gz ./
@@ -46,9 +54,14 @@ $ make modules_prepare
 $ sudo mkdir -p /lib/modules/4.19.84-microsoft-standard
 $ sudo ln /home/(USERNAME)/WSL2-Linux-Kernel-4.19.84-microsoft-standard -s /lib/modules/4.19.84-microsoft-standard/build
 ```
+  ],
+)
 
 编译模块
 
+#figure(
+  caption: [使用 DKMS 编译并安装 Anbox 内核模块],
+  [
 ```bash
 $ git clone https://github.com/anbox/anbox-modules.git
 $ sudo cp -rT ashmem /usr/src/anbox-ashmem-1
@@ -56,20 +69,32 @@ $ sudo cp -rT binder /usr/src/anbox-binder-1
 $ sudo dkms install anbox-ashmem/1
 $ sudo dkms install anbox-binder/1
 ```
+  ],
+)
 
 安装模块
 
+#figure(
+  caption: [加载 Anbox 内核模块],
+  [
 ```bash
 $ sudo modprobe ashmem_linux
 $ sudo modprobe binder_linux
 ```
+  ],
+)
 
 可能会有报错, 完全正常, 只要下面的命令输出提示模块正常工作就行
 
+#figure(
+  caption: [检查 Anbox 内核模块与设备节点],
+  [
 ```bash
 $ lsmod | grep -e ashmem_linux -e binder_linux
 $ ls -alh /dev/binder /dev/ashmem
 ```
+  ],
+)
 
 = 安装 Android 镜像
 在 #link("https://build.anbox.io/android-images")[这里] 下载 Android 镜像
@@ -78,27 +103,40 @@ $ ls -alh /dev/binder /dev/ashmem
 
 = 启动 anbox!
 == 提前准备
+#figure(
+  caption: [启动 Anbox 前的环境准备],
+  [
 ```bash
 $ export $(dbus-launch)
 $ mkdir /tmp/runtime-user
 $ export XDG_RUNTIME_DIR=/tmp/runtime-user
 ```
+  ],
+)
 
 == 运行!
+#figure(
+  caption: [启动 Anbox 网络桥、容器与应用管理器],
+  [
 ```bash
 $ sudo /usr/share/anbox/anbox-bridge.sh start
 $ sudo daemonize /usr/bin/anbox container-manager --daemon --privileged --data-path=/var/lib/anbox
 $ anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity
 ```
+  ],
+)
 
 = 修复网络
-使用 `/usr/share/anbox/anbox-shell.sh` 的脚本获得 Anbox 中的管理员权限
-
+#figure(
+  caption: [通过 `/usr/share/anbox/anbox-shell.sh` 取得管理员权限后修复 Anbox 网络],
+  [
 ```bash
 ip route add default dev eth0 via 192.168.250.1
 ip rule add pref 32766 table main
 ip rule add pref 32767 table local
 ```
+  ],
+)
 
 = 效果
 #figure(html.img(src: "https://cdn.yanqiyu.info/20200404211503.webp"),

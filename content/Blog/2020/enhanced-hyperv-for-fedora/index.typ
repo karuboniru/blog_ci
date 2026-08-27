@@ -18,26 +18,46 @@
 - 剪切板共享没有
 
 = TL;DR, 使用增强模式
+#figure(
+  caption: [在 Fedora 虚拟机中安装增强会话配置],
+  [
 ```bash
 $ git clone https://github.com/karuboniru/linux-vm-tools.git
 $ cd linux-vm-tools/fedora
 $ sudo ./install-config.sh
 ```
+  ],
+)
 
 虚拟机关机, 打开 PowerShell （需要管理员权限）
 
+#figure(
+  caption: [在管理员 PowerShell 中启用 Hyper-V 增强会话传输],
+  [
 ```
 PowerShell> Set-VM -VMName <your_vm_name> -EnhancedSessionTransportType HvSocket
 ```
+  ],
+)
 
 重新打开虚拟机即可
 
 = 效果
-#html.img(src: "https://cdn.yanqiyu.info/20200822104108.png") #html.img(src: "https://cdn.yanqiyu.info/20200822103957.png") #html.img(src: "https://cdn.yanqiyu.info/20200822103919.png")
+#figure(
+  caption: [Fedora 虚拟机的 Hyper-V 增强会话效果],
+  [
+    #html.img(src: "https://cdn.yanqiyu.info/20200822104108.png")
+    #html.img(src: "https://cdn.yanqiyu.info/20200822103957.png")
+    #html.img(src: "https://cdn.yanqiyu.info/20200822103919.png")
+  ],
+)
 
 = Detail: 你多干了啥
 主要是为了让 SELinux 高兴增加了模块：
 
+#figure(
+  caption: [允许 xrdp 使用 VSOCK 的 SELinux 模块],
+  [
 ```
 module allow-vsock 1.0;
  
@@ -50,6 +70,8 @@ require {
 #============= unconfined_service_t ==============
 allow unconfined_service_t unlabeled_t:vsock_socket { getattr read write };
 ```
+  ],
+)
 
 但是新版本的 xrdp 貌似自带类似的模块，但是为了保证开箱即用就还是加上吧。
 

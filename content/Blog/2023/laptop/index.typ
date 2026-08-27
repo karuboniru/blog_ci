@@ -29,7 +29,15 @@
 小时候的心理阴影按下不表，总而言之，我直接就梭哈了 `Lenovo ThinkBook 14 G5+ IRH`，本想买锐龙的笔记本，但是因为现在只有皮套CPU，正儿八经的 `zen4` 还没影，于是只能转向Intel。又本着亏自己不能亏电脑的心态自己上了 `i7-13700H+32G` 的版本。
 
 = 到手后
-#html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-27.jpg") #html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-26.jpg") #html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-24.jpg") #html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-23.jpg")
+#figure(
+  caption: [ThinkBook 14+ 2022 的外观与接口],
+  [
+    #html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-27.jpg")
+    #html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-26.jpg")
+    #html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-24.jpg")
+    #html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-23.jpg")
+  ],
+)
 
 扩展性很不错，左侧一个全功能Type-C、一个雷电、一个普通的USB-A加上一个耳机口。右侧一个网线口（折叠的下侧盖子，插入网线不好拔）、一个普通的USB-A、SD插槽口，还有一个可以隐藏小接收器的USB仓（放无线鼠标接收器不会突出来一块）
 
@@ -46,6 +54,9 @@
 == 电源管理支持
 简单的说，很不错。Fedora自带的 `power-profiles-daemon` 相当的开箱即用。提供的`platform_profile` 我检查了一下是和BIOS设置里面的三种功耗模式对应的。
 
+#figure(
+  caption: [`powerprofilesctl` 显示的三种电源方案],
+  [
 ```
 powerprofilesctl list
   performance:
@@ -58,9 +69,14 @@ powerprofilesctl list
   power-saver:
     Driver:     platform_profile
 ```
+  ],
+)
 
 立刻写了个脚本，绑定到 `Fn+Q` 就可以用快捷键切换电源方案了。
 
+#figure(
+  caption: [绑定到 `Fn+Q` 的电源方案切换脚本],
+  [
 ```bash
 #!/bin/bash
 # get current power profile
@@ -88,6 +104,8 @@ if [ $battery_status -eq 1 ]; then
         notify-send "Power Profile" "Balanced"
     fi
 ```
+  ],
+)
 
 == 电池“保护模式”
 我也不知道咋个翻译，就是长期插电用的时候不把电充满的设计，启动就是 `echo 1 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode` 关闭就是改成 `echo 0` 。
@@ -103,4 +121,9 @@ if [ $battery_status -eq 1 ]; then
 
 #html.hr()
 
-最后是第一次见到Gnome鉴定为安全的设备，开眼了 #html.img(src: "https://cdn.yanqiyu.info/gnome.png")
+最后是第一次见到Gnome鉴定为安全的设备，开眼了。
+
+#figure(
+  caption: [Gnome 将连接的 Thunderbolt 设备标记为安全],
+  html.img(src: "https://cdn.yanqiyu.info/gnome.png"),
+)

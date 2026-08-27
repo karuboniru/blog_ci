@@ -19,13 +19,17 @@
 薅羊毛，就要薅到底
 ]
 
-#link("https://pages.dev/")[#html.img(src: "https://cdn.yanqiyu.info/20210306115901.png")]
+#figure(
+  caption: [Cloudflare Pages],
+  link("https://pages.dev/")[#html.img(src: "https://cdn.yanqiyu.info/20210306115901.png")],
+)
 
 突然发现 Cloudflare 的新静态网页托管服务结束了内测，变得可用。考虑到现在站点是 Github Pages + Cloudflare CDN 搭建，于是干脆一不做二不休换成 Cloudflare Pages 算了。 #strike[没有中间商赚差价] 我也不用粗暴的在每次 GitHub Actions 之后做一次缓存清除（以免 Cloudflare 缓存了旧的页面而没有及时更新）。
 
 切换到 Cloudflare Pages 整体上很容易，在 #link("https://pages.dev/")[Pages] 页面点击那个大大的黄色的 Get Started 按钮，按照指引授权 GitHub 权限、选择构建使用的仓库、最后设置构建的命令就完成了迁移… 好吧，这是最简单的情况，适用于你的站点只需要最简单的命令即可构建时，例如下表中的框架：
 
 #figure(
+  caption: [Cloudflare Pages 支持的框架、构建命令与输出目录],
   align(center)[#table(
     columns: (31.11%, 38.89%, 30%),
     align: (auto,auto,auto,),
@@ -69,6 +73,9 @@
 = 关于网页跳转
 虽然 CloudFlare Page #link("https://developers.cloudflare.com/pages/platform/redirects")[提供一定的跳转功能]，但是这个跳转不能跨域名。于是想要做一个 `www.yanqiyu.info` 到 `yanqiyu.info` 的跳转就需要借助 Worker 来完成。新建一个 Worker 填入
 
+#figure(
+  caption: [通过 Cloudflare Worker 将请求重定向到指定域名],
+  [
 ```javascript
 const base = "https://yanqiyu.info"
 const statusCode = 302
@@ -85,5 +92,7 @@ addEventListener("fetch",
   }
 )
 ```
+  ],
+)
 
 记得把 `base` 改成你的域名。然后设置 route 把你想要跳转的域名指向这个 Worker 就成了。

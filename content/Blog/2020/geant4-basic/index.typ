@@ -36,26 +36,41 @@
 
 然后在 WSL 中运行
 
+#figure(
+  caption: [在 `~/.bashrc` 中设置 WSL 的 XServer 地址],
+  [
 ```bash
 echo 'export DISPLAY=127.0.0.1:0' >> ~/.bashrc
 ```
+  ],
+)
 
 == 伪装 release 信息
 运行
 
+#figure(
+  caption: [在 WSL 中安装 Fedora release 信息],
+  [
 ```bash
 sudo dnf install fedora-release --allowerasing 
 ```
+  ],
+)
 
 WSL 配置至此结束，接下来是安装 Geant 4 以及 ROOT。
 
 = 安装 Geant 4
 运行
 
+#figure(
+  caption: [从 Copr 安装 Geant 4],
+  [
 ```bash
 sudo dnf copr enable yanqiyu/geant4
 sudo dnf install geant4 geant4-data geant4-devel geant4-examples
 ```
+  ],
+)
 
 就完成了安装。
 
@@ -66,6 +81,9 @@ sudo dnf install geant4 geant4-data geant4-devel geant4-examples
 
 下载 Geant 4 的源代码，然后解压
 
+#figure(
+  caption: [从源代码编译并安装 Geant 4],
+  [
 ```bash
 mkdir build && cd build
 cmake    -DGEANT4_BUILD_MULTITHREADED=ON \
@@ -85,23 +103,35 @@ cmake    -DGEANT4_BUILD_MULTITHREADED=ON \
 make -jN（N 替换为你的 CPU 线程数）
 make install
 ```
+  ],
+)
 
 要是提示缺依赖就照着提示找依赖安装。
 
 自己编译安装的版本需要运行：
 
+#figure(
+  caption: [加载自行编译的 Geant 4 环境],
+  [
 ```bash
 source /path/to/geant4.sh
 ```
+  ],
+)
 
 来设置环境变量，通过源安装的不需要。
 
 = 安装 ROOT
 在多数情况下，可以通过安装
 
+#figure(
+  caption: [安装支持大多数 Geant 4 开发需求的 ROOT 软件包],
+  [
 ```bash
 sudo dnf install root-hist-painter root-physics root-mathmore root-tree-dataframe root-hist root-spectrum root-net root-tree-ntuple root-graf-x11 root-graf3d root-vecops root-matrix root root-multiproc root-icons root-tree root-graf-postscript root-gui root-graf-gpad root-tree-player root-cling root-minuit root-fonts root-graf-asimage root-graf root-core root-mathcore root-io root-gui-ged
 ```
+  ],
+)
 
 就足以支撑大部分 Geant4 开发之用，要是 `cmake` 的时候提示缺文件就再安装就行。
 

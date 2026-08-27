@@ -18,6 +18,9 @@
 = 在 Vultr 上通过 CoreOS 部署 V2ray
 说干就干，先看看#link("https://docs.fedoraproject.org/en-US/fedora-coreos/")[文档]，琢磨琢磨，然后糊一个 Fedora CoreOS Config 文件。
 
+#figure(
+  caption: [用于部署 V2ray 的完整 Fedora CoreOS Config],
+  [
 ```yaml
 variant: fcos
 version: 1.0.0
@@ -76,18 +79,28 @@ systemd:
         [Install]
         WantedBy=multi-user.target
 ```
+  ],
+)
 
 我们来拆开看看这个文件
 
+#figure(
+  caption: [FCC 文件的系统类型与格式版本],
+  [
 ```yaml
 variant: fcos
 version: 1.0.0
 ```
+  ],
+)
 
 上面意思是我要构建一个 `fcos` 系统，并且配置文件格式是 `1.0.0`。
 
 `"ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBFlngteAj8k7Fv0Ht6dFtQvA+Svxn/qnTuDfUzEvaU33QEyN9jDaJyMdct4elU9ec9aQheskwv5ULSvv7lzgs4ZhgtgGNRfH0mC8cI49DGdSxucaAuPiHmKNTfQa88iZxg== CARD AUTH pubkey pkcs11:id=%04;object=CARD%20AUTH%20pubkey;token=Karuboniru;manufacturer=piv_II?module-path=/usr/lib64/pkcs11/opensc-pkcs11.so"` 是我的 ssh 公钥，之后需要维护可能用到。
 
+#figure(
+  caption: [将 V2ray 配置写入 `/var/lib/v2ray/config.json`],
+  [
 ```yaml
 storage:
   files:
@@ -119,11 +132,16 @@ storage:
           }
       mode: 0644
 ```
+  ],
+)
 
-这是放一个配置文件到 `/var/lib/v2ray/config.json`，至于 `/etc` 尽可能留给包管理。
+至于 `/etc` 尽可能留给包管理。
 
 最后是添加一个自动启动的 systemd unit
 
+#figure(
+  caption: [自动启动 V2ray 容器的 systemd unit],
+  [
 ```yaml
 systemd:
   units:
@@ -145,6 +163,8 @@ systemd:
         [Install]
         WantedBy=multi-user.target
 ```
+  ],
+)
 
 这个 unit 会通过 #link("https://podman.io/")[Podman] 拉取 #link("https://hub.docker.com/r/v2fly/v2fly-core")[V2ray 的 Docker 镜像] 并创建一个容器，将 `/var/lib/v2ray` 挂载到容器内的 `/etc/v2ray`，并指定 `net=host`，也就是容器不隔离网络。
 
@@ -152,17 +172,34 @@ FCC 文件是一个易读的 Yaml 文件，之后要用 #link("https://github.co
 
 首先要安装 Butane
 
+#figure(
+  caption: [安装 Butane],
+  [
 ```bash
 sudo dnf install butane
 ```
+  ],
+)
 
-然后用你的 fcc 文件喂给它…假定它的名字是 `fcos.fcc`
+然后用 Butane 转换 FCC 文件。
 
+#figure(
+  caption: [转换名为 `fcos.fcc` 的 FCC 文件],
+  [
 ```bash
 butane fcos.fcc
 ```
+  ],
+)
 
-于是会输出一段混沌的 json 到终端，这就是 ign 文件，复制这段输出。转到 #link("https://www.vultr.com/?ref=8404229-6G")[Vultr (With Referral)]，创建服务器，选择区域并在 `Server Type` 处选择 CoreOS： #html.img(src: "https://cdn.yanqiyu.info/20210506233322.png") 把上面的 `butane fcos.fcc` 的输出粘贴到框框里面。然后按需修改配置，选择 `Deploy Now` 就完成了部署。记下 ip 配置好客户端就能用了。
+于是会输出一段混沌的 json 到终端，这就是 ign 文件，复制这段输出。转到 #link("https://www.vultr.com/?ref=8404229-6G")[Vultr (With Referral)]，创建服务器，选择区域并在 `Server Type` 处选择 CoreOS：
+
+#figure(
+  caption: [Vultr 的 Fedora CoreOS 部署界面],
+  html.img(src: "https://cdn.yanqiyu.info/20210506233322.png"),
+)
+
+把上面的 `butane fcos.fcc` 的输出粘贴到框框里面。然后按需修改配置，选择 `Deploy Now` 就完成了部署。记下 ip 配置好客户端就能用了。
 
 #html.hr()
 
@@ -173,6 +210,9 @@ OK，接下来就是肮脏的 workarounds 了
 
 你也可以加上
 
+#figure(
+  caption: [在 FCC 的 `storage.links` 中启用 Zincati 自动更新],
+  [
 ```yaml
   links:
     - path: /etc/zincati/config.d/95-disable-on-dev.toml
@@ -180,12 +220,17 @@ OK，接下来就是肮脏的 workarounds 了
       target: /dev/null
       hard: false
 ```
+  ],
+)
 
 到 `storage` 部分，这会启用自动更新，理论上它会允许系统随后自动更新到最新版本的 CoreOS。
 
 = 开 BBR
 这个简单，在 `files` 下面加上
 
+#figure(
+  caption: [在 FCC 的 `storage.files` 中启用 BBR],
+  [
 ```yaml
     - path: /etc/modules-load.d/80-bbr.conf
       contents:
@@ -196,40 +241,60 @@ OK，接下来就是肮脏的 workarounds 了
         inline: |
           net.ipv4.tcp_congestion_control = bbr  
 ```
+  ],
+)
 
 就有了 BBR。
 
 = 用 `sshd.socket` 而不是 `sshd.service`
 可能能省点内存，因为 ssh 用的并不是很频繁。但是可能因为 Vultr 的 CoreOS 版本太老的原因，在 `systemd` 段加上：
 
+#figure(
+  caption: [无法在旧版 CoreOS 上切换 SSH unit 的配置],
+  [
 ```yaml
     - name: sshd.socket
       enabled: true
     - name: sshd.service
       enabled: false
 ```
+  ],
+)
 
 不好使，需要做的是在 `systemd` 段加上
 
+#figure(
+  caption: [在 FCC 的 `systemd.units` 中启用 `sshd.socket`],
+  [
 ```yaml
     - name: sshd.socket
       enabled: true
 ```
+  ],
+)
 
 并在 `links` 里面加上
 
+#figure(
+  caption: [在 FCC 的 `storage.links` 中屏蔽 `sshd.service`],
+  [
 ```yaml
     - path: /etc/systemd/system/sshd.service
       overwrite: true
       target: /dev/null
       hard: false
 ```
+  ],
+)
 
 来 mask 掉 `sshd.service`。
 
 = 切换到 CGroup V2
 只是个人喜好罢了…在 `systemd` 段下面加
 
+#figure(
+  caption: [在 FCC 的 `systemd.units` 中切换到 CGroup V2],
+  [
 ```yaml
     - name: cgroups-v2-karg.service
       enabled: true
@@ -252,6 +317,8 @@ OK，接下来就是肮脏的 workarounds 了
         [Install]
         WantedBy=multi-user.target
 ```
+  ],
+)
 
 = 更改 ign 文件重新部署
 令人震惊的是，Vultr 不提供这个功能，他们的技术支持建议是 reserve 现在的 ip，应用到新部署的机器上…听着就很傻。于是只能曲线救国：
@@ -259,6 +326,9 @@ OK，接下来就是肮脏的 workarounds 了
 == 把真正的 ign 文件放到 GitHub Gist
 在 #link("https://gist.github.com/")[Gist] 放下前面 butane 输出的 ign 文件（最好是 Secret Gist）。然后导出它的 raw 链接，一般格式是：`https://gist.githubusercontent.com/<username>/<id>/raw/<commit>/<name>.ign`，对应的写一个 fcc 文件，内容是
 
+#figure(
+  caption: [从固定 URL 加载最新 Ignition 配置的 FCC 文件],
+  [
 ```yaml
 variant: fcos
 version: 1.0.0
@@ -267,6 +337,8 @@ ignition:
     replace:
       source: https://gist.githubusercontent.com/<username>/<id>/raw/<name>.ign
 ```
+  ],
+)
 
 里面链接要去掉 `<commit>` 这一级，保证始终拉取最新版本。要是有更好的存放 ign 文件的地方欢迎指出。
 
@@ -278,6 +350,9 @@ ignition:
 #html.hr()
 
 = 最后 FCC 文件长啥样
+#figure(
+  caption: [包含全部修改的最终 FCC 文件],
+  [
 ```yaml
 variant: fcos
 version: 1.0.0
@@ -375,3 +450,5 @@ systemd:
     - name: sshd.socket
       enabled: true
 ```
+  ],
+)
