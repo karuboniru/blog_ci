@@ -765,23 +765,31 @@ sup.footnote-ref {
 	line-height: 0;
 }
 
-/* Keep the footnote label outside the justified text's spacing context. */
+/*
+ * Keep the label in the note's inline flow so wrapped body lines can use the
+ * full note width. The label's margin, unlike a text space, is not adjusted by
+ * text justification.
+ */
 .sidenote-note-layout {
-	display: grid;
-	grid-template-columns: max-content minmax(0, 1fr);
-	column-gap: 0.35em;
-	align-items: start;
+	display: block;
+	overflow-wrap: anywhere;
+	text-align: justify;
 }
 
 .sidenote-label {
+	display: inline-block;
+	margin-inline-end: 0.35em;
 	white-space: nowrap;
 	text-align: end;
 }
 
 .sidenote-body {
-	min-width: 0;
-	overflow-wrap: anywhere;
-	text-align: justify;
+	display: inline;
+}
+
+/* A block-form note should run its opening paragraph in after the label too. */
+.sidenote-body > p:first-child {
+	display: inline;
 }
 
 /* Keep multi-paragraph notes at the margin-note size. */
@@ -803,26 +811,6 @@ sup.footnote-ref {
 @media (min-width: 761px) {
 	sup.marginnote-ref {
 		display: none;
-	}
-
-	/*
-	 * Hang sidenote markers in the gutter. The body keeps the entire margin
-	 * column, while footnote numbers and figure labels share a right edge.
-	 */
-	.sidenote-note-layout {
-		position: relative;
-		display: block;
-	}
-
-	.sidenote-note-layout > .sidenote-label {
-		position: absolute;
-		inset-block-start: 0;
-		inset-inline-end: calc(100% + 0.35em);
-	}
-
-	.sidenote-note-layout > .sidenote-body {
-		display: block;
-		width: 100%;
 	}
 
 	/* Keep fallback note geometry stable when notes are nested in lists or blocks. */
