@@ -30,7 +30,7 @@
 
 = 到手后
 #figure(
-  caption: [ThinkBook 14+ 2022 的外观与接口],
+  caption: [外观与接口],
   [
     #html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-27.jpg")
     #html.img(src: "https://cdn.yanqiyu.info/laptop/photo_2023-03-09_12-01-26.jpg")
@@ -124,6 +124,6 @@ if [ $battery_status -eq 1 ]; then
 最后是第一次见到Gnome鉴定为安全的设备，开眼了。
 
 #figure(
-  caption: [Gnome 将连接的 Thunderbolt 设备标记为安全],
+  caption: [Gnome 将设备的固件行为标记为安全],
   html.img(src: "https://cdn.yanqiyu.info/gnome.png"),
 )

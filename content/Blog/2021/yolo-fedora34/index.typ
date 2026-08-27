@@ -45,7 +45,7 @@ sudo dnf system-upgrade reboot
 )
 
 #figure(
-  caption: [升级后的 Fedora 34 桌面],
+  caption: [升级过程],
   html.img(src: "https://cdn.yanqiyu.info/20210315113127.png"),
 )
 
