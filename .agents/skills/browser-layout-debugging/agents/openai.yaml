@@ -1,0 +1,4 @@
+interface:
+  display_name: "Browser Layout Debugging"
+  short_description: "Debug local pages in Flatpak Firefox and Chrome"
+  default_prompt: "Use $browser-layout-debugging to reproduce and measure a local cross-browser layout issue."
