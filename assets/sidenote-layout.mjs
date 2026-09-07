@@ -14,22 +14,21 @@ function resetHorizontalOffsets(controller) {
 function layoutController(controller) {
 	const { notes, section } = controller;
 
-	// Transforms do not affect layout, so clearing every previous translation
-	// exposes the CSS float position without changing any note's y coordinate.
-	resetHorizontalOffsets(controller);
-
 	const sectionRectangle = section.getBoundingClientRect();
 	const targetLeft =
 		sectionRectangle.left + sectionRectangle.width * SIDENOTE_INLINE_START;
 	const measurements = notes.map((note) => ({
 		left: note.getBoundingClientRect().left,
+		offset: Number.parseFloat(note.style.translate) || 0,
 		note,
 	}));
 
-	measurements.forEach(({ left, note }) => {
-		const offset = targetLeft - left;
-		if (Math.abs(offset) > POSITION_EPSILON) {
-			note.style.translate = `${offset}px 0`;
+	// Clearing translations can introduce scrollbars and change the width we
+	// are measuring. Correct the current position without that intermediate state.
+	measurements.forEach(({ left, offset, note }) => {
+		const correction = targetLeft - left;
+		if (Math.abs(correction) > POSITION_EPSILON) {
+			note.style.translate = `${offset + correction}px 0`;
 		}
 	});
 }
@@ -66,6 +65,7 @@ function init() {
 			? new ResizeObserver(scheduleLayout)
 			: null;
 	controllers.forEach((controller) => {
+		noteObserver?.observe(controller.section);
 		controller.notes.forEach((note) => noteObserver?.observe(note));
 		controller.section.addEventListener("load", scheduleLayout, true);
 		controller.section.addEventListener("toggle", scheduleLayout, true);

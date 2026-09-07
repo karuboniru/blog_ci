@@ -221,9 +221,20 @@ TYPOGRAPHY
 *******************************************************************************/
 
 /* Paragraph alignment and spacing */
-p {
+p,
+.sidenote-paragraph {
 	text-align: justify;
 	line-height: 2.2rem;
+}
+
+/* Match Tufte paragraphs while allowing notes to contain block content. */
+.sidenote-paragraph {
+	font-size: 1.4rem;
+	margin-block: 1.4rem;
+}
+
+section > .sidenote-paragraph {
+	width: 55%;
 }
 
 /* List spacing */
@@ -447,7 +458,7 @@ div[style*="border-inline-start"] div[style*="border-inline-start"] {
 	margin: 0.5em 0;
 }
 
-div[style*="border-inline-start"] p {
+div[style*="border-inline-start"] :is(p, .sidenote-paragraph) {
 	font-size: 1.4rem;
 	margin: 0.5em 0;
 	width: 100%;
@@ -545,6 +556,10 @@ RESPONSIVE LAYOUT
 *******************************************************************************/
 
 @media (max-width: 760px) {
+	section > .sidenote-paragraph {
+		width: 100%;
+	}
+
 	.math-block {
 		width: 100%;
 	}

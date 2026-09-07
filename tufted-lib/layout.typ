@@ -1,5 +1,20 @@
 // TODO: figures and figures with captions inside margin notes
 
+#let has-margin-note(node) = {
+  if node.func() == html.elem and node.has("attrs") and (
+    node.attrs.at("class", default: "").split().contains("marginnote")
+  ) {
+    return true
+  }
+  if node.has("children") {
+    return node.children.any(has-margin-note)
+  }
+  if node.has("body") and type(node.body) == content {
+    return has-margin-note(node.body)
+  }
+  false
+}
+
 #let margin-note(content) = {
   html.elem(
     "span",
@@ -9,7 +24,7 @@
     ),
     "\u{2060}",
   )
-  html.span(class: "marginnote sidenote-manual", role: "note", content)
+  box(html.div(class: "marginnote sidenote-manual", role: "note", content))
 }
 
 // TODO: implement <figure class="fullwidth">
