@@ -7,7 +7,13 @@
 
 #title()
 
-Poor PhD. in Particle Physics and Nuclear Physics
+Poor PhD. in Particle Physics and Nuclear Physics #tufted.margin-note[
+  More:
+  - #link("cv_pdf.pdf")[CV (in PDF)]
+  - #link("https://github.com/karuboniru/")[GitHub]
+  - #link("https://orcid.org/0009-0005-0796-5539")[ORCiD: 0009-0005-0796-5539]
+  - #link("https://inspirehep.net/authors/2789671")[Inspire]
+]
 
 常住地：上海，熟悉的人可以来约面基。
 

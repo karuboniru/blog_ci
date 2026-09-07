@@ -404,6 +404,13 @@ def get_file_output_path(typ_file: Path, type: Literal["pdf", "html"]) -> Path:
     return SITE_DIR / relative_path.with_suffix(f".{type}")
 
 
+def get_typst_font_path() -> str:
+    """Keep environment font paths when supplying the CLI font-path option."""
+    paths = [str(ASSETS_DIR)]
+    paths.extend(filter(None, os.environ.get("TYPST_FONT_PATHS", "").split(os.pathsep)))
+    return os.pathsep.join(paths)
+
+
 def run_typst_command(args: list[str]) -> bool:
     """
     运行 typst 命令。
@@ -419,6 +426,8 @@ def run_typst_command(args: list[str]) -> bool:
         if result.returncode != 0:
             print(f"  ❌ Typst 错误: {result.stderr.strip()}")
             return False
+        if result.stderr.strip():
+            print(result.stderr.strip())
         return True
     except FileNotFoundError:
         print("  ❌ 错误: 未找到 typst 命令。请确保已安装 Typst 并添加到 PATH 环境变量中。")
@@ -716,7 +725,7 @@ def build_html(force: bool = False) -> bool:
             "--root",
             ".",
             "--font-path",
-            str(ASSETS_DIR),
+            get_typst_font_path(),
             "--features",
             "html",
             "--format",
@@ -769,7 +778,7 @@ def build_pdf(force: bool = False) -> bool:
             "--root",
             ".",
             "--font-path",
-            str(ASSETS_DIR),
+            get_typst_font_path(),
             str(typ_file),
             str(output_path),
         ]
