@@ -458,6 +458,16 @@ div[style*="border-inline-start"] div[style*="border-inline-start"] {
 	margin: 0.5em 0;
 }
 
+/* Do not apply the main-column 55% code and figure widths inside quotes. */
+div[style*="border-inline-start"] > figure {
+	width: 100%;
+	max-width: 100%;
+}
+
+div[style*="border-inline-start"] pre {
+	width: 100%;
+}
+
 div[style*="border-inline-start"] :is(p, .sidenote-paragraph) {
 	font-size: 1.4rem;
 	margin: 0.5em 0;
