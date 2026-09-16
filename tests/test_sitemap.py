@@ -53,6 +53,10 @@ class SitemapLastmodTests(unittest.TestCase):
                 patch.object(build, "CONTENT_DIR", content_dir),
                 patch.object(build, "SITE_DIR", site_dir),
                 patch.object(build, "get_git_last_modified", side_effect=dates.__getitem__),
+                patch.object(build, "load_page_metadata", side_effect=lambda path: {
+                    "title": "", "description": "", "link": "",
+                    "date": "2024-01-02" if path == old_post_html else "2025-03-04",
+                }),
             ):
                 results = [
                     build.get_sitemap_lastmod(site_dir / rel_path, {})
@@ -91,6 +95,7 @@ class SitemapLastmodTests(unittest.TestCase):
                 patch.object(build, "SITE_DIR", site_dir),
                 patch.object(build.subprocess, "run", return_value=git_check),
                 patch.object(build, "get_sitemap_lastmod", side_effect=sitemap_date),
+                patch.object(build, "page_outputs", return_value=[home_html, blog_html, tag_html]),
             ):
                 self.assertTrue(build.generate_sitemap("https://example.com"))
 

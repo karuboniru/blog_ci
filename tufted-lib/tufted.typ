@@ -8,11 +8,11 @@
 #import "metadata.typ": metadata
 #import "byline.typ": template-byline
 #import "comments.typ": waline-comments
+#import "plain-text.typ": plain-text
 
 /// The main wrapper function of Tufted Blog Template.
 ///
-/// Typst owns the document and its metadata. Elements that additionally belong
-/// in the HTML head are staged in a template for build.py to move after export.
+/// Typst owns the complete HTML document and exports structured build metadata.
 #let tufted-web(
   header-links: (:),
 
@@ -67,98 +67,135 @@
     extra-info: extra-info,
   )
 
-  // These elements are valid only in <head>. Keeping them in a template makes
-  // the initial HTML inert and gives build.py an exact fragment to relocate.
-  html.elem(
-    "template",
-    attrs: (data-tufted-head: ""),
-    {
-      metadata(
-        date: date,
-        website-title: website-title,
-        website-url: website-url,
-        image-path: image-path,
-        feed-dir: feed-dir,
-      )
-
-      let base-css = (
-        "https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css",
-        "/assets/tufted.css",
-        "/assets/theme.css",
-      )
-      for css-link in (base-css + css).dedup() {
-        html.link(rel: "stylesheet", href: css-link)
-      }
-
-      let base-js = (
-        "/assets/service-worker.js",
-        "/assets/code-blocks.js",
-        "/assets/format-headings.js",
-        "/assets/theme-toggle.js",
-        "/assets/marginnote-toggle.js",
-        "/assets/toc.js",
-        "/assets/back-to-top.js",
-        "/assets/math-copy.js",
-      )
-      for js-src in (base-js + js-scripts).dedup() {
-        html.script(src: js-src)
-      }
-      html.script(type: "module", src: "/assets/sidenote-layout.mjs")
-
-      for element in head-elements {
-        element
-      }
-    },
-  )
-
-  html.header(
-    class: "site-header",
-    {
-      for (i, element) in header-elements.enumerate() {
-        element
-        if i < header-elements.len() - 1 {
-          html.br()
-        }
-      }
-    },
-  )
-
-  html.header(
-    class: "site-header",
-    if header-links != none {
-      html.nav(
-        class: "site-nav",
-        {
-          for (href, link-title) in header-links {
-            html.a(href: href, link-title)
-          }
-          html.elem(
-            "button",
-            attrs: (
-              id: "theme-toggle",
-              class: "theme-toggle-btn",
-              type: "button",
-              aria-label: "Toggle theme",
-            ),
-            "",
-          )
-        },
-      )
-    },
-  )
-
-  html.article(html.section(content))
-
-  if comments {
-    waline-comments()
-  }
-
-  html.footer({
-    for (i, element) in footer-elements.enumerate() {
-      element
-      if i < footer-elements.len() - 1 {
-        html.br()
-      }
+  context {
+    let page-path = sys.inputs.at("page-path", default: "")
+    let canonical = if website-url == none { "" } else {
+      website-url.trim("/", at: end) + "/" + if page-path == "" { "" } else { page-path.trim("/") + "/" }
     }
-  })
+    let page-data = (
+      schema: 1,
+      title: plain-text(document.title),
+      description: plain-text(document.description),
+      author: document.author.join(", ", default: ""),
+      lang: lang,
+      date: if type(date) == datetime { date.display() } else if date == none { "" } else { date },
+      link: canonical,
+      feed-dirs: if feed-dir == none { () } else { feed-dir },
+    )
+    [#std.metadata(page-data) <tufted-page>]
+
+    html.html(lang: lang, {
+      html.head({
+        html.meta(charset: "utf-8")
+        html.meta(name: "viewport", content: "width=device-width, initial-scale=1")
+        if document.title != none { html.title(page-data.title) }
+        if document.description != none { html.meta(name: "description", content: page-data.description) }
+        if page-data.author != "" { html.meta(name: "authors", content: page-data.author) }
+        if document.keywords.len() > 0 {
+          html.meta(name: "keywords", content: document.keywords.join(", "))
+        }
+        metadata(
+          date: date,
+          website-title: website-title,
+          website-url: website-url,
+          image-path: image-path,
+          feed-dir: feed-dir,
+          canonical-url: canonical,
+        )
+
+        let base-css = (
+          "https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css",
+          "/assets/tufted.css",
+          "/assets/theme.css",
+        )
+        for css-link in (base-css + css).dedup() {
+          html.link(rel: "stylesheet", href: css-link)
+        }
+
+        let base-js = (
+          "/assets/service-worker.js",
+          "/assets/code-blocks.js",
+          "/assets/format-headings.js",
+          "/assets/theme-toggle.js",
+          "/assets/marginnote-toggle.js",
+          "/assets/toc.js",
+          "/assets/back-to-top.js",
+          "/assets/math-copy.js",
+        )
+        for js-src in (base-js + js-scripts).dedup() {
+          html.script(src: js-src)
+        }
+        html.script(type: "module", src: "/assets/sidenote-layout.mjs")
+
+        for element in head-elements {
+          element
+        }
+        let og-type = if page-path in ("", "/") { "website" } else { "article" }
+        html.elem("meta", attrs: (property: "og:title", content: page-data.title.trim()))
+        html.elem("meta", attrs: (property: "og:type", content: og-type))
+        if page-data.description.trim() != "" {
+          html.elem("meta", attrs: (property: "og:description", content: page-data.description.trim()))
+        }
+        if canonical != "" {
+          html.elem("meta", attrs: (property: "og:url", content: canonical))
+        }
+        if page-data.author.trim() != "" and og-type == "article" {
+          html.elem("meta", attrs: (property: "article:author", content: page-data.author.trim()))
+        }
+      })
+
+      html.body({
+        html.header(
+          class: "site-header",
+          {
+            for (i, element) in header-elements.enumerate() {
+              element
+              if i < header-elements.len() - 1 {
+                html.br()
+              }
+            }
+          },
+        )
+
+        html.header(
+          class: "site-header",
+          if header-links != none {
+            html.nav(
+              class: "site-nav",
+              {
+                for (href, link-title) in header-links {
+                  html.a(href: href, link-title)
+                }
+                html.elem(
+                  "button",
+                  attrs: (
+                    id: "theme-toggle",
+                    class: "theme-toggle-btn",
+                    type: "button",
+                    aria-label: "Toggle theme",
+                  ),
+                  "",
+                )
+              },
+            )
+          },
+        )
+
+        html.article(html.section(content))
+
+        if comments {
+          waline-comments()
+        }
+
+        html.footer({
+          for (i, element) in footer-elements.enumerate() {
+            element
+            if i < footer-elements.len() - 1 {
+              html.br()
+            }
+          }
+        })
+      })
+    })
+  }
 }

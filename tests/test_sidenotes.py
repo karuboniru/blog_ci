@@ -5,7 +5,7 @@ import unittest
 from html.parser import HTMLParser
 from pathlib import Path
 
-from build import strip_exported_endnotes
+from build import validate_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +13,7 @@ FIXTURE = '''
 #import "/tufted-lib/notes.typ": template-notes
 #import "/tufted-lib/layout.typ": margin-note
 #show: template-notes
+#show: body => html.html(html.head([]) + html.body(body))
 
 Ordinary paragraph.
 
@@ -93,7 +94,8 @@ class SidenoteExportTests(unittest.TestCase):
                 capture_output=True,
                 text=True,
             )
-            html, _ = strip_exported_endnotes(output.read_text(encoding="utf-8"))
+            validate_html(output)
+            html = output.read_text(encoding="utf-8")
 
         parsed = NoteStructure()
         parsed.feed(html)
@@ -104,6 +106,7 @@ class SidenoteExportTests(unittest.TestCase):
         self.assertIn("<p>Ordinary paragraph.</p>", html)
         self.assertIn("Closing paragraph.", html)
         self.assertIn("<p>Another paragraph.</p>", html)
+        self.assertNotIn('role="doc-endnotes"', html)
         self.assertIn('class="sidenote-paragraph">Before', html)
 
 

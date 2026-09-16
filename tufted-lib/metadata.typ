@@ -1,14 +1,11 @@
-/// Produce head-only elements inside a staging template.
-///
-/// Typst owns the actual document head and serializes document metadata,
-/// including rich document titles, to the plain-text forms required by HTML.
-/// build.py moves this fragment into that generated head afterwards.
+/// Produce additional metadata directly inside the document head.
 #let metadata(
   date: none,
   website-title: "",
   website-url: none,
   image-path: none,
   feed-dir: (),
+  canonical-url: "",
 ) = {
   html.meta(name: "generator", content: "Typst")
   html.link(rel: "icon", href: "https://cdn.yanqiyu.info/2026/08/24/logo.webp")
@@ -33,20 +30,7 @@
     )
   }
 
-  let page-path = sys.inputs.at("page-path", default: none)
-  let canonical-url = if website-url != none and page-path != none {
-    let clean-site-url = website-url.trim("/", at: end)
-    let clean-path = page-path.trim("/")
-    if clean-path == "" {
-      clean-site-url + "/"
-    } else {
-      clean-site-url + "/" + clean-path + "/"
-    }
-  } else {
-    none
-  }
-
-  if canonical-url != none {
+  if canonical-url != "" {
     html.link(rel: "canonical", href: canonical-url)
   }
 

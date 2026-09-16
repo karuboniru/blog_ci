@@ -22,6 +22,7 @@ biome.json
 
 # build outputs
 _site/
+.build-cache/
 public/
 target/
 
