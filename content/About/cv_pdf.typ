@@ -7,11 +7,11 @@
 // #show raw: set text(font: "Libertinus Mono")
 #set page(
   margin: (x: 1.0cm, y: 1.5cm),
-  // footer: text(gray)[
-  //   #align(right)[
-  //     Last updated: #datetime.today().display("[year]/[month]/[day]"). #link("https://share.niconi.org/cv.pdf")[Check for updates]
-  //   ]
-  // ],
+  footer: text(gray)[
+    #align(right)[
+      Last updated: #datetime.today().display("[year]/[month]/[day]"). #link("https://niconi.org/About/cv_pdf.pdf")[Check for updates]
+    ]
+  ],
 )
 #set par(justify: true)
 #let chiline() = {
