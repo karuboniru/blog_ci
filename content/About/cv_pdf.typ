@@ -41,7 +41,7 @@ Supervisor: Prof. Xianguo Lu
 
 *University of Chinese Academy of Sciences* #h(1fr) 2021/09 - 2026/06 \
 Ph.D. in Physics #h(1fr) Beijing, China \
-Supervisor: Prof. Xianguo Lu (Warwick), Prof. Yangheng Zheng
+Supervisor: Prof. Xianguo Lu (Warwick), Prof. Yangheng Zheng #h(1fr) #link("https://cdn.yanqiyu.info/2026/09/17/Thesis_Final.pdf")[Link to thesis]
 
 *University of Chinese Academy of Sciences* #h(1fr) 2017/09 -- 2021/06 \
 B.Sc. in Physics #h(1fr) Beijing, China \
