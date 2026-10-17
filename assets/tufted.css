@@ -237,6 +237,11 @@ section > .sidenote-paragraph {
 	width: 55%;
 }
 
+/* Align list text even when items do not contain paragraph elements. */
+section li {
+	text-align: justify;
+}
+
 /* List spacing */
 ul,
 ol,
@@ -450,6 +455,11 @@ div[style*="border-inline-start"] {
 	margin: 1.5em 0;
 	padding-right: 0;
 	box-sizing: border-box;
+}
+
+/* Lists already constrain the text column; do not narrow quotes again. */
+:is(li, dd) div[style*="border-inline-start"] {
+	width: 100% !important;
 }
 
 /* Nested quote blocks should take full width of parent */
